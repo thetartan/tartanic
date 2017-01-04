@@ -55355,7 +55355,7 @@
 /* 76 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen column ui borderless loading segment\"\n    v-if=\"datasetState.loading\"></div>\n\n  <div class=\"sixteen column ui borderless segment\"\n    v-if=\"datasetState.loaded && datasetState.error\">\n    <div v-if=\"datasetState.loaded && datasetState.error\"\n      class=\"ui red message\">\n      <span>Error:</span> <span>{{ datasetState.error.message }}</span>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n  <div class=\"sixteen wide column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <div class=\"ui four doubling stackable cards\">\n      <list-item v-for=\"item in dataset.items.slice(firstDisplayItem, lastDisplayItem)\"\n        v-bind:item=\"item\"></list-item>\n    </div>\n  </div>\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen column ui borderless loading segment\"\n    v-if=\"datasetState.loading\"></div>\n\n  <div class=\"sixteen column ui borderless segment\"\n    v-if=\"datasetState.loaded && datasetState.error\">\n    <div v-if=\"datasetState.loaded && datasetState.error\"\n      class=\"ui red message\">\n      <span>Error:</span> <span>{{ datasetState.error.message }}</span>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n  <div class=\"sixteen wide vertically compact column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <div class=\"ui four doubling stackable cards\">\n      <list-item v-for=\"item in dataset.items.slice(firstDisplayItem, lastDisplayItem)\"\n        v-bind:item=\"item\"></list-item>\n    </div>\n  </div>\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n</div>\n"
 
 /***/ },
 /* 77 */
@@ -55409,7 +55409,7 @@
 /* 85 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"pushable\">\n  <application-title>{{ currentPage.title }} - Tartanic</application-title>\n\n  <application-menu v-cloak v-model=\"isSidebarMenuVisible\"></application-menu>\n\n  <div class=\"pusher\" v-cloak>\n    <application-bar v-on:toggle-menu=\"isSidebarMenuVisible = !isSidebarMenuVisible\"></application-bar>\n    <application-area></application-area>\n    <application-modals></application-modals>\n  </div>\n</div>\n"
+	module.exports = "<div v-cloak class=\"pushable application-container\">\n  <application-title>{{ currentPage.title }} - Tartanic</application-title>\n\n  <application-menu v-model=\"isSidebarMenuVisible\"></application-menu>\n\n  <div class=\"pusher expanded area\">\n    <div class=\"row\">\n      <application-bar\n        v-on:toggle-menu=\"isSidebarMenuVisible = !isSidebarMenuVisible\"\n      ></application-bar>\n    </div>\n\n    <div class=\"expanded row\">\n      <application-area></application-area>\n    </div>\n    <application-modals></application-modals>\n  </div>\n</div>\n"
 
 /***/ },
 /* 86 */
@@ -87272,6 +87272,12 @@
 	  computed: _.extend({}, Vuex.mapState([
 	    'currentPage'
 	  ])),
+	  watch: {
+	    'currentPage.viewAs': function() {
+	      // Scroll to top
+	      (window.scrollTo || window.scroll)(0, 0);
+	    }
+	  },
 	  components: {
 	    editor: __webpack_require__(151),
 	    explorer: __webpack_require__(152),
