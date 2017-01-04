@@ -1,0 +1,30 @@
+<div class="ui padded grid">
+  <div class="sixteen column ui borderless loading segment"
+    v-if="datasetState.loading"></div>
+
+  <div class="sixteen column ui borderless segment"
+    v-if="datasetState.loaded && datasetState.error">
+    <div v-if="datasetState.loaded && datasetState.error"
+      class="ui red message">
+      <span>Error:</span> <span>{{ datasetState.error.message }}</span>
+    </div>
+  </div>
+
+  <div class="sixteen wide center aligned column"
+    v-if="datasetState.loaded && !datasetState.error">
+    <pagination v-bind:count="pagination.pageCount"
+      v-model="pagination.currentPage"></pagination>
+  </div>
+  <div class="sixteen wide column"
+    v-if="datasetState.loaded && !datasetState.error">
+    <div class="ui four doubling stackable cards">
+      <list-item v-for="item in dataset.items.slice(firstDisplayItem, lastDisplayItem)"
+        v-bind:item="item"></list-item>
+    </div>
+  </div>
+  <div class="sixteen wide center aligned column"
+    v-if="datasetState.loaded && !datasetState.error">
+    <pagination v-bind:count="pagination.pageCount"
+      v-model="pagination.currentPage"></pagination>
+  </div>
+</div>

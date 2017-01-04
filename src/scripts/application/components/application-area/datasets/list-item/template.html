@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="content">
+    <div class="header">{{ item.title }}</div>
+    <div class="meta" v-if="item.version">v{{ item.version }}</div>
+    <div class="description" v-if="item.description" v-markdown="item.description"></div>
+  </div>
+  <div class="content">
+    <p v-if="item.license" class="description">
+      <span>License:</span>
+      <span v-if="!licenseUrl">{{ licenseTitle }}</span>
+      <a v-if="licenseUrl" v-bind:href="licenseUrl" target="_blank">{{ licenseTitle }}</a>
+    </p>
+    <p v-if="item.author" class="description">
+      <span>Author:</span>
+      <span>{{ item.author }}</span>
+    </p>
+  </div>
+  <div class="ui bottom attached menu">
+    <a class="item" v-on:click="viewDataset(item)"><i
+      class="fa fa-sign-in spacing right"></i>Open</a>
+    <div class="right menu">
+      <a class="item" v-on:click="downloadDataset(item)"><i class="fa fa-download"></i></a>
+      <a class="item" v-on:click="likeDataset(item)"><i class="fa fa-heart"></i></a>
+    </div>
+  </div>
+</div>

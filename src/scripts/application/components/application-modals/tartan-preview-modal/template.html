@@ -1,0 +1,37 @@
+<modal-box v-model="isVisible">
+  <div class="content">
+    <div class="center">
+      <div class="ui fluid centered card" v-if="isVisible && item">
+        <div class="expanded area">
+          <div class="row">
+            <div class="ui top attached menu">
+              <div class="header borderless item">{{ item.name }}</div>
+              <div class="right menu">
+                <a class="item" v-on:click="isVisible = false;"><i class="fa fa-close"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="expanded row">
+            <tartan-preview class="description"
+              v-bind:schema="schema"
+              v-bind:repeat="true"
+              v-bind:threadcount="item.sett"
+            ></tartan-preview>
+          </div>
+
+          <div class="row">
+            <div class="ui bottom attached menu">
+              <a class="item" v-on:click="isVisible = false; editTartan(item)"><i
+                class="fa fa-pencil spacing right"></i>Edit</a>
+              <div class="right menu">
+                <a class="item" v-on:click="downloadTartan(item)"><i class="fa fa-download"></i></a>
+                <a class="item" v-on:click="likeTartan(item)"><i class="fa fa-heart"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</modal-box>

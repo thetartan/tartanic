@@ -1,0 +1,219 @@
+@import './preview-control.less';
+
+* {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+[v-cloak] {
+  display: none !important;
+}
+
+body {
+  @color: #fff;
+  background: @color;
+  & > .pushable > .pusher {
+    background: @color;
+  }
+}
+
+.ui.top.attached.page.menu {
+  border-radius: 0;
+  margin-top: -1px;
+}
+
+.sidebar.menu {
+  border: 0;
+
+  .list .item {
+    margin: 0;
+    padding: 0.78571429em 1.14285714em !important;
+    box-shadow: none !important;
+    transition: none !important;
+
+    &:before {
+      content: none;
+    }
+
+    &.nested .contents {
+      display: inline-block;
+      padding: 0 0 0 1.65em !important;
+    }
+
+    .fa {
+      min-width: 1.2em;
+      text-align: left;
+      font-size: 1.1em;
+    }
+  }
+}
+
+.ui.segment {
+  &.loading {
+    min-height: 10em;
+  }
+  &.borderless {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.ui.card > .image > .img,
+.ui.cards > .card > .image > .img {
+  position: relative;
+  border: 0;
+  margin: 0;
+  padding: 0;
+
+  &:before {
+    content: '';
+    display: block;
+    padding: 60% 0 0 0;
+  }
+
+  & > canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 0.28571429rem 0.28571429rem 0 0 !important;
+  }
+}
+
+.card .ui.attached.menu {
+  &.top {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    & + .content {
+      border-top: none;
+    }
+  }
+  &.bottom {
+    border-bottom: none !important;
+  }
+}
+
+.ui.page.dimmer {
+  & > .content,
+  & > .content > .center {
+    pointer-events: none;
+
+    & > .card {
+      pointer-events: auto;
+      width: 100vw;
+      height: 100vh;
+      max-width: 80vw;
+      max-height: 90vh;
+
+      @media screen and (orientation:portrait) {
+        max-width: 90vw;
+        max-height: 80vh;
+      }
+
+      .tartan-preview-control {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        &:before {
+          content: none !important;
+        }
+      }
+    }
+  }
+}
+
+.fa.spacing {
+  @value: 0.3em;
+  &.left {
+    margin: 0 0 0 @value;
+  }
+  &.right {
+    margin: 0 @value 0 0;
+  }
+  &.top {
+    margin: @value 0 0 0;
+  }
+  &.bottom {
+    margin: 0 0 @value 0;
+  }
+}
+
+.ui.pagination.menu {
+  box-shadow: none;
+
+  .item {
+    min-width: 0;
+
+    &.current.page {
+      position: relative;
+      padding-left: 0;
+      padding-right: 0;
+      span {
+        display: inline-block;
+        width: 150px;
+      }
+      input {
+        position: absolute;
+        left: -1px;
+        top: -1px;
+        z-index: 1;
+        width: ~"calc(100% + 1px)";
+        height: ~"calc(100% + 2px)";
+        max-width: none;
+        border-radius: 0;
+        margin: 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.expanded.area {
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  & > .row {
+    position: relative;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-grow: 0 !important;
+
+    &.expanded {
+      flex-grow: 1 !important;
+      align-self: stretch !important;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+  &.resize-vertical {
+    resize: vertical;
+  }
+  &.resize-horizontal {
+    resize: horizontal;
+  }
+  &.resize-vertical.resize-horizontal,
+  &.resize-both {
+    resize: both;
+  }
+}
+
+.monospace {
+  font-family: monospace;
+}

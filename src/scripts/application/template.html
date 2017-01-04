@@ -1,0 +1,11 @@
+<div class="pushable">
+  <application-title>{{ currentPage.title }} - Tartanic</application-title>
+
+  <application-menu v-cloak v-model="isSidebarMenuVisible"></application-menu>
+
+  <div class="pusher" v-cloak>
+    <application-bar v-on:toggle-menu="isSidebarMenuVisible = !isSidebarMenuVisible"></application-bar>
+    <application-area></application-area>
+    <application-modals></application-modals>
+  </div>
+</div>

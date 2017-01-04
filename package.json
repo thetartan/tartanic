@@ -1,0 +1,80 @@
+{
+  "name": "tartanic",
+  "version": "1.0.0",
+  "description": "Application to create and edit tartans and manage tartans datasets.",
+  "keywords": [
+    "tartan",
+    "scotland",
+    "threadcount"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "install": "napa 'eligrey/FileSaver.js:file-saver'",
+    "start": "xdg-open index.html",
+    "test": "mocha tests/*.js tests/*/*.js",
+    "build:assets": "gulp",
+    "build:app": "webpack --hide-modules --config webpack.config.js",
+    "build": "npm run build:assets && npm run build:app",
+    "review": "eslint src tests gulpfile.js webpack.config.js"
+  },
+  "engines": {
+    "node": "^4.0.0",
+    "npm": "^2.0.0"
+  },
+  "author": {
+    "name": "Levko Kravets",
+    "email": "levko.ne@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Levko Kravets",
+      "email": "levko.ne@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thetartan/tartanic/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thetartan/tartanic.git"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.12.2",
+    "eslint-config-google": "^0.7.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-less": "^3.3.0",
+    "gulp-sourcemaps": "^1.9.1",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.2.0",
+    "napa": "^2.3.0",
+    "raw-loader": "^0.5.1",
+    "val-loader": "^0.5.0",
+    "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "elasticlunr": "^0.9.5",
+    "font-awesome": "^4.7.0",
+    "identartan": "^2.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.4",
+    "marked": "^0.3.6",
+    "pako": "^1.0.4",
+    "papaparse": "^4.1.2",
+    "semantic-ui-css": "^2.2.4",
+    "tartan": "^5.0.0",
+    "tartan-fingerprint": "^0.1.0",
+    "tartan-processing": "^1.0.0",
+    "tartan-render": "^1.0.0",
+    "tartan-schema": "^1.0.0",
+    "text-encoding": "^0.6.2",
+    "tinytar": "^0.1.0",
+    "vue": "^2.1.8",
+    "vuex": "^2.1.1"
+  }
+}

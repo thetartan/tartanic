@@ -1,0 +1,18 @@
+<div class="ui padded grid">
+  <div class="sixteen wide mobile eight wide tablet column ui form">
+    <div>
+      <textarea class="monospace resize-vertical" v-model="state.threadcount"></textarea>
+    </div>
+  </div>
+
+  <div class="sixteen wide mobile eight wide tablet column">
+    <tartan-preview
+      v-bind:schema="state.schema"
+      v-bind:repeat="state.repeat"
+      v-bind:threadcount="state.threadcount" />
+  </div>
+
+  <div class="sixteen wide column"><pre>{{ [item.$ref, item.$dataset, item.$resource] }}</pre></div>
+  <div class="sixteen wide column"><pre>{{ item }}</pre></div>
+  <div class="sixteen wide column"><pre>{{ item.$raw }}</pre></div>
+</div>
