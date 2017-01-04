@@ -15,7 +15,7 @@
     <pagination v-bind:count="pagination.pageCount"
       v-model="pagination.currentPage"></pagination>
   </div>
-  <div class="sixteen wide column"
+  <div class="sixteen wide vertically compact column"
     v-if="datasetState.loaded && !datasetState.error">
     <div class="ui four doubling stackable cards">
       <list-item v-for="item in dataset.items.slice(firstDisplayItem, lastDisplayItem)"

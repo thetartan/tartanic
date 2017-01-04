@@ -59,6 +59,28 @@ body {
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .ui.stackable.cards .card:first-child {
+    margin-top: 1em !important;
+  }
+}
+
+.ui.grid .column {
+  &:not(.vertically.horizontally).compact {
+    padding: 0;
+  }
+
+  &.vertically.compact {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  &.horizontally.compact {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .ui.card > .image > .img,
 .ui.cards > .card > .image > .img {
   position: relative;
@@ -88,8 +110,6 @@ body {
 .card .ui.attached.menu {
   &.top {
     border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
     & + .content {
       border-top: none;
     }
@@ -197,6 +217,15 @@ body {
       flex-grow: 1 !important;
       align-self: stretch !important;
     }
+  }
+}
+
+.application-container {
+  overflow: hidden;
+
+  .expanded.area .expanded.row {
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 

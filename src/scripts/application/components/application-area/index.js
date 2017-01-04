@@ -8,6 +8,12 @@ module.exports = {
   computed: _.extend({}, Vuex.mapState([
     'currentPage'
   ])),
+  watch: {
+    'currentPage.viewAs': function() {
+      // Scroll to top
+      (window.scrollTo || window.scroll)(0, 0);
+    }
+  },
   components: {
     editor: require('./editor'),
     explorer: require('./explorer'),
