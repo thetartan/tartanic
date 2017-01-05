@@ -1,6 +1,9 @@
 <div class="card">
   <a class="image" v-on:click="viewTartan(item)">
-    <tartan-image class="img" v-bind:threadcount="item.sett"></tartan-image>
+    <tartan-image class="img"
+      v-bind:threadcount="item.sett"
+      v-bind:repeat="true"
+    ></tartan-image>
   </a>
   <div class="content">
     <a class="header" v-on:click="viewTartan(item)">{{ item.name }}</a>
