@@ -9,9 +9,8 @@ module.exports = {
     'currentPage'
   ])),
   watch: {
-    'currentPage.viewAs': function() {
-      // Scroll to top
-      (window.scrollTo || window.scroll)(0, 0);
+    currentPage: function() {
+
     }
   },
   components: {
