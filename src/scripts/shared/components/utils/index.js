@@ -8,18 +8,15 @@ var domUtils = require('../../../services/utils/dom');
 
 function updateCanvasSize(canvas) {
   var parent = canvas.parentNode;
-  var w = parent.offsetWidth;
-  var h = parent.offsetHeight;
-  var ratio = parseFloat(window.devicePixelRatio) || 1;
+  var w = Math.ceil(parent.offsetWidth);
+  var h = Math.ceil(parent.offsetHeight);
 
   canvas.style.position = 'absolute';
   canvas.style.left = '0px';
   canvas.style.top = '0px';
-  canvas.style.width = Math.round(w) + 'px';
-  canvas.style.height = Math.round(h) + 'px';
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
 
-  w = Math.ceil(w * ratio);
-  h = Math.ceil(h * ratio);
   if (canvas.width != w) {
     canvas.width = w;
   }
@@ -38,78 +35,165 @@ function createTartanRenderer(threadcount, schema) {
   });
 }
 
-function makeDraggable(element, getOffset, dragHandler) {
-  var document = window.document;
+function makeDraggableWithMouse(element, getOffset, dragHandler) {
   var drag = null;
-  var dragTarget = document.releaseCapture ? element : window;
 
-  function onMouseDown(event) {
+  function isLeftButton(event) {
+    if (event.type == 'mousemove') {
+      return (event.type == 'mousemove') && (event.buttons == 1);
+    } else {
+      return (event.which == 1) && (
+        (event.buttons == 0) || (event.buttons == 1)
+      );
+    }
+  }
+
+  function mouseDownHandler(event) {
     event = event || window.event;
     if (event.target !== element) {
       return;
     }
-    if (event.buttons == 1) {
+    if (isLeftButton(event)) {
       event.preventDefault();
+      var position = event;
       drag = {
-        x: event.clientX,
-        y: event.clientY
+        x: position.clientX,
+        y: position.clientY
       };
-      if (event.target && event.target.setCapture) {
-        // Only IE and FF
-        event.target.setCapture();
-      }
-    }
-  }
-  function onMouseMove(event) {
-    event = event || window.event;
-    if (drag) {
-      if (event.buttons != 1) {
-        drag = null;
-        if (document.releaseCapture) {
-          // Only IE and FF
-          document.releaseCapture();
-        }
-      } else {
-        var offset = getOffset();
-        offset.x += event.clientX - drag.x;
-        offset.y += event.clientY - drag.y;
-
-        drag.x = event.clientX;
-        drag.y = event.clientY;
-
-        event.preventDefault();
-      }
-
       dragHandler();
     }
   }
-  function onMouseUp(event) {
+
+  function mouseMoveHandler(event) {
     event = event || window.event;
-    if (event.buttons == 1) {
-      drag = null;
-      if (document.releaseCapture) {
-        // Only IE and FF
-        document.releaseCapture();
+    if (drag) {
+      event.preventDefault();
+      if (isLeftButton(event)) {
+        var offset = getOffset();
+        var position = event;
+        offset.x += position.clientX - drag.x;
+        offset.y += position.clientY - drag.y;
+
+        drag.x = position.clientX;
+        drag.y = position.clientY;
+      } else {
+        drag = null;
       }
+      dragHandler();
     }
-    dragHandler();
-  }
-  function onLoseCapture() {
-    // Only IE and FF
-    drag = null;
   }
 
-  dragTarget.addEventListener('mousedown', onMouseDown);
-  dragTarget.addEventListener('mousemove', onMouseMove);
-  dragTarget.addEventListener('mouseup', onMouseUp);
-  element.addEventListener('losecapture', onLoseCapture);
+  function preventClick(event) {
+    event = event || window.event;
+    event.target.removeEventListener('click', preventClick, true);
+    event.preventDefault();
+    event.stopPropagation();
+    if (typeof event.stopImmediatePropagation == 'function') {
+      event.stopImmediatePropagation();
+    }
+    event.returnValue = false;
+    return false;
+  }
+
+  function mouseUpHandler(event) {
+    event = event || window.event;
+    if (drag && isLeftButton(event)) {
+      event.preventDefault();
+      event.target.addEventListener('click', preventClick, true);
+      drag = null;
+      dragHandler();
+    }
+  }
+
+  window.addEventListener('mousedown', mouseDownHandler, true);
+  window.addEventListener('mousemove', mouseMoveHandler, true);
+  window.addEventListener('mouseup', mouseUpHandler, true);
 
   return function() {
-    dragTarget.removeEventListener('mousedown', onMouseDown);
-    dragTarget.removeEventListener('mousemove', onMouseMove);
-    dragTarget.removeEventListener('mouseup', onMouseUp);
-    element.removeEventListener('losecapture', onLoseCapture);
+    window.removeEventListener('mousedown', mouseDownHandler, true);
+    window.removeEventListener('mousemove', mouseMoveHandler, true);
+    window.removeEventListener('mouseup', mouseUpHandler, true);
   };
+}
+
+function makeDraggableWithTouch(element, getOffset, dragHandler) {
+  var drag = null;
+
+  function touchStartHandler(event) {
+    event = event || window.event;
+    if (event.touches.length == 1) {
+      if (event.target !== element) {
+        return;
+      }
+      var position = event.touches[0];
+      drag = {
+        x: position.pageX,
+        y: position.pageY
+      };
+      dragHandler();
+    } else {
+      if (drag) {
+        drag = null;
+        dragHandler();
+      }
+    }
+  }
+
+  function touchMoveHandler(event) {
+    event = event || window.event;
+    if (drag) {
+      event.preventDefault();
+      if (event.touches.length == 1) {
+        var offset = getOffset();
+        var position = event.touches[0];
+        offset.x += position.pageX - drag.x;
+        offset.y += position.pageY - drag.y;
+
+        drag.x = position.pageX;
+        drag.y = position.pageY;
+      } else {
+        drag = null;
+      }
+      dragHandler();
+    }
+  }
+
+  function touchEndHandler(event) {
+    event = event || window.event;
+    if (drag) {
+      event.preventDefault();
+      drag = null;
+      dragHandler();
+    }
+  }
+
+  function touchCancelHandler(event) {
+    event = event || window.event;
+    if (drag) {
+      drag = null;
+      dragHandler();
+    }
+  }
+
+  window.addEventListener('touchstart', touchStartHandler);
+  window.addEventListener('touchmove', touchMoveHandler);
+  window.addEventListener('touchend', touchEndHandler);
+  window.addEventListener('touchcancel', touchCancelHandler);
+
+  return function() {
+    window.removeEventListener('touchstart', touchStartHandler);
+    window.removeEventListener('touchmove', touchMoveHandler);
+    window.removeEventListener('touchend', touchEndHandler);
+    window.removeEventListener('touchcancel', touchCancelHandler);
+  };
+}
+
+function makeDraggable(element, getOffset, dragHandler) {
+  if (domUtils.supports.isTouchDevice) {
+    return makeDraggableWithTouch(element, getOffset, dragHandler);
+  } else {
+    return makeDraggableWithMouse(element, getOffset, dragHandler);
+  }
 }
 
 function makeResizable(element, resizeHandler) {
