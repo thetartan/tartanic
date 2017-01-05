@@ -53,23 +53,23 @@
 	
 	// Initialize tartan library and its plugins
 	__webpack_require__(2);
-	__webpack_require__(94);
-	__webpack_require__(98);
-	__webpack_require__(101);
-	__webpack_require__(92);
-	__webpack_require__(48);
+	__webpack_require__(95);
+	__webpack_require__(99);
+	__webpack_require__(102);
+	__webpack_require__(93);
+	__webpack_require__(49);
 	
 	// Init some global variables - needed for proper work of 3rd-party libraries
 	window._ = _;
 	
 	window.jQuery = window.$ = jquery;
 	
-	__webpack_require__(87);
+	__webpack_require__(88);
 	
 	// fetch() polyfill
 	__webpack_require__(19);
 	// saveAs() polyfill
-	window.saveAs = __webpack_require__(46).saveAs;
+	window.saveAs = __webpack_require__(47).saveAs;
 	
 	window.tartan = __webpack_require__(2);
 	
@@ -77,10 +77,10 @@
 	  window.Promise = __webpack_require__(12);
 	}
 	
-	__webpack_require__(177);
+	__webpack_require__(180);
 	
 	jquery(function() {
-	  var application = __webpack_require__(163);
+	  var application = __webpack_require__(164);
 	  application.run();
 	});
 
@@ -17184,7 +17184,7 @@
 	
 	var _ = __webpack_require__(1);
 	
-	_.extend(module.exports, __webpack_require__(70));
+	_.extend(module.exports, __webpack_require__(71));
 	
 	module.exports.defaults = __webpack_require__(6);
 	module.exports.parse = __webpack_require__(34);
@@ -17192,7 +17192,7 @@
 	module.exports.transform = __webpack_require__(40);
 	module.exports.syntax = __webpack_require__(39);
 	module.exports.render = __webpack_require__(38);
-	module.exports.schema = __webpack_require__(126);
+	module.exports.schema = __webpack_require__(127);
 	module.exports.utils = __webpack_require__(3);
 
 
@@ -17202,12 +17202,12 @@
 
 	'use strict';
 	
-	module.exports.error = __webpack_require__(130);
+	module.exports.error = __webpack_require__(131);
 	module.exports.color = __webpack_require__(41);
-	module.exports.token = __webpack_require__(134);
-	module.exports.node = __webpack_require__(131);
-	module.exports.sett = __webpack_require__(133);
-	module.exports.repaint = __webpack_require__(132);
+	module.exports.token = __webpack_require__(135);
+	module.exports.node = __webpack_require__(132);
+	module.exports.sett = __webpack_require__(134);
+	module.exports.repaint = __webpack_require__(133);
 
 
 /***/ },
@@ -42728,7 +42728,7 @@
 	
 	},{"./es5":13}]},{},[4])(4)
 	});                    ;if (typeof window !== 'undefined' && window !== null) {                               window.P = window.Promise;                                                     } else if (typeof self !== 'undefined' && self !== null) {                             self.P = self.Promise;                                                         }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25), (function() { return this; }()), __webpack_require__(138).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25), (function() { return this; }()), __webpack_require__(139).setImmediate))
 
 /***/ },
 /* 13 */
@@ -42759,8 +42759,8 @@
 	
 	module.exports.id = 'extended';
 	module.exports.name = 'Extended syntax';
-	module.exports.parse = __webpack_require__(103);
-	module.exports.format = __webpack_require__(102);
+	module.exports.parse = __webpack_require__(104);
+	module.exports.format = __webpack_require__(103);
 	module.exports.colors = tartan.defaults.colors;
 	module.exports.warpAndWeftSeparator = tartan.defaults.warpAndWeftSeparator;
 
@@ -42776,8 +42776,8 @@
 	module.exports.id = 'stwr';
 	module.exports.name = 'Scottish Register of Tartans / ' +
 	  'Scottish Tartans World Register';
-	module.exports.parse = __webpack_require__(106);
-	module.exports.format = __webpack_require__(105);
+	module.exports.parse = __webpack_require__(107);
+	module.exports.format = __webpack_require__(106);
 	module.exports.colors = tartan.utils.color.buildColorMap({
 	  /* eslint-disable key-spacing */
 	  K:  '#000000', LP: '#9966ff', P:  '#9933ff',
@@ -42806,8 +42806,8 @@
 	
 	module.exports.id = 'classic';
 	module.exports.name = 'Classic (strict syntax)';
-	module.exports.parse = __webpack_require__(125);
-	module.exports.format = __webpack_require__(124);
+	module.exports.parse = __webpack_require__(126);
+	module.exports.format = __webpack_require__(125);
 	module.exports.colors = defaults.colors;
 	module.exports.warpAndWeftSeparator = defaults.warpAndWeftSeparator;
 
@@ -42819,7 +42819,7 @@
 	'use strict';
 	
 	var _ = __webpack_require__(8);
-	var md5 = __webpack_require__(51);
+	var md5 = __webpack_require__(52);
 	
 	var defaultOptions = {
 	  colors: [], // Palette entries
@@ -42950,8 +42950,8 @@
 	
 	module.exports.id = 'identartan';
 	module.exports.name = 'IdenTartan';
-	module.exports.parse = __webpack_require__(49);
-	module.exports.format = __webpack_require__(47);
+	module.exports.parse = __webpack_require__(50);
+	module.exports.format = __webpack_require__(48);
 	module.exports.colors = tartan.defaults.colors;
 	module.exports.warpAndWeftSeparator = tartan.defaults.warpAndWeftSeparator;
 
@@ -42964,7 +42964,7 @@
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(147);
+	__webpack_require__(148);
 	module.exports = self.fetch.bind(self);
 
 
@@ -44725,8 +44725,8 @@
 	
 	module.exports = factory;
 	
-	module.exports.classify = __webpack_require__(111);
-	module.exports.removeTokens = __webpack_require__(112);
+	module.exports.classify = __webpack_require__(112);
+	module.exports.removeTokens = __webpack_require__(113);
 
 
 /***/ },
@@ -44737,7 +44737,7 @@
 	
 	var _ = __webpack_require__(1);
 	var autodetectSource = __webpack_require__(35);
-	var tokenize = __webpack_require__(122);
+	var tokenize = __webpack_require__(123);
 	var utils = __webpack_require__(3);
 	var defaults = __webpack_require__(6);
 	
@@ -44864,13 +44864,13 @@
 	
 	module.exports = factory;
 	
-	module.exports.source = __webpack_require__(113);
+	module.exports.source = __webpack_require__(114);
 	
-	module.exports.color = __webpack_require__(115);
-	module.exports.stripe = __webpack_require__(120);
-	module.exports.pivot = __webpack_require__(118);
-	module.exports.repeat = __webpack_require__(119);
-	module.exports.literal = __webpack_require__(117);
+	module.exports.color = __webpack_require__(116);
+	module.exports.stripe = __webpack_require__(121);
+	module.exports.pivot = __webpack_require__(119);
+	module.exports.repeat = __webpack_require__(120);
+	module.exports.literal = __webpack_require__(118);
 
 
 /***/ },
@@ -44961,7 +44961,7 @@
 
 	'use strict';
 	
-	module.exports.format = __webpack_require__(123);
+	module.exports.format = __webpack_require__(124);
 
 
 /***/ },
@@ -44970,7 +44970,7 @@
 
 	'use strict';
 	
-	module.exports.classic = __webpack_require__(127);
+	module.exports.classic = __webpack_require__(128);
 
 
 /***/ },
@@ -44996,8 +44996,8 @@
 	
 	module.exports = factory;
 	
-	module.exports.flatten = __webpack_require__(128);
-	module.exports.fold = __webpack_require__(129);
+	module.exports.flatten = __webpack_require__(129);
+	module.exports.fold = __webpack_require__(130);
 
 
 /***/ },
@@ -45358,14 +45358,14 @@
 	/* global Blob */
 	
 	var _ = __webpack_require__(1);
-	var url = __webpack_require__(143);
+	var url = __webpack_require__(144);
 	var Promise = __webpack_require__(12);
-	var csv = __webpack_require__(61);
-	var downloader = __webpack_require__(165);
-	var TextEncoder = __webpack_require__(135).TextEncoder;
-	var tar = __webpack_require__(139).tar;
-	var gzip = __webpack_require__(52).gzip;
-	var utils = __webpack_require__(166);
+	var csv = __webpack_require__(62);
+	var downloader = __webpack_require__(166);
+	var TextEncoder = __webpack_require__(136).TextEncoder;
+	var tar = __webpack_require__(140).tar;
+	var gzip = __webpack_require__(53).gzip;
+	var utils = __webpack_require__(169);
 	
 	function getConfig(configUrl) {
 	  return downloader.getJson(configUrl);
@@ -45700,6 +45700,144 @@
 /* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	/* global window */
+	
+	var _ = __webpack_require__(1);
+	var tartan = __webpack_require__(2);
+	var domUtils = __webpack_require__(167);
+	
+	function updateCanvasSize(canvas) {
+	  var parent = canvas.parentNode;
+	  var w = parent.offsetWidth;
+	  var h = parent.offsetHeight;
+	  var ratio = parseFloat(window.devicePixelRatio) || 1;
+	
+	  canvas.style.position = 'absolute';
+	  canvas.style.left = '0px';
+	  canvas.style.top = '0px';
+	  canvas.style.width = Math.round(w) + 'px';
+	  canvas.style.height = Math.round(h) + 'px';
+	
+	  w = Math.ceil(w * ratio);
+	  h = Math.ceil(h * ratio);
+	  if (canvas.width != w) {
+	    canvas.width = w;
+	  }
+	  if (canvas.height != h) {
+	    canvas.height = h;
+	  }
+	}
+	
+	function createTartanRenderer(threadcount, schema) {
+	  schema = tartan.schema[schema] || tartan.schema.classic;
+	  var sett = schema.parse()(threadcount);
+	  return tartan.render.canvas(sett, {
+	    defaultColors: tartan.schema.extended.colors,
+	    weave: tartan.defaults.weave.serge,
+	    transformSyntaxTree: tartan.transform.flatten()
+	  });
+	}
+	
+	function makeDraggable(element, getOffset, dragHandler) {
+	  var document = window.document;
+	  var drag = null;
+	  var dragTarget = document.releaseCapture ? element : window;
+	
+	  function onMouseDown(event) {
+	    event = event || window.event;
+	    if (event.target !== element) {
+	      return;
+	    }
+	    if (event.buttons == 1) {
+	      event.preventDefault();
+	      drag = {
+	        x: event.clientX,
+	        y: event.clientY
+	      };
+	      if (event.target && event.target.setCapture) {
+	        // Only IE and FF
+	        event.target.setCapture();
+	      }
+	    }
+	  }
+	  function onMouseMove(event) {
+	    event = event || window.event;
+	    if (drag) {
+	      if (event.buttons != 1) {
+	        drag = null;
+	        if (document.releaseCapture) {
+	          // Only IE and FF
+	          document.releaseCapture();
+	        }
+	      } else {
+	        var offset = getOffset();
+	        offset.x += event.clientX - drag.x;
+	        offset.y += event.clientY - drag.y;
+	
+	        drag.x = event.clientX;
+	        drag.y = event.clientY;
+	
+	        event.preventDefault();
+	      }
+	
+	      dragHandler();
+	    }
+	  }
+	  function onMouseUp(event) {
+	    event = event || window.event;
+	    if (event.buttons == 1) {
+	      drag = null;
+	      if (document.releaseCapture) {
+	        // Only IE and FF
+	        document.releaseCapture();
+	      }
+	    }
+	    dragHandler();
+	  }
+	  function onLoseCapture() {
+	    // Only IE and FF
+	    drag = null;
+	  }
+	
+	  dragTarget.addEventListener('mousedown', onMouseDown);
+	  dragTarget.addEventListener('mousemove', onMouseMove);
+	  dragTarget.addEventListener('mouseup', onMouseUp);
+	  element.addEventListener('losecapture', onLoseCapture);
+	
+	  return function() {
+	    dragTarget.removeEventListener('mousedown', onMouseDown);
+	    dragTarget.removeEventListener('mousemove', onMouseMove);
+	    dragTarget.removeEventListener('mouseup', onMouseUp);
+	    element.removeEventListener('losecapture', onLoseCapture);
+	  };
+	}
+	
+	function makeResizable(element, resizeHandler) {
+	  if (!_.isFunction(resizeHandler)) {
+	    return _.identity;
+	  }
+	
+	  domUtils.requestResizeEvents(element);
+	  element.addEventListener('resize', resizeHandler);
+	
+	  return function() {
+	    element.removeEventListener('resize', resizeHandler);
+	    domUtils.cancelResizeEvents(element);
+	  };
+	}
+	
+	module.exports.updateCanvasSize = updateCanvasSize;
+	module.exports.createTartanRenderer = createTartanRenderer;
+	module.exports.makeDraggable = makeDraggable;
+	module.exports.makeResizable = makeResizable;
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* FileSaver.js
 	 * A saveAs() FileSaver implementation.
 	 * 1.3.2
@@ -45883,7 +46021,7 @@
 	
 	if (typeof module !== "undefined" && module.exports) {
 	  module.exports.saveAs = saveAs;
-	} else if (("function" !== "undefined" && __webpack_require__(145) !== null) && (__webpack_require__(146) !== null)) {
+	} else if (("function" !== "undefined" && __webpack_require__(146) !== null) && (__webpack_require__(147) !== null)) {
 	  !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
 	    return saveAs;
 	  }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -45891,7 +46029,7 @@
 
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45966,14 +46104,14 @@
 
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(8);
 	var core = __webpack_require__(17);
-	var packageInfo = __webpack_require__(65);
+	var packageInfo = __webpack_require__(66);
 	
 	var tartan = null;
 	try {
@@ -45998,7 +46136,7 @@
 
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46040,7 +46178,7 @@
 
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -47333,7 +47471,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47539,7 +47677,7 @@
 	}
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Top level file is just a mixin of submodules & constants
@@ -47547,8 +47685,8 @@
 	
 	var assign    = __webpack_require__(5).assign;
 	
-	var deflate   = __webpack_require__(53);
-	var inflate   = __webpack_require__(54);
+	var deflate   = __webpack_require__(54);
+	var inflate   = __webpack_require__(55);
 	var constants = __webpack_require__(22);
 	
 	var pako = {};
@@ -47559,13 +47697,13 @@
 
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	
-	var zlib_deflate = __webpack_require__(55);
+	var zlib_deflate = __webpack_require__(56);
 	var utils        = __webpack_require__(5);
 	var strings      = __webpack_require__(20);
 	var msg          = __webpack_require__(13);
@@ -47965,19 +48103,19 @@
 
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	
-	var zlib_inflate = __webpack_require__(58);
+	var zlib_inflate = __webpack_require__(59);
 	var utils        = __webpack_require__(5);
 	var strings      = __webpack_require__(20);
 	var c            = __webpack_require__(22);
 	var msg          = __webpack_require__(13);
 	var ZStream      = __webpack_require__(24);
-	var GZheader     = __webpack_require__(56);
+	var GZheader     = __webpack_require__(57);
 	
 	var toString = Object.prototype.toString;
 	
@@ -48389,13 +48527,13 @@
 
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var utils   = __webpack_require__(5);
-	var trees   = __webpack_require__(60);
+	var trees   = __webpack_require__(61);
 	var adler32 = __webpack_require__(21);
 	var crc32   = __webpack_require__(23);
 	var msg     = __webpack_require__(13);
@@ -50250,7 +50388,7 @@
 
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -50296,7 +50434,7 @@
 
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -50628,7 +50766,7 @@
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50637,8 +50775,8 @@
 	var utils         = __webpack_require__(5);
 	var adler32       = __webpack_require__(21);
 	var crc32         = __webpack_require__(23);
-	var inflate_fast  = __webpack_require__(57);
-	var inflate_table = __webpack_require__(59);
+	var inflate_fast  = __webpack_require__(58);
+	var inflate_table = __webpack_require__(60);
 	
 	var CODES = 0;
 	var LENS = 1;
@@ -52172,7 +52310,7 @@
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52503,7 +52641,7 @@
 
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53711,7 +53849,7 @@
 
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -55120,7 +55258,7 @@
 
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -55206,7 +55344,7 @@
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -55276,32 +55414,26 @@
 
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(62);
-	exports.encode = exports.stringify = __webpack_require__(63);
+	exports.decode = exports.parse = __webpack_require__(63);
+	exports.encode = exports.stringify = __webpack_require__(64);
 
-
-/***/ },
-/* 65 */
-/***/ function(module, exports) {
-
-	module.exports = {"version":"2.0.0"}
 
 /***/ },
 /* 66 */
 /***/ function(module, exports) {
 
-	module.exports = {"version":"0.1.0"}
+	module.exports = {"version":"2.0.0"}
 
 /***/ },
 /* 67 */
 /***/ function(module, exports) {
 
-	module.exports = {"version":"1.0.0"}
+	module.exports = {"version":"0.1.0"}
 
 /***/ },
 /* 68 */
@@ -55319,106 +55451,112 @@
 /* 70 */
 /***/ function(module, exports) {
 
-	module.exports = {"version":"5.0.0"}
+	module.exports = {"version":"1.0.0"}
 
 /***/ },
 /* 71 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>About this project.</h1>\n    <p>This page is a stub, so nothing useful for now.</p>\n  </div>\n</div>\n"
+	module.exports = {"version":"5.0.0"}
 
 /***/ },
 /* 72 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"card\">\n  <div class=\"content\">\n    <div class=\"header\">{{ item.title }}</div>\n    <div class=\"meta\" v-if=\"item.version\">v{{ item.version }}</div>\n    <div class=\"description\" v-if=\"item.description\" v-markdown=\"item.description\"></div>\n  </div>\n  <div class=\"content\">\n    <p v-if=\"item.license\" class=\"description\">\n      <span>License:</span>\n      <span v-if=\"!licenseUrl\">{{ licenseTitle }}</span>\n      <a v-if=\"licenseUrl\" v-bind:href=\"licenseUrl\" target=\"_blank\">{{ licenseTitle }}</a>\n    </p>\n    <p v-if=\"item.author\" class=\"description\">\n      <span>Author:</span>\n      <span>{{ item.author }}</span>\n    </p>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"viewDataset(item)\"><i\n      class=\"fa fa-sign-in spacing right\"></i>Open</a>\n    <div class=\"right menu\">\n      <a class=\"item\" v-on:click=\"downloadDataset(item)\"><i class=\"fa fa-download\"></i></a>\n      <a class=\"item\" v-on:click=\"likeDataset(item)\"><i class=\"fa fa-heart\"></i></a>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>About this project.</h1>\n    <p>This page is a stub, so nothing useful for now.</p>\n  </div>\n</div>\n"
 
 /***/ },
 /* 73 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui three doubling stackable cards\">\n      <list-item v-for=\"dataset in datasets\" v-bind:item=\"dataset\"></list-item>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"card\">\n  <div class=\"content\">\n    <div class=\"header\">{{ item.title }}</div>\n    <div class=\"meta\" v-if=\"item.version\">v{{ item.version }}</div>\n    <div class=\"description\" v-if=\"item.description\" v-markdown=\"item.description\"></div>\n  </div>\n  <div class=\"content\">\n    <p v-if=\"item.license\" class=\"description\">\n      <span>License:</span>\n      <span v-if=\"!licenseUrl\">{{ licenseTitle }}</span>\n      <a v-if=\"licenseUrl\" v-bind:href=\"licenseUrl\" target=\"_blank\">{{ licenseTitle }}</a>\n    </p>\n    <p v-if=\"item.author\" class=\"description\">\n      <span>Author:</span>\n      <span>{{ item.author }}</span>\n    </p>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"viewDataset(item)\"><i\n      class=\"fa fa-sign-in spacing right\"></i>Open</a>\n    <div class=\"right menu\">\n      <a class=\"item\" v-on:click=\"downloadDataset(item)\"><i class=\"fa fa-download\"></i></a>\n      <a class=\"item\" v-on:click=\"likeDataset(item)\"><i class=\"fa fa-heart\"></i></a>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 74 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide mobile eight wide tablet column ui form\">\n    <div>\n      <textarea class=\"monospace resize-vertical\" v-model=\"state.threadcount\"></textarea>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide mobile eight wide tablet column\">\n    <tartan-preview\n      v-bind:schema=\"state.schema\"\n      v-bind:repeat=\"state.repeat\"\n      v-bind:threadcount=\"state.threadcount\" />\n  </div>\n\n  <div class=\"sixteen wide column\"><pre>{{ [item.$ref, item.$dataset, item.$resource] }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item.$raw }}</pre></div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui three doubling stackable cards\">\n      <list-item v-for=\"dataset in datasets\" v-bind:item=\"dataset\"></list-item>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 75 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"card\">\n  <a class=\"image\" v-on:click=\"viewTartan(item)\">\n    <tartan-image class=\"img\" v-bind:threadcount=\"item.sett\"></tartan-image>\n  </a>\n  <div class=\"content\">\n    <a class=\"header\" v-on:click=\"viewTartan(item)\">{{ item.name }}</a>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"editTartan(item)\"><i\n      class=\"fa fa-pencil spacing right\"></i>Edit</a>\n    <a class=\"item\" v-on:click=\"viewTartan(item)\"><i\n      class=\"fa fa-eye spacing right\"></i>View</a>\n    <div class=\"right menu\">\n      <a class=\"item\" v-on:click=\"downloadTartan(item)\"><i class=\"fa fa-download\"></i></a>\n      <a class=\"item\" v-on:click=\"likeTartan(item)\"><i class=\"fa fa-heart\"></i></a>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide mobile eight wide tablet column ui form\">\n    <div>\n      <textarea class=\"monospace resize-vertical\" v-model=\"state.threadcount\"></textarea>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide mobile eight wide tablet column\">\n    <tartan-preview\n      v-bind:schema=\"state.schema\"\n      v-bind:repeat=\"state.repeat\"\n      v-bind:threadcount=\"state.threadcount\" />\n  </div>\n\n  <div class=\"sixteen wide column\"><pre>{{ [item.$ref, item.$dataset, item.$resource] }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item.$raw }}</pre></div>\n</div>\n"
 
 /***/ },
 /* 76 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen column ui borderless loading segment\"\n    v-if=\"datasetState.loading\"></div>\n\n  <div class=\"sixteen column ui borderless segment\"\n    v-if=\"datasetState.loaded && datasetState.error\">\n    <div v-if=\"datasetState.loaded && datasetState.error\"\n      class=\"ui red message\">\n      <span>Error:</span> <span>{{ datasetState.error.message }}</span>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n  <div class=\"sixteen wide vertically compact column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <div class=\"ui four doubling stackable cards\">\n      <list-item v-for=\"item in dataset.items.slice(firstDisplayItem, lastDisplayItem)\"\n        v-bind:item=\"item\"></list-item>\n    </div>\n  </div>\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"card\">\n  <a class=\"image\" v-on:click=\"viewTartan(item)\">\n    <tartan-image class=\"img\"\n      v-bind:threadcount=\"item.sett\"\n      v-bind:repeat=\"true\"\n    ></tartan-image>\n  </a>\n  <div class=\"content\">\n    <a class=\"header\" v-on:click=\"viewTartan(item)\">{{ item.name }}</a>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"editTartan(item)\"><i\n      class=\"fa fa-pencil spacing right\"></i>Edit</a>\n    <a class=\"item\" v-on:click=\"viewTartan(item)\"><i\n      class=\"fa fa-eye spacing right\"></i>View</a>\n    <div class=\"right menu\">\n      <a class=\"item\" v-on:click=\"downloadTartan(item)\"><i class=\"fa fa-download\"></i></a>\n      <a class=\"item\" v-on:click=\"likeTartan(item)\"><i class=\"fa fa-heart\"></i></a>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 77 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no favorite tartans.</div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen column ui borderless loading segment\"\n    v-if=\"datasetState.loading\"></div>\n\n  <div class=\"sixteen column ui borderless segment\"\n    v-if=\"datasetState.loaded && datasetState.error\">\n    <div v-if=\"datasetState.loaded && datasetState.error\"\n      class=\"ui red message\">\n      <span>Error:</span> <span>{{ datasetState.error.message }}</span>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n  <div class=\"sixteen wide vertically compact column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <div class=\"ui four doubling stackable cards\">\n      <list-item v-for=\"item in dataset.items.slice(firstDisplayItem, lastDisplayItem)\"\n        v-bind:item=\"item\"></list-item>\n    </div>\n  </div>\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n</div>\n"
 
 /***/ },
 /* 78 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>Home screen.</h1>\n    <p>Please use menu button (in top left corner) while we are creating this page.</p>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no favorite tartans.</div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 79 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no own tartans.</div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>Home screen.</h1>\n    <p>Please use menu button (in top left corner) while we are creating this page.</p>\n  </div>\n</div>\n"
 
 /***/ },
 /* 80 */
 /***/ function(module, exports) {
 
-	module.exports = "<component v-bind:is=\"currentPage.viewAs\"></component>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no own tartans.</div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 81 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui top attached page menu\">\n  <div class=\"ui dropdown icon item\"\n    v-on:click=\"toggleSidebarMenu()\"><i class=\"fa fa-bars\"></i></div>\n  <div class=\"borderless header item\">{{ currentPage.title }}</div>\n</div>"
+	module.exports = "<component v-bind:is=\"currentPage.viewAs\"></component>\n"
 
 /***/ },
 /* 82 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui vertical sidebar left inverted menu\" ref=\"menu\">\n  <div class=\"ui list\">\n    <a class=\"item\" v-on:click=\"viewPage(pageHome)\"><i class=\"fa fa-home spacing right\"></i>{{ pageHome.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pagePersonal)\"><i class=\"fa fa-calendar-o spacing right\"></i>{{ pagePersonal.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pageFavorite)\"><i class=\"fa fa-heart spacing right\"></i>{{ pageFavorite.title }}</a>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageDatasets)\"\n    ><i class=\"fa fa-database spacing right\"></i>{{ pageDatasets.title }}\n      <span class=\"ui grey horizontal label\">{{ datasetsCount }}</span></a>\n\n    <a class=\"header item\"\n      v-if=\"explorers.length > 0\"\n      v-on:click=\"toggleExplorersMenu()\"\n    ><i class=\"fa spacing right\" v-bind:class=\"explorersChevronClass\"></i>Datasets\n      <span class=\"ui grey horizontal label\">{{ explorers.length }}</span></a>\n    <transition\n      v-if=\"explorers.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isDatabasesMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in explorers\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <a class=\"header item\"\n      v-if=\"editors.length > 0\"\n      v-on:click=\"toggleEditorsMenu()\"\n    ><i class=\"fa spacing right\" v-bind:class=\"editorsChevronClass\"></i>Editors\n      <span class=\"ui grey horizontal label\">{{ editors.length }}</span></a>\n    <transition\n      v-if=\"editors.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isEditorsMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in editors\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageAbout)\"><i\n      class=\"fa fa-info-circle spacing right\"></i>{{ pageAbout.title }}</a>\n  </div>\n</div>"
+	module.exports = "<div class=\"ui top attached page menu\">\n  <div class=\"ui dropdown icon item\"\n    v-on:click=\"toggleSidebarMenu()\"><i class=\"fa fa-bars\"></i></div>\n  <div class=\"borderless header item\">{{ currentPage.title }}</div>\n</div>"
 
 /***/ },
 /* 83 */
 /***/ function(module, exports) {
 
-	module.exports = "<modal-box v-model=\"isVisible\">\n  <div class=\"content\">\n    <div class=\"center\">\n      <div class=\"ui fluid centered card\" v-if=\"isVisible && item\">\n        <div class=\"expanded area\">\n          <div class=\"row\">\n            <div class=\"ui top attached menu\">\n              <div class=\"header borderless item\">{{ item.name }}</div>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"isVisible = false;\"><i class=\"fa fa-close\"></i></a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"expanded row\">\n            <tartan-preview class=\"description\"\n              v-bind:schema=\"schema\"\n              v-bind:repeat=\"true\"\n              v-bind:threadcount=\"item.sett\"\n            ></tartan-preview>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"ui bottom attached menu\">\n              <a class=\"item\" v-on:click=\"isVisible = false; editTartan(item)\"><i\n                class=\"fa fa-pencil spacing right\"></i>Edit</a>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"downloadTartan(item)\"><i class=\"fa fa-download\"></i></a>\n                <a class=\"item\" v-on:click=\"likeTartan(item)\"><i class=\"fa fa-heart\"></i></a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</modal-box>\n"
+	module.exports = "<div class=\"ui vertical sidebar left inverted menu\" ref=\"menu\">\n  <div class=\"ui list\">\n    <a class=\"item\" v-on:click=\"viewPage(pageHome)\"><i class=\"fa fa-home spacing right\"></i>{{ pageHome.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pagePersonal)\"><i class=\"fa fa-calendar-o spacing right\"></i>{{ pagePersonal.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pageFavorite)\"><i class=\"fa fa-heart spacing right\"></i>{{ pageFavorite.title }}</a>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageDatasets)\"\n    ><i class=\"fa fa-database spacing right\"></i>{{ pageDatasets.title }}\n      <span class=\"ui grey horizontal label\">{{ datasetsCount }}</span></a>\n\n    <a class=\"header item\"\n      v-if=\"explorers.length > 0\"\n      v-on:click=\"toggleExplorersMenu()\"\n    ><i class=\"fa spacing right\" v-bind:class=\"explorersChevronClass\"></i>Datasets\n      <span class=\"ui grey horizontal label\">{{ explorers.length }}</span></a>\n    <transition\n      v-if=\"explorers.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isDatabasesMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in explorers\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <a class=\"header item\"\n      v-if=\"editors.length > 0\"\n      v-on:click=\"toggleEditorsMenu()\"\n    ><i class=\"fa spacing right\" v-bind:class=\"editorsChevronClass\"></i>Editors\n      <span class=\"ui grey horizontal label\">{{ editors.length }}</span></a>\n    <transition\n      v-if=\"editors.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isEditorsMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in editors\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageAbout)\"><i\n      class=\"fa fa-info-circle spacing right\"></i>{{ pageAbout.title }}</a>\n  </div>\n</div>"
 
 /***/ },
 /* 84 */
 /***/ function(module, exports) {
 
-	module.exports = "<tartan-preview-modal v-model=\"tartanPreview.isVisible\"\n  v-bind:item=\"tartanPreview.item\"></tartan-preview-modal>\n"
+	module.exports = "<modal-box v-model=\"isVisible\">\n  <div class=\"content\">\n    <div class=\"center\">\n      <div class=\"ui fluid centered card\" v-if=\"isVisible && item\">\n        <div class=\"expanded area\">\n          <div class=\"row\">\n            <div class=\"ui top attached menu\">\n              <div class=\"header borderless item\">{{ item.name }}</div>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"isVisible = false;\"><i class=\"fa fa-close\"></i></a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"expanded row\">\n            <tartan-preview class=\"description\"\n              v-bind:schema=\"schema\"\n              v-bind:repeat=\"true\"\n              v-bind:threadcount=\"item.sett\"\n            ></tartan-preview>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"ui bottom attached menu\">\n              <a class=\"item\" v-on:click=\"isVisible = false; editTartan(item)\"><i\n                class=\"fa fa-pencil spacing right\"></i>Edit</a>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"downloadTartan(item)\"><i class=\"fa fa-download\"></i></a>\n                <a class=\"item\" v-on:click=\"likeTartan(item)\"><i class=\"fa fa-heart\"></i></a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</modal-box>\n"
 
 /***/ },
 /* 85 */
 /***/ function(module, exports) {
 
-	module.exports = "<div v-cloak class=\"pushable application-container\">\n  <application-title>{{ currentPage.title }} - Tartanic</application-title>\n\n  <application-menu v-model=\"isSidebarMenuVisible\"></application-menu>\n\n  <div class=\"pusher expanded area\">\n    <div class=\"row\">\n      <application-bar\n        v-on:toggle-menu=\"isSidebarMenuVisible = !isSidebarMenuVisible\"\n      ></application-bar>\n    </div>\n\n    <div class=\"expanded row\">\n      <application-area></application-area>\n    </div>\n    <application-modals></application-modals>\n  </div>\n</div>\n"
+	module.exports = "<tartan-preview-modal v-model=\"tartanPreview.isVisible\"\n  v-bind:item=\"tartanPreview.item\"></tartan-preview-modal>\n"
 
 /***/ },
 /* 86 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui pagination menu\">\n  <a class=\"item\" v-on:click=\"updateValue(1)\"><i class=\"fa fa-angle-double-left\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue - 1)\"><i class=\"fa fa-angle-left\"></i></a>\n  <a class=\"item current page ui input\" v-on:click=\"startEditing()\">\n    <span>{{ currentValue }} of {{ currentCount }}</span>\n    <input v-if=\"isEditing\" v-autofocus v-model=\"editingValue\" type=\"text\"\n      v-on:blur=\"cancelEditing()\"\n      v-on:keyup.prevent.esc=\"cancelEditing()\"\n      v-on:keyup.prevent.enter=\"confirmEditing()\"\n    >\n  </a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue + 1)\"><i class=\"fa fa-angle-right\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentCount)\"><i class=\"fa fa-angle-double-right\"></i></a>\n</div>"
+	module.exports = "<div v-cloak class=\"pushable application-container\">\n  <application-title>{{ currentPage.title }} - Tartanic</application-title>\n\n  <application-menu v-model=\"isSidebarMenuVisible\"></application-menu>\n\n  <div class=\"pusher expanded area\">\n    <div class=\"row\">\n      <application-bar\n        v-on:toggle-menu=\"isSidebarMenuVisible = !isSidebarMenuVisible\"\n      ></application-bar>\n    </div>\n\n    <div class=\"expanded row\">\n      <application-area></application-area>\n    </div>\n    <application-modals></application-modals>\n  </div>\n</div>\n"
 
 /***/ },
 /* 87 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"ui pagination menu\">\n  <a class=\"item\" v-on:click=\"updateValue(1)\"><i class=\"fa fa-angle-double-left\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue - 1)\"><i class=\"fa fa-angle-left\"></i></a>\n  <a class=\"item current page ui input\" v-on:click=\"startEditing()\">\n    <span>{{ currentValue }} of {{ currentCount }}</span>\n    <input v-if=\"isEditing\" v-autofocus v-model=\"editingValue\" type=\"text\"\n      v-on:blur=\"cancelEditing()\"\n      v-on:keyup.prevent.esc=\"cancelEditing()\"\n      v-on:keyup.prevent.enter=\"confirmEditing()\"\n    >\n  </a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue + 1)\"><i class=\"fa fa-angle-right\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentCount)\"><i class=\"fa fa-angle-double-right\"></i></a>\n</div>"
+
+/***/ },
+/* 88 */
 /***/ function(module, exports) {
 
 	 /*
@@ -77864,7 +78002,7 @@
 
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -78057,7 +78195,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(25)))
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78267,7 +78405,7 @@
 
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78496,41 +78634,18 @@
 
 
 /***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	
-	_.extend(module.exports, __webpack_require__(90), __webpack_require__(89));
-
-
-/***/ },
 /* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var tartan = __webpack_require__(2);
 	
-	_.extend(module.exports, __webpack_require__(66));
-	
-	module.exports.fingerprint = __webpack_require__(91);
-	
-	tartan.fingerprint = module.exports.fingerprint;
+	_.extend(module.exports, __webpack_require__(91), __webpack_require__(90));
 
 
 /***/ },
 /* 93 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-
-/***/ },
-/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78540,15 +78655,38 @@
 	
 	_.extend(module.exports, __webpack_require__(67));
 	
-	module.exports.filter = __webpack_require__(93);
-	module.exports.transform = __webpack_require__(96);
+	module.exports.fingerprint = __webpack_require__(92);
+	
+	tartan.fingerprint = module.exports.fingerprint;
+
+
+/***/ },
+/* 94 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+
+/***/ },
+/* 95 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var tartan = __webpack_require__(2);
+	
+	_.extend(module.exports, __webpack_require__(68));
+	
+	module.exports.filter = __webpack_require__(94);
+	module.exports.transform = __webpack_require__(97);
 	
 	_.extend(tartan.filter, module.exports.filter);
 	_.extend(tartan.transform, module.exports.transform);
 
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78936,21 +79074,21 @@
 
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	module.exports.flattenSimpleBlocks = __webpack_require__(26);
-	module.exports.fold = __webpack_require__(95);
+	module.exports.fold = __webpack_require__(96);
 	module.exports.mergeStripes = __webpack_require__(27);
 	module.exports.removeEmptyBlocks = __webpack_require__(28);
 	module.exports.removeZeroWidthStripes = __webpack_require__(29);
-	module.exports.optimize = __webpack_require__(97);
+	module.exports.optimize = __webpack_require__(98);
 
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78999,7 +79137,7 @@
 
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79007,15 +79145,15 @@
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
 	
-	_.extend(module.exports, __webpack_require__(68));
+	_.extend(module.exports, __webpack_require__(69));
 	
-	module.exports.render = __webpack_require__(100);
+	module.exports.render = __webpack_require__(101);
 	
 	_.extend(tartan.render, module.exports.render);
 
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79072,17 +79210,17 @@
 
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	module.exports.canvas = __webpack_require__(30);
-	module.exports.houseOfTartan = __webpack_require__(99);
+	module.exports.houseOfTartan = __webpack_require__(100);
 
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79090,17 +79228,17 @@
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
 	
-	_.extend(module.exports, __webpack_require__(69));
+	_.extend(module.exports, __webpack_require__(70));
 	
-	module.exports.syntax = __webpack_require__(110);
-	module.exports.schema = __webpack_require__(104);
+	module.exports.syntax = __webpack_require__(111);
+	module.exports.schema = __webpack_require__(105);
 	
 	_.extend(tartan.syntax, module.exports.syntax);
 	_.extend(tartan.schema, module.exports.schema);
 
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79182,7 +79320,7 @@
 
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79256,18 +79394,18 @@
 
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	module.exports.extended = __webpack_require__(14);
 	module.exports.stwr = __webpack_require__(15);
-	module.exports.weddslist = __webpack_require__(108);
+	module.exports.weddslist = __webpack_require__(109);
 
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79350,7 +79488,7 @@
 
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79415,7 +79553,7 @@
 
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79496,7 +79634,7 @@
 
 
 /***/ },
-/* 108 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79505,8 +79643,8 @@
 	
 	module.exports.id = 'weddslist';
 	module.exports.name = 'Syntax by Weddslist (TDF)';
-	module.exports.parse = __webpack_require__(109);
-	module.exports.format = __webpack_require__(107);
+	module.exports.parse = __webpack_require__(110);
+	module.exports.format = __webpack_require__(108);
 	module.exports.colors = tartan.utils.color.buildColorMap({
 	  /* eslint-disable key-spacing */
 	  W:  '#ffffff', TR: '#ffffe9', R: '#800000',
@@ -79524,7 +79662,7 @@
 
 
 /***/ },
-/* 109 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79595,7 +79733,7 @@
 
 
 /***/ },
-/* 110 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79605,7 +79743,7 @@
 
 
 /***/ },
-/* 111 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79671,7 +79809,7 @@
 
 
 /***/ },
-/* 112 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79705,7 +79843,7 @@
 
 
 /***/ },
-/* 113 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79713,11 +79851,11 @@
 	module.exports.autodetect = __webpack_require__(35);
 	module.exports.string = __webpack_require__(37);
 	module.exports.object = __webpack_require__(36);
-	module.exports.json = __webpack_require__(114);
+	module.exports.json = __webpack_require__(115);
 
 
 /***/ },
-/* 114 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79744,7 +79882,7 @@
 
 
 /***/ },
-/* 115 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79922,7 +80060,7 @@
 
 
 /***/ },
-/* 116 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79972,7 +80110,7 @@
 
 
 /***/ },
-/* 117 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80020,7 +80158,7 @@
 
 
 /***/ },
-/* 118 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80090,7 +80228,7 @@
 
 
 /***/ },
-/* 119 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80161,7 +80299,7 @@
 
 
 /***/ },
-/* 120 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80231,7 +80369,7 @@
 
 
 /***/ },
-/* 121 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80273,14 +80411,14 @@
 
 
 /***/ },
-/* 122 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var whitespace = __webpack_require__(121);
-	var invalid = __webpack_require__(116);
+	var whitespace = __webpack_require__(122);
+	var invalid = __webpack_require__(117);
 	
 	function Context(source, parsers, options) {
 	  this.source = _.isString(source) ? source : '';
@@ -80381,7 +80519,7 @@
 
 
 /***/ },
-/* 123 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80523,7 +80661,7 @@
 
 
 /***/ },
-/* 124 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80607,7 +80745,7 @@
 
 
 /***/ },
-/* 125 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80676,7 +80814,7 @@
 
 
 /***/ },
-/* 126 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80685,7 +80823,7 @@
 
 
 /***/ },
-/* 127 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80828,7 +80966,7 @@
 
 
 /***/ },
-/* 128 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80882,7 +81020,7 @@
 
 
 /***/ },
-/* 129 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80992,7 +81130,7 @@
 
 
 /***/ },
-/* 130 */
+/* 131 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -81020,7 +81158,7 @@
 
 
 /***/ },
-/* 131 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81172,7 +81310,7 @@
 
 
 /***/ },
-/* 132 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81243,7 +81381,7 @@
 
 
 /***/ },
-/* 133 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81376,7 +81514,7 @@
 
 
 /***/ },
-/* 134 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81592,13 +81730,13 @@
 
 
 /***/ },
-/* 135 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This is free and unencumbered software released into the public domain.
 	// See LICENSE.md for more information.
 	
-	var encoding = __webpack_require__(137);
+	var encoding = __webpack_require__(138);
 	
 	module.exports = {
 	  TextEncoder: encoding.TextEncoder,
@@ -81607,7 +81745,7 @@
 
 
 /***/ },
-/* 136 */
+/* 137 */
 /***/ function(module, exports) {
 
 	(function(global) {
@@ -81652,7 +81790,7 @@
 
 
 /***/ },
-/* 137 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This is free and unencumbered software released into the public domain.
@@ -81665,7 +81803,7 @@
 	 */
 	if (typeof module !== "undefined" && module.exports &&
 	    !this["encoding-indexes"]) {
-	    __webpack_require__(136);
+	    __webpack_require__(137);
 	}
 	
 	(function(global) {
@@ -84967,7 +85105,7 @@
 
 
 /***/ },
-/* 138 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var apply = Function.prototype.apply;
@@ -85020,13 +85158,13 @@
 	};
 	
 	// setimmediate attaches itself to the global object
-	__webpack_require__(88);
+	__webpack_require__(89);
 	exports.setImmediate = setImmediate;
 	exports.clearImmediate = clearImmediate;
 
 
 /***/ },
-/* 139 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85035,14 +85173,14 @@
 	
 	var utils = __webpack_require__(11);
 	var constants = __webpack_require__(10);
-	var tar = __webpack_require__(140);
-	var untar = __webpack_require__(141);
+	var tar = __webpack_require__(141);
+	var untar = __webpack_require__(142);
 	
 	utils.extend(module.exports, tar, untar, constants);
 
 
 /***/ },
-/* 140 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85143,7 +85281,7 @@
 
 
 /***/ },
-/* 141 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85302,7 +85440,7 @@
 
 
 /***/ },
-/* 142 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/punycode v1.3.2 by @mathias */
@@ -85837,7 +85975,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module), (function() { return this; }())))
 
 /***/ },
-/* 143 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -85863,8 +86001,8 @@
 	
 	'use strict';
 	
-	var punycode = __webpack_require__(142);
-	var util = __webpack_require__(144);
+	var punycode = __webpack_require__(143);
+	var util = __webpack_require__(145);
 	
 	exports.parse = urlParse;
 	exports.resolve = urlResolve;
@@ -85939,7 +86077,7 @@
 	      'gopher:': true,
 	      'file:': true
 	    },
-	    querystring = __webpack_require__(64);
+	    querystring = __webpack_require__(65);
 	
 	function urlParse(url, parseQueryString, slashesDenoteHost) {
 	  if (url && util.isObject(url) && url instanceof Url) return url;
@@ -86575,7 +86713,7 @@
 
 
 /***/ },
-/* 144 */
+/* 145 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -86597,14 +86735,14 @@
 
 
 /***/ },
-/* 145 */
+/* 146 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 146 */
+/* 147 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -86612,7 +86750,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 147 */
+/* 148 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -87076,37 +87214,13 @@
 
 
 /***/ },
-/* 148 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	module.exports = {
-	  template: __webpack_require__(71)
-	};
-
-
-/***/ },
 /* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
 	module.exports = {
-	  template: __webpack_require__(73),
-	  computed: _.extend({
-	    datasets: function() {
-	      return this.storage.datasets;
-	    }
-	  }, Vuex.mapGetters([
-	    'storage'
-	  ])),
-	  components: {
-	    listItem: __webpack_require__(150)
-	  }
+	  template: __webpack_require__(72)
 	};
 
 
@@ -87120,7 +87234,31 @@
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
-	  template: __webpack_require__(72),
+	  template: __webpack_require__(74),
+	  computed: _.extend({
+	    datasets: function() {
+	      return this.storage.datasets;
+	    }
+	  }, Vuex.mapGetters([
+	    'storage'
+	  ])),
+	  components: {
+	    listItem: __webpack_require__(151)
+	  }
+	};
+
+
+/***/ },
+/* 151 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
+	module.exports = {
+	  template: __webpack_require__(73),
 	  props: ['item'],
 	  methods: _.extend({}, Vuex.mapActions([
 	    'viewDataset',
@@ -87143,7 +87281,7 @@
 
 
 /***/ },
-/* 151 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87152,7 +87290,7 @@
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
-	  template: __webpack_require__(74),
+	  template: __webpack_require__(75),
 	  computed: _.extend({
 	    item: function() {
 	      var result = null;
@@ -87175,7 +87313,7 @@
 
 
 /***/ },
-/* 152 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87184,7 +87322,7 @@
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
-	  template: __webpack_require__(76),
+	  template: __webpack_require__(77),
 	  computed: _.extend({
 	    dataset: function() {
 	      return _.find(this.storage.datasets, {
@@ -87210,29 +87348,8 @@
 	    'storage'
 	  ])),
 	  components: {
-	    listItem: __webpack_require__(153)
+	    listItem: __webpack_require__(154)
 	  }
-	};
-
-
-/***/ },
-/* 153 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(75),
-	  props: ['item'],
-	  methods: _.extend({}, Vuex.mapActions([
-	    'editTartan',
-	    'viewTartan',
-	    'downloadTartan',
-	    'likeTartan'
-	  ]))
 	};
 
 
@@ -87242,8 +87359,18 @@
 
 	'use strict';
 	
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
 	module.exports = {
-	  template: __webpack_require__(77)
+	  template: __webpack_require__(76),
+	  props: ['item'],
+	  methods: _.extend({}, Vuex.mapActions([
+	    'editTartan',
+	    'viewTartan',
+	    'downloadTartan',
+	    'likeTartan'
+	  ]))
 	};
 
 
@@ -87264,45 +87391,13 @@
 
 	'use strict';
 	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(80),
-	  computed: _.extend({}, Vuex.mapState([
-	    'currentPage'
-	  ])),
-	  watch: {
-	    'currentPage.viewAs': function() {
-	      // Scroll to top
-	      (window.scrollTo || window.scroll)(0, 0);
-	    }
-	  },
-	  components: {
-	    editor: __webpack_require__(151),
-	    explorer: __webpack_require__(152),
-	    home: __webpack_require__(155),
-	    favorite: __webpack_require__(154),
-	    personal: __webpack_require__(157),
-	    datasets: __webpack_require__(149),
-	    about: __webpack_require__(148)
-	  }
-	};
-
-
-/***/ },
-/* 157 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
 	module.exports = {
 	  template: __webpack_require__(79)
 	};
 
 
 /***/ },
-/* 158 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87315,11 +87410,32 @@
 	  computed: _.extend({}, Vuex.mapState([
 	    'currentPage'
 	  ])),
-	  methods: {
-	    toggleSidebarMenu: function() {
-	      this.$emit('toggle-menu');
+	  watch: {
+	    'currentPage.viewAs': function() {
+	      // Scroll to top
+	      (window.scrollTo || window.scroll)(0, 0);
 	    }
+	  },
+	  components: {
+	    editor: __webpack_require__(152),
+	    explorer: __webpack_require__(153),
+	    home: __webpack_require__(156),
+	    favorite: __webpack_require__(155),
+	    personal: __webpack_require__(158),
+	    datasets: __webpack_require__(150),
+	    about: __webpack_require__(149)
 	  }
+	};
+
+
+/***/ },
+/* 158 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports = {
+	  template: __webpack_require__(80)
 	};
 
 
@@ -87329,12 +87445,34 @@
 
 	'use strict';
 	
-	var $ = __webpack_require__(9);
 	var _ = __webpack_require__(1);
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
 	  template: __webpack_require__(82),
+	  computed: _.extend({}, Vuex.mapState([
+	    'currentPage'
+	  ])),
+	  methods: {
+	    toggleSidebarMenu: function() {
+	      this.$emit('toggle-menu');
+	    }
+	  }
+	};
+
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var $ = __webpack_require__(9);
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
+	module.exports = {
+	  template: __webpack_require__(83),
 	  props: ['value'],
 	  data: function() {
 	    return {
@@ -87419,26 +87557,6 @@
 
 
 /***/ },
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(84),
-	  computed: _.extend({}, Vuex.mapState([
-	    'tartanPreview'
-	  ])),
-	  components: {
-	    tartanPreviewModal: __webpack_require__(161)
-	  }
-	};
-
-
-/***/ },
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -87448,7 +87566,27 @@
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
-	  template: __webpack_require__(83),
+	  template: __webpack_require__(85),
+	  computed: _.extend({}, Vuex.mapState([
+	    'tartanPreview'
+	  ])),
+	  components: {
+	    tartanPreviewModal: __webpack_require__(162)
+	  }
+	};
+
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
+	module.exports = {
+	  template: __webpack_require__(84),
 	  props: ['value', 'item', 'schema'],
 	  computed: {
 	    isVisible: {
@@ -87469,19 +87607,19 @@
 
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.applicationMenu = __webpack_require__(159);
-	module.exports.applicationBar = __webpack_require__(158);
-	module.exports.applicationArea = __webpack_require__(156);
-	module.exports.applicationModals = __webpack_require__(160);
+	module.exports.applicationMenu = __webpack_require__(160);
+	module.exports.applicationBar = __webpack_require__(159);
+	module.exports.applicationArea = __webpack_require__(157);
+	module.exports.applicationModals = __webpack_require__(161);
 
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87490,7 +87628,7 @@
 	var applicationService = __webpack_require__(44);
 	var Vue = __webpack_require__(7);
 	var Vuex = __webpack_require__(4);
-	var store = __webpack_require__(164);
+	var store = __webpack_require__(165);
 	
 	var configUrl = 'config.json';
 	
@@ -87511,7 +87649,7 @@
 	  return initializeApplication().then(function() {
 	    return new Vue({
 	      el: '#application',
-	      template: __webpack_require__(85),
+	      template: __webpack_require__(86),
 	      store: store,
 	      data: {
 	        isSidebarMenuVisible: false
@@ -87519,14 +87657,14 @@
 	      computed: _.extend({}, Vuex.mapState([
 	        'currentPage'
 	      ])),
-	      components: __webpack_require__(162)
+	      components: __webpack_require__(163)
 	    });
 	  });
 	};
 
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87760,7 +87898,7 @@
 
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87801,17 +87939,123 @@
 
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.uniqueId = __webpack_require__(167);
+	var _ = __webpack_require__(1);
+	
+	_.extend(
+	  module.exports,
+	  __webpack_require__(168)
+	);
+
+
+/***/ },
+/* 168 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	/* global window, Event, HTMLElement */
+	
+	var items = [];
+	
+	var requestAnimationFrame = (function() {
+	  var result = null;
+	  if (typeof window != 'undefined') {
+	    result = window.requestAnimationFrame ||
+	      window.webkitRequestAnimationFrame ||
+	      window.mozRequestAnimationFrame ||
+	      window.msRequestAnimationFrame;
+	  }
+	  return result || function(callback) {
+	    setTimeout(callback, 50);
+	  };
+	})();
+	
+	function isHTMLElement(element) {
+	  return (
+	    (typeof HTMLElement == 'function') &&
+	    (element instanceof HTMLElement)
+	  );
+	}
+	
+	function findElement(element) {
+	  for (var i = 0; i < items.length; i++) {
+	    if (items[i].element === element) {
+	      return i;
+	    }
+	  }
+	  return -1;
+	}
+	
+	function triggerResizeEvent(element) {
+	  element.dispatchEvent(new Event('resize'));
+	}
+	
+	function checkUpdates() {
+	  if (items.length == 0) {
+	    return;
+	  }
+	  // Check each item
+	  for (var i = 0; i < items.length; i++) {
+	    var item = items[i];
+	    var rect = item.element.getBoundingClientRect();
+	    var width = Math.abs(rect.right - rect.left);
+	    var height = Math.abs(rect.bottom - rect.top);
+	    if ((width != item.width) || (height != item.height)) {
+	      item.width = width;
+	      item.height = height;
+	      triggerResizeEvent(item.element);
+	    }
+	  }
+	  // Schedule next check
+	  requestAnimationFrame(checkUpdates);
+	}
+	
+	function requestResizeEvents(element) {
+	  if (!isHTMLElement(element)) {
+	    return;
+	  }
+	  var found = findElement(element) >= 0;
+	  if (!found) {
+	    items.push({
+	      element: element,
+	      width: -1,
+	      height: -1
+	    });
+	    checkUpdates();
+	  }
+	}
+	
+	function cancelResizeEvents(element) {
+	  if (!isHTMLElement(element)) {
+	    return;
+	  }
+	  var index = findElement(element);
+	  if (index >= 0) {
+	    items.splice(index, 1);  // remove
+	  }
+	}
+	
+	module.exports.requestResizeEvents = requestResizeEvents;
+	module.exports.cancelResizeEvents = cancelResizeEvents;
+
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports.uniqueId = __webpack_require__(170);
 	module.exports.hiddenProperty = __webpack_require__(45);
 
 
 /***/ },
-/* 167 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87852,7 +88096,7 @@
 
 
 /***/ },
-/* 168 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87878,22 +88122,22 @@
 
 
 /***/ },
-/* 169 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var Vue = __webpack_require__(7);
 	
-	Vue.component('tartanPreview', __webpack_require__(173));
-	Vue.component('tartanImage', __webpack_require__(172));
-	Vue.component('applicationTitle', __webpack_require__(168));
-	Vue.component('pagination', __webpack_require__(171));
-	Vue.component('modalBox', __webpack_require__(170));
+	Vue.component('tartanPreview', __webpack_require__(176));
+	Vue.component('tartanImage', __webpack_require__(175));
+	Vue.component('applicationTitle', __webpack_require__(171));
+	Vue.component('pagination', __webpack_require__(174));
+	Vue.component('modalBox', __webpack_require__(173));
 
 
 /***/ },
-/* 170 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87925,13 +88169,13 @@
 
 
 /***/ },
-/* 171 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	module.exports = {
-	  template: __webpack_require__(86),
+	  template: __webpack_require__(87),
 	  props: ['count', 'value'],
 	  data: function() {
 	    return {
@@ -88001,91 +88245,53 @@
 
 
 /***/ },
-/* 172 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	/* global window */
-	
-	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
-	
-	function getDevicePixelRatio() {
-	  return parseFloat(window.devicePixelRatio) || 1;
-	}
-	
-	function updateCanvasSize(canvas) {
-	  var parent = canvas.parentNode;
-	  var w = parent.offsetWidth;
-	  var h = parent.offsetHeight;
-	  var ratio = getDevicePixelRatio();
-	
-	  canvas.style.position = 'absolute';
-	  canvas.style.left = '0px';
-	  canvas.style.top = '0px';
-	  canvas.style.width = Math.round(w) + 'px';
-	  canvas.style.height = Math.round(h) + 'px';
-	
-	  w = Math.ceil(w * ratio);
-	  h = Math.ceil(h * ratio);
-	  if (canvas.width != w) {
-	    canvas.width = w;
-	  }
-	  if (canvas.height != h) {
-	    canvas.height = h;
-	  }
-	}
-	
-	function makeResizable(window, update) {
-	  function onResize() {
-	    if (_.isFunction(update)) {
-	      update();
-	    }
-	  }
-	
-	  window.addEventListener('resize', onResize);
-	  return function() {
-	    window.removeEventListener('resize', onResize);
-	  };
-	}
-	
-	function createRenderer(threadcount) {
-	  var schema = tartan.schema.extended;
-	  var sett = schema.parse()(threadcount);
-	  return tartan.render.canvas(sett, {
-	    defaultColors: tartan.schema.extended.colors,
-	    weave: tartan.defaults.weave.serge,
-	    transformSyntaxTree: tartan.transform.flatten()
-	  });
-	}
+	var utils = __webpack_require__(46);
 	
 	module.exports = {
 	  template: '<div class="tartan-image"><canvas ref="canvas"></canvas></div>',
-	  props: ['threadcount'],
+	  props: ['threadcount', 'schema', 'repeat'],
 	  watch: {
-	    threadcount: function(value) {
-	      this.$emit('update', value);
+	    threadcount: function() {
+	      this.$emit('update');
+	    },
+	    schema: function() {
+	      this.$emit('update');
+	    },
+	    repeat: function() {
+	      this.$emit('repaint');
 	    }
 	  },
 	  mounted: function() {
 	    var that = this;
-	
-	    var disableResize = makeResizable(window, function() {
-	      updateCanvasSize(that.$refs.canvas);
-	      repaint();
-	    });
-	
-	    var render = createRenderer(that.threadcount);
+	    var render = null;
 	
 	    var repaint = tartan.utils.repaint(function() {
 	      if (that.$refs.canvas) {
-	        render(that.$refs.canvas, null, true);
+	        render(that.$refs.canvas, null, that.repeat);
 	      }
 	    });
 	
-	    that.$on('update', function(threadcount) {
-	      render = createRenderer(threadcount);
+	    var disableResize = utils.makeResizable(
+	      that.$refs.canvas.parentNode,
+	      function() {
+	        utils.updateCanvasSize(that.$refs.canvas);
+	        repaint();
+	      }
+	    );
+	
+	    that.$on('repaint', function() {
+	      repaint();
+	    });
+	
+	    that.$on('update', function() {
+	      render = utils.createTartanRenderer(that.threadcount, that.schema);
+	      utils.updateCanvasSize(that.$refs.canvas);
 	      repaint();
 	    });
 	
@@ -88094,8 +88300,7 @@
 	    });
 	
 	    // Initial paint
-	    updateCanvasSize(that.$refs.canvas);
-	    repaint();
+	    this.$emit('update');
 	  },
 	  beforeDestroy: function() {
 	    this.$emit('destroy');
@@ -88104,138 +88309,14 @@
 
 
 /***/ },
-/* 173 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	/* global window */
-	
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
-	
-	function getDevicePixelRatio() {
-	  return parseFloat(window.devicePixelRatio) || 1;
-	}
-	
-	function makeDraggable(window, canvas, getOffset, repaint) {
-	  var document = window.document;
-	  var drag = null;
-	  var dragTarget = document.releaseCapture ? canvas : window;
-	
-	  function onMouseDown(event) {
-	    event = event || window.event;
-	    if (event.target !== canvas) {
-	      return;
-	    }
-	    if (event.buttons == 1) {
-	      event.preventDefault();
-	      drag = {
-	        x: event.clientX,
-	        y: event.clientY
-	      };
-	      if (event.target && event.target.setCapture) {
-	        // Only IE and FF
-	        event.target.setCapture();
-	      }
-	    }
-	  }
-	  function onMouseMove(event) {
-	    event = event || window.event;
-	    if (drag) {
-	      if (event.buttons != 1) {
-	        drag = null;
-	        if (document.releaseCapture) {
-	          // Only IE and FF
-	          document.releaseCapture();
-	        }
-	      } else {
-	        var offset = getOffset();
-	        offset.x += event.clientX - drag.x;
-	        offset.y += event.clientY - drag.y;
-	
-	        drag.x = event.clientX;
-	        drag.y = event.clientY;
-	
-	        event.preventDefault();
-	      }
-	
-	      repaint();
-	    }
-	  }
-	  function onMouseUp(event) {
-	    event = event || window.event;
-	    if (event.buttons == 1) {
-	      drag = null;
-	      if (document.releaseCapture) {
-	        // Only IE and FF
-	        document.releaseCapture();
-	      }
-	    }
-	    repaint();
-	  }
-	  function onLoseCapture() {
-	    // Only IE and FF
-	    drag = null;
-	  }
-	
-	  dragTarget.addEventListener('mousedown', onMouseDown);
-	  dragTarget.addEventListener('mousemove', onMouseMove);
-	  dragTarget.addEventListener('mouseup', onMouseUp);
-	  canvas.addEventListener('losecapture', onLoseCapture);
-	
-	  return function() {
-	    dragTarget.removeEventListener('mousedown', onMouseDown);
-	    dragTarget.removeEventListener('mousemove', onMouseMove);
-	    dragTarget.removeEventListener('mouseup', onMouseUp);
-	    canvas.removeEventListener('losecapture', onLoseCapture);
-	  };
-	}
-	
-	function makeResizable(window, update) {
-	  function onResize() {
-	    if (_.isFunction(update)) {
-	      update();
-	    }
-	  }
-	
-	  window.addEventListener('resize', onResize);
-	  return function() {
-	    window.removeEventListener('resize', onResize);
-	  };
-	}
-	
-	function updateCanvasSize(canvas) {
-	  var parent = canvas.parentNode;
-	  var w = parent.offsetWidth;
-	  var h = parent.offsetHeight;
-	  var ratio = getDevicePixelRatio();
-	
-	  canvas.style.position = 'absolute';
-	  canvas.style.left = '0px';
-	  canvas.style.top = '0px';
-	  canvas.style.width = Math.round(w) + 'px';
-	  canvas.style.height = Math.round(h) + 'px';
-	
-	  w = Math.ceil(w * ratio);
-	  h = Math.ceil(h * ratio);
-	  if (canvas.width != w) {
-	    canvas.width = w;
-	  }
-	  if (canvas.height != h) {
-	    canvas.height = h;
-	  }
-	}
-	
-	function createRenderer(threadcount) {
-	  var schema = tartan.schema.extended;
-	  var sett = schema.parse()(threadcount);
-	  return tartan.render.canvas(sett, {
-	    defaultColors: tartan.schema.extended.colors,
-	    weave: tartan.defaults.weave.serge,
-	    transformSyntaxTree: tartan.transform.flatten()
-	  });
-	}
+	var utils = __webpack_require__(46);
 	
 	module.exports = {
 	  template: '<div class="tartan-preview-control">' +
@@ -88264,20 +88345,24 @@
 	      }
 	    });
 	
-	    var disableDrag = makeDraggable(window, that.$refs.canvas,
-	      _.constant(offset), repaint);
-	    var disableResize = makeResizable(window, function() {
-	      updateCanvasSize(that.$refs.canvas);
-	      repaint();
-	    });
+	    var disableDrag = utils.makeDraggable(
+	      that.$refs.canvas,
+	      _.constant(offset),
+	      repaint
+	    );
+	    var disableResize = utils.makeResizable(that.$refs.canvas.parentNode,
+	      function() {
+	        utils.updateCanvasSize(that.$refs.canvas);
+	        repaint();
+	      });
 	
 	    that.$on('repaint', function() {
 	      repaint();
 	    });
 	
 	    that.$on('update', function() {
-	      render = createRenderer(that.threadcount, that.schema);
-	      updateCanvasSize(that.$refs.canvas);
+	      render = utils.createTartanRenderer(that.threadcount, that.schema);
+	      utils.updateCanvasSize(that.$refs.canvas);
 	      repaint();
 	    });
 	
@@ -88296,7 +88381,7 @@
 
 
 /***/ },
-/* 174 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88311,22 +88396,22 @@
 
 
 /***/ },
-/* 175 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(176);
-	__webpack_require__(174);
+	__webpack_require__(179);
+	__webpack_require__(177);
 
 
 /***/ },
-/* 176 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var marked = __webpack_require__(50);
+	var marked = __webpack_require__(51);
 	var Vue = __webpack_require__(7);
 	
 	Vue.directive('markdown', function(element, binding) {
@@ -88337,13 +88422,13 @@
 
 
 /***/ },
-/* 177 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(175);
-	__webpack_require__(169);
+	__webpack_require__(178);
+	__webpack_require__(172);
 
 
 /***/ }
