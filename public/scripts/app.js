@@ -77,7 +77,7 @@
 	  window.Promise = __webpack_require__(12);
 	}
 	
-	__webpack_require__(180);
+	__webpack_require__(181);
 	
 	jquery(function() {
 	  var application = __webpack_require__(164);
@@ -45365,7 +45365,7 @@
 	var TextEncoder = __webpack_require__(136).TextEncoder;
 	var tar = __webpack_require__(140).tar;
 	var gzip = __webpack_require__(53).gzip;
-	var utils = __webpack_require__(169);
+	var utils = __webpack_require__(170);
 	
 	function getConfig(configUrl) {
 	  return downloader.getJson(configUrl);
@@ -45710,18 +45710,15 @@
 	
 	function updateCanvasSize(canvas) {
 	  var parent = canvas.parentNode;
-	  var w = parent.offsetWidth;
-	  var h = parent.offsetHeight;
-	  var ratio = parseFloat(window.devicePixelRatio) || 1;
+	  var w = Math.ceil(parent.offsetWidth);
+	  var h = Math.ceil(parent.offsetHeight);
 	
 	  canvas.style.position = 'absolute';
 	  canvas.style.left = '0px';
 	  canvas.style.top = '0px';
-	  canvas.style.width = Math.round(w) + 'px';
-	  canvas.style.height = Math.round(h) + 'px';
+	  canvas.style.width = w + 'px';
+	  canvas.style.height = h + 'px';
 	
-	  w = Math.ceil(w * ratio);
-	  h = Math.ceil(h * ratio);
 	  if (canvas.width != w) {
 	    canvas.width = w;
 	  }
@@ -45740,78 +45737,165 @@
 	  });
 	}
 	
-	function makeDraggable(element, getOffset, dragHandler) {
-	  var document = window.document;
+	function makeDraggableWithMouse(element, getOffset, dragHandler) {
 	  var drag = null;
-	  var dragTarget = document.releaseCapture ? element : window;
 	
-	  function onMouseDown(event) {
+	  function isLeftButton(event) {
+	    if (event.type == 'mousemove') {
+	      return (event.type == 'mousemove') && (event.buttons == 1);
+	    } else {
+	      return (event.which == 1) && (
+	        (event.buttons == 0) || (event.buttons == 1)
+	      );
+	    }
+	  }
+	
+	  function mouseDownHandler(event) {
 	    event = event || window.event;
 	    if (event.target !== element) {
 	      return;
 	    }
-	    if (event.buttons == 1) {
+	    if (isLeftButton(event)) {
 	      event.preventDefault();
+	      var position = event;
 	      drag = {
-	        x: event.clientX,
-	        y: event.clientY
+	        x: position.clientX,
+	        y: position.clientY
 	      };
-	      if (event.target && event.target.setCapture) {
-	        // Only IE and FF
-	        event.target.setCapture();
-	      }
-	    }
-	  }
-	  function onMouseMove(event) {
-	    event = event || window.event;
-	    if (drag) {
-	      if (event.buttons != 1) {
-	        drag = null;
-	        if (document.releaseCapture) {
-	          // Only IE and FF
-	          document.releaseCapture();
-	        }
-	      } else {
-	        var offset = getOffset();
-	        offset.x += event.clientX - drag.x;
-	        offset.y += event.clientY - drag.y;
-	
-	        drag.x = event.clientX;
-	        drag.y = event.clientY;
-	
-	        event.preventDefault();
-	      }
-	
 	      dragHandler();
 	    }
 	  }
-	  function onMouseUp(event) {
+	
+	  function mouseMoveHandler(event) {
 	    event = event || window.event;
-	    if (event.buttons == 1) {
-	      drag = null;
-	      if (document.releaseCapture) {
-	        // Only IE and FF
-	        document.releaseCapture();
+	    if (drag) {
+	      event.preventDefault();
+	      if (isLeftButton(event)) {
+	        var offset = getOffset();
+	        var position = event;
+	        offset.x += position.clientX - drag.x;
+	        offset.y += position.clientY - drag.y;
+	
+	        drag.x = position.clientX;
+	        drag.y = position.clientY;
+	      } else {
+	        drag = null;
 	      }
+	      dragHandler();
 	    }
-	    dragHandler();
-	  }
-	  function onLoseCapture() {
-	    // Only IE and FF
-	    drag = null;
 	  }
 	
-	  dragTarget.addEventListener('mousedown', onMouseDown);
-	  dragTarget.addEventListener('mousemove', onMouseMove);
-	  dragTarget.addEventListener('mouseup', onMouseUp);
-	  element.addEventListener('losecapture', onLoseCapture);
+	  function preventClick(event) {
+	    event = event || window.event;
+	    event.target.removeEventListener('click', preventClick, true);
+	    event.preventDefault();
+	    event.stopPropagation();
+	    if (typeof event.stopImmediatePropagation == 'function') {
+	      event.stopImmediatePropagation();
+	    }
+	    event.returnValue = false;
+	    return false;
+	  }
+	
+	  function mouseUpHandler(event) {
+	    event = event || window.event;
+	    if (drag && isLeftButton(event)) {
+	      event.preventDefault();
+	      event.target.addEventListener('click', preventClick, true);
+	      drag = null;
+	      dragHandler();
+	    }
+	  }
+	
+	  window.addEventListener('mousedown', mouseDownHandler, true);
+	  window.addEventListener('mousemove', mouseMoveHandler, true);
+	  window.addEventListener('mouseup', mouseUpHandler, true);
 	
 	  return function() {
-	    dragTarget.removeEventListener('mousedown', onMouseDown);
-	    dragTarget.removeEventListener('mousemove', onMouseMove);
-	    dragTarget.removeEventListener('mouseup', onMouseUp);
-	    element.removeEventListener('losecapture', onLoseCapture);
+	    window.removeEventListener('mousedown', mouseDownHandler, true);
+	    window.removeEventListener('mousemove', mouseMoveHandler, true);
+	    window.removeEventListener('mouseup', mouseUpHandler, true);
 	  };
+	}
+	
+	function makeDraggableWithTouch(element, getOffset, dragHandler) {
+	  var drag = null;
+	
+	  function touchStartHandler(event) {
+	    event = event || window.event;
+	    if (event.touches.length == 1) {
+	      if (event.target !== element) {
+	        return;
+	      }
+	      var position = event.touches[0];
+	      drag = {
+	        x: position.pageX,
+	        y: position.pageY
+	      };
+	      dragHandler();
+	    } else {
+	      if (drag) {
+	        drag = null;
+	        dragHandler();
+	      }
+	    }
+	  }
+	
+	  function touchMoveHandler(event) {
+	    event = event || window.event;
+	    if (drag) {
+	      event.preventDefault();
+	      if (event.touches.length == 1) {
+	        var offset = getOffset();
+	        var position = event.touches[0];
+	        offset.x += position.pageX - drag.x;
+	        offset.y += position.pageY - drag.y;
+	
+	        drag.x = position.pageX;
+	        drag.y = position.pageY;
+	      } else {
+	        drag = null;
+	      }
+	      dragHandler();
+	    }
+	  }
+	
+	  function touchEndHandler(event) {
+	    event = event || window.event;
+	    if (drag) {
+	      event.preventDefault();
+	      drag = null;
+	      dragHandler();
+	    }
+	  }
+	
+	  function touchCancelHandler(event) {
+	    event = event || window.event;
+	    if (drag) {
+	      drag = null;
+	      dragHandler();
+	    }
+	  }
+	
+	  window.addEventListener('touchstart', touchStartHandler);
+	  window.addEventListener('touchmove', touchMoveHandler);
+	  window.addEventListener('touchend', touchEndHandler);
+	  window.addEventListener('touchcancel', touchCancelHandler);
+	
+	  return function() {
+	    window.removeEventListener('touchstart', touchStartHandler);
+	    window.removeEventListener('touchmove', touchMoveHandler);
+	    window.removeEventListener('touchend', touchEndHandler);
+	    window.removeEventListener('touchcancel', touchCancelHandler);
+	  };
+	}
+	
+	function makeDraggable(element, getOffset, dragHandler) {
+	  if (domUtils.supports.isTouchDevice) {
+	    return makeDraggableWithTouch(element, getOffset, dragHandler);
+	  } else {
+	    return makeDraggableWithMouse(element, getOffset, dragHandler);
+	  }
 	}
 	
 	function makeResizable(element, resizeHandler) {
@@ -55523,7 +55607,7 @@
 /* 82 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui top attached page menu\">\n  <div class=\"ui dropdown icon item\"\n    v-on:click=\"toggleSidebarMenu()\"><i class=\"fa fa-bars\"></i></div>\n  <div class=\"borderless header item\">{{ currentPage.title }}</div>\n</div>"
+	module.exports = "<div class=\"ui top attached page menu\">\n  <div class=\"ui item\"\n    v-on:click=\"toggleSidebarMenu()\"><i class=\"fa fa-bars\"></i></div>\n  <div class=\"borderless header item\">{{ currentPage.title }}</div>\n</div>"
 
 /***/ },
 /* 83 */
@@ -87411,9 +87495,8 @@
 	    'currentPage'
 	  ])),
 	  watch: {
-	    'currentPage.viewAs': function() {
-	      // Scroll to top
-	      (window.scrollTo || window.scroll)(0, 0);
+	    currentPage: function() {
+	
 	    }
 	  },
 	  components: {
@@ -87948,7 +88031,10 @@
 	
 	_.extend(
 	  module.exports,
-	  __webpack_require__(168)
+	  __webpack_require__(168),
+	  {
+	    supports: __webpack_require__(169)
+	  }
 	);
 
 
@@ -88046,16 +88132,45 @@
 
 /***/ },
 /* 169 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 	
-	module.exports.uniqueId = __webpack_require__(170);
-	module.exports.hiddenProperty = __webpack_require__(45);
+	/* global window, TouchEvent */
+	
+	Object.defineProperty(module.exports, 'touchEvents', {
+	  configurable: false,
+	  enumerable: true,
+	  get: function() {
+	    return typeof TouchEvent == 'function';
+	  }
+	});
+	
+	Object.defineProperty(module.exports, 'isTouchDevice', {
+	  configurable: false,
+	  enumerable: true,
+	  get: function() {
+	    return (
+	      ('ontouchstart' in window) ||
+	      (window.navigator.maxTouchPoints > 0) ||
+	      (window.navigator.msMaxTouchPoints > 0)
+	    );
+	  }
+	});
 
 
 /***/ },
 /* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports.uniqueId = __webpack_require__(171);
+	module.exports.hiddenProperty = __webpack_require__(45);
+
+
+/***/ },
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88096,7 +88211,7 @@
 
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88122,22 +88237,22 @@
 
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var Vue = __webpack_require__(7);
 	
-	Vue.component('tartanPreview', __webpack_require__(176));
-	Vue.component('tartanImage', __webpack_require__(175));
-	Vue.component('applicationTitle', __webpack_require__(171));
-	Vue.component('pagination', __webpack_require__(174));
-	Vue.component('modalBox', __webpack_require__(173));
+	Vue.component('tartanPreview', __webpack_require__(177));
+	Vue.component('tartanImage', __webpack_require__(176));
+	Vue.component('applicationTitle', __webpack_require__(172));
+	Vue.component('pagination', __webpack_require__(175));
+	Vue.component('modalBox', __webpack_require__(174));
 
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88169,7 +88284,7 @@
 
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88245,7 +88360,7 @@
 
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88309,7 +88424,7 @@
 
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88381,7 +88496,7 @@
 
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88396,17 +88511,17 @@
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(179);
-	__webpack_require__(177);
+	__webpack_require__(180);
+	__webpack_require__(178);
 
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88422,13 +88537,13 @@
 
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(178);
-	__webpack_require__(172);
+	__webpack_require__(179);
+	__webpack_require__(173);
 
 
 /***/ }
