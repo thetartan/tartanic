@@ -10,23 +10,28 @@ module.exports = {
   pages: [
     {
       viewAs: 'home',
-      title: 'Home'
+      title: 'Home',
+      additionalActions: []
     },
     {
       viewAs: 'about',
-      title: 'About this project'
+      title: 'About this project',
+      additionalActions: []
     },
     {
       viewAs: 'favorite',
-      title: 'Favorite tartans'
+      title: 'Favorite tartans',
+      additionalActions: []
     },
     {
       viewAs: 'personal',
-      title: 'My tartans'
+      title: 'My tartans',
+      additionalActions: []
     },
     {
       viewAs: 'datasets',
-      title: 'All datasets'
+      title: 'All datasets',
+      additionalActions: []
     }
   ]
 };

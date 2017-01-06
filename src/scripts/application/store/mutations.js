@@ -25,6 +25,16 @@ module.exports = {
         viewAs: 'explorer',
         title: dataset.title,
         itemRef: dataset.$ref,
+        additionalActions: [
+          {
+            title: 'Download', icon: 'download',
+            action: 'downloadDataset', argument: datasetRef
+          },
+          {
+            title: 'Add to favorites', icon: 'heart',
+            action: 'likeDataset', argument: datasetRef
+          }
+        ],
         pagination: null
       });
     }
@@ -52,6 +62,16 @@ module.exports = {
       viewAs: 'editor',
       title: tartan.name,
       itemRef: tartan.$ref,
+      additionalActions: [
+        {
+          title: 'Download', icon: 'download',
+          action: 'downloadTartan', argument: tartanRef
+        },
+        {
+          title: 'Add to favorites', icon: 'heart',
+          action: 'likeTartan', argument: tartanRef
+        }
+      ],
       state: {
         threadcount: tartan.sett,
         schema: 'extended',
