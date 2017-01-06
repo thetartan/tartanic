@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var storage = require('./storage');
 var applicationService = require('../../services/application');
 
 module.exports = {
@@ -8,11 +9,9 @@ module.exports = {
     context.commit('setCurrentPage', page);
   },
   setConfig: function(context, config) {
-    var storage = context.getters.storage;
     storage.config = _.isObject(config) ? config : {};
   },
   setDatasets: function(context, datasets) {
-    var storage = context.getters.storage;
     storage.datasets = _.isArray(datasets) ? datasets : [];
     context.state.datasetsCount = storage.datasets.length;
     _.each(storage.datasets, function(dataset) {
@@ -24,11 +23,11 @@ module.exports = {
     });
   },
 
-  viewDataset: function(context, dataset) {
+  viewDataset: function(context, datasetRef) {
     // Create and open editor
-    context.commit('createDatasetExplorer', dataset);
-    context.commit('updateDatasetExplorer', dataset);
-    var page = _.find(context.getters.explorers, {itemRef: dataset.$ref});
+    context.commit('createDatasetExplorer', datasetRef);
+    context.commit('updateDatasetExplorer', datasetRef);
+    var page = _.find(context.getters.explorers, {itemRef: datasetRef});
     if (page) {
       context.commit('setCurrentPage', page);
     }
@@ -36,14 +35,16 @@ module.exports = {
     function update(dataset, data, items) {
       dataset.items = _.isArray(items) ? items : [];
       context.commit('setItemState', [dataset.$ref, data]);
-      context.commit('updateDatasetExplorer', dataset);
+      context.commit('updateDatasetExplorer', dataset.$ref);
       return dataset;
     }
 
     // If not items already loaded - load them
     var isLoaded = _.get(context.state.itemState,
-      '[' + dataset.$ref + '].loaded');
+      '[' + datasetRef + '].loaded');
     if (!isLoaded) {
+      var dataset = storage.getItemByRef(datasetRef);
+
       dataset = update(dataset, {
         loaded: false,
         loading: true,
@@ -67,31 +68,31 @@ module.exports = {
         });
     }
   },
-  downloadDataset: function(context, dataset) {
-    console.log('download dataset', dataset);
+  downloadDataset: function(context, datasetRef) {
+    console.log('download dataset', datasetRef);
   },
-  likeDataset: function(context, dataset) {
-    console.log('like dataset', dataset);
+  likeDataset: function(context, datasetRef) {
+    console.log('like dataset', datasetRef);
   },
 
-  viewTartan: function(context, tartan) {
+  viewTartan: function(context, tartanRef) {
     context.commit('setTartanPreview', {
       isVisible: true,
-      item: _.extend(_.cloneDeep(tartan), {$ref: tartan.$ref}),
+      itemRef: tartanRef,
       schema: 'extended'
     });
   },
-  editTartan: function(context, tartan) {
-    context.commit('createTartanEditor', tartan);
-    var page = _.find(context.getters.editors, {itemRef: tartan.$ref});
+  editTartan: function(context, tartanRef) {
+    context.commit('createTartanEditor', tartanRef);
+    var page = _.find(context.getters.editors, {itemRef: tartanRef});
     if (page) {
       context.commit('setCurrentPage', page);
     }
   },
-  downloadTartan: function(context, tartan) {
-    console.log('download tartan', tartan);
+  downloadTartan: function(context, tartanRef) {
+    console.log('download tartan', tartanRef);
   },
-  likeTartan: function(context, tartan) {
-    console.log('like tartan', tartan);
+  likeTartan: function(context, tartanRef) {
+    console.log('like tartan', tartanRef);
   }
 };

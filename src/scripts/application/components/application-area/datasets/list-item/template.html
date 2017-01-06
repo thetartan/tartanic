@@ -16,11 +16,11 @@
     </p>
   </div>
   <div class="ui bottom attached menu">
-    <a class="item" v-on:click="viewDataset(item)"><i
+    <a class="item" v-on:click="viewDataset(item.$ref)"><i
       class="fa fa-sign-in spacing right"></i>Open</a>
     <div class="right menu">
-      <a class="item" v-on:click="downloadDataset(item)"><i class="fa fa-download"></i></a>
-      <a class="item" v-on:click="likeDataset(item)"><i class="fa fa-heart"></i></a>
+      <a class="item" v-on:click="downloadDataset(item.$ref)"><i class="fa fa-download"></i></a>
+      <a class="item" v-on:click="likeDataset(item.$ref)"><i class="fa fa-heart"></i></a>
     </div>
   </div>
 </div>

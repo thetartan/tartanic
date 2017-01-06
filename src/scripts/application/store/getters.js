@@ -1,9 +1,12 @@
 'use strict';
 
 var _ = require('lodash');
+var storage = require('./storage');
 
 module.exports = {
-  storage: _.constant(require('./storage')),
+  storage: function() {
+    return storage;
+  },
   pageHome: function(state) {
     return _.find(state.pages, {viewAs: 'home'});
   },
@@ -28,5 +31,12 @@ module.exports = {
     return _.filter(state.pages, function(item) {
       return item.viewAs == 'explorer';
     });
+  },
+  currentItem: function(state) {
+    var currentPage = state.currentPage;
+    if (currentPage) {
+      return storage.getItemByRef(currentPage.itemRef);
+    }
+    return null;
   }
 };

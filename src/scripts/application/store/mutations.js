@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Vue = require('vue');
+var storage = require('./storage');
 
 module.exports = {
   setItemState: function(state, payload) {
@@ -12,12 +13,14 @@ module.exports = {
   setCurrentPage: function(state, page) {
     state.currentPage = _.isObject(page) ? page : {};
   },
-  createDatasetExplorer: function(state, dataset) {
+
+  createDatasetExplorer: function(state, datasetRef) {
     var exists = !!_.find(state.pages, {
       viewAs: 'explorer',
-      dataset: dataset.name
+      itemRef: datasetRef
     });
     if (!exists) {
+      var dataset = storage.getItemByRef(datasetRef);
       state.pages.push({
         viewAs: 'explorer',
         title: dataset.title,
@@ -26,12 +29,13 @@ module.exports = {
       });
     }
   },
-  updateDatasetExplorer: function(state, dataset) {
+  updateDatasetExplorer: function(state, datasetRef) {
     var page = _.find(state.pages, {
       viewAs: 'explorer',
-      itemRef: dataset.$ref
+      itemRef: datasetRef
     });
     if (page) {
+      var dataset = storage.getItemByRef(datasetRef);
       var items = _.isArray(dataset.items) ? dataset.items : [];
       var itemsPerPage = 20;
       page.pagination = {
@@ -41,7 +45,9 @@ module.exports = {
       };
     }
   },
-  createTartanEditor: function(state, tartan) {
+
+  createTartanEditor: function(state, tartanRef) {
+    var tartan = storage.getItemByRef(tartanRef);
     state.pages.push({
       viewAs: 'editor',
       title: tartan.name,
@@ -54,8 +60,6 @@ module.exports = {
     });
   },
   setTartanPreview: function(state, data) {
-    data = _.extend({}, data);
-    state.tartanPreview.item = data.item;
-    state.tartanPreview.isVisible = !!data.isVisible;
+    state.tartanPreview = _.extend({}, data);
   }
 };

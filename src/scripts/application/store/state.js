@@ -5,8 +5,7 @@ module.exports = {
   itemState: {},
   datasetsCount: 0,
   tartanPreview: {
-    isVisible: false,
-    item: null
+    isVisible: false
   },
   pages: [
     {
