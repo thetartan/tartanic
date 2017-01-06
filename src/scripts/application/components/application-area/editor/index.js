@@ -8,7 +8,7 @@ module.exports = {
   computed: _.extend({
     item: function() {
       var result = null;
-      var ref = this.currentPage.item;
+      var ref = this.currentPage.itemRef;
       _.each(this.storage.datasets, function(dataset) {
         result = _.find(dataset.items, {$ref: ref});
         return !result;  // continue if not found

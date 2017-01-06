@@ -8,7 +8,7 @@ module.exports = {
   computed: _.extend({
     dataset: function() {
       return _.find(this.storage.datasets, {
-        name: this.currentPage.dataset
+        name: this.currentPage.itemRef
       });
     },
     datasetState: function() {
