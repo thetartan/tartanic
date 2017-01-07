@@ -1,6 +1,6 @@
 <div class="ui top attached page menu">
   <a class="item" v-on:click="toggleSidebarMenu()"><ui-icon name="bars"></ui-icon></a>
-  <div class="borderless header item">{{ currentPage.title }}</div>
+  <div class="borderless header item"><span class="contents">{{ currentPage.title }}</span></div>
 
   <div class="right aligned menu" v-if="additionalMenuStyle == 'buttons'">
     <a class="item"

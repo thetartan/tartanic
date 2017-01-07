@@ -11,6 +11,7 @@
 
 body {
   @color: #fff;
+  min-width: 0;
   background: @color;
   & > .pushable > .pusher {
     background: @color;
@@ -22,6 +23,18 @@ body {
   margin-top: -1px;
   position: relative;
   z-index: 102;
+
+  .header.item {
+    flex: 1;
+    min-width: 0 !important;
+
+    .contents {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .sidebar.menu {
