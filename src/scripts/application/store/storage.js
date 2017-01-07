@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var utils = require('../../services/utils');
 
 // Container for readonly data that should not be watched by vue(x)
 var storage = {
@@ -8,15 +9,19 @@ var storage = {
   datasets: [],
 
   getItemByRef: function(ref) {
-    // Try find dataset
-    var result = _.find(storage.datasets, {$ref: ref});
+    var result = null;
 
-    // Try find dataset item
-    if (!result) {
-      _.each(storage.datasets, function(dataset) {
-        result = _.find(dataset.items, {$ref: ref});
-        return !result;  // Break if found
-      });
+    var refType = utils.uniqueId.getHandleType(ref);
+    switch (refType) {
+      case 'dataset':
+        result = _.find(storage.datasets, {$ref: ref});
+        break;
+      case 'tartan':
+        _.each(storage.datasets, function(dataset) {
+          result = _.find(dataset.items, {$ref: ref});
+          return !result;  // Break if found
+        });
+        break;
     }
 
     return result ? result : null;
