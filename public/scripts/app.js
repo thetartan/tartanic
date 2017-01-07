@@ -49,27 +49,27 @@
 	/* global window */
 	
 	var _ = __webpack_require__(1);
-	var jquery = __webpack_require__(9);
+	var jquery = __webpack_require__(8);
 	
 	// Initialize tartan library and its plugins
 	__webpack_require__(2);
+	__webpack_require__(97);
+	__webpack_require__(101);
+	__webpack_require__(104);
 	__webpack_require__(95);
-	__webpack_require__(99);
-	__webpack_require__(102);
-	__webpack_require__(93);
-	__webpack_require__(49);
+	__webpack_require__(51);
 	
 	// Init some global variables - needed for proper work of 3rd-party libraries
 	window._ = _;
 	
 	window.jQuery = window.$ = jquery;
 	
-	__webpack_require__(88);
+	__webpack_require__(90);
 	
 	// fetch() polyfill
-	__webpack_require__(19);
+	__webpack_require__(20);
 	// saveAs() polyfill
-	window.saveAs = __webpack_require__(47).saveAs;
+	window.saveAs = __webpack_require__(49).saveAs;
 	
 	window.tartan = __webpack_require__(2);
 	
@@ -77,10 +77,10 @@
 	  window.Promise = __webpack_require__(12);
 	}
 	
-	__webpack_require__(181);
+	__webpack_require__(188);
 	
 	jquery(function() {
-	  var application = __webpack_require__(164);
+	  var application = __webpack_require__(166);
 	  application.run();
 	});
 
@@ -17174,7 +17174,7 @@
 	  }
 	}.call(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(43)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(44)(module)))
 
 /***/ },
 /* 2 */
@@ -17184,15 +17184,15 @@
 	
 	var _ = __webpack_require__(1);
 	
-	_.extend(module.exports, __webpack_require__(71));
+	_.extend(module.exports, __webpack_require__(73));
 	
 	module.exports.defaults = __webpack_require__(6);
-	module.exports.parse = __webpack_require__(34);
-	module.exports.filter = __webpack_require__(33);
-	module.exports.transform = __webpack_require__(40);
-	module.exports.syntax = __webpack_require__(39);
-	module.exports.render = __webpack_require__(38);
-	module.exports.schema = __webpack_require__(127);
+	module.exports.parse = __webpack_require__(35);
+	module.exports.filter = __webpack_require__(34);
+	module.exports.transform = __webpack_require__(41);
+	module.exports.syntax = __webpack_require__(40);
+	module.exports.render = __webpack_require__(39);
+	module.exports.schema = __webpack_require__(129);
 	module.exports.utils = __webpack_require__(3);
 
 
@@ -17202,12 +17202,12 @@
 
 	'use strict';
 	
-	module.exports.error = __webpack_require__(131);
-	module.exports.color = __webpack_require__(41);
-	module.exports.token = __webpack_require__(135);
-	module.exports.node = __webpack_require__(132);
-	module.exports.sett = __webpack_require__(134);
-	module.exports.repaint = __webpack_require__(133);
+	module.exports.error = __webpack_require__(133);
+	module.exports.color = __webpack_require__(42);
+	module.exports.token = __webpack_require__(137);
+	module.exports.node = __webpack_require__(134);
+	module.exports.sett = __webpack_require__(136);
+	module.exports.repaint = __webpack_require__(135);
 
 
 /***/ },
@@ -26638,114 +26638,6 @@
 
 /***/ },
 /* 8 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	var MAX_SAFE_INTEGER = 9007199254740991;
-	
-	function identity(value) {
-	  return value;
-	}
-	
-	var toString = Object.prototype.toString;
-	
-	// string
-	var tagString = '[object String]';
-	
-	// function
-	var tagAsync = '[object AsyncFunction]';
-	var tagFunction = '[object Function]';
-	var tagGenerator = '[object GeneratorFunction]';
-	var tagProxy = '[object Proxy]';
-	
-	var reTrim = /^\s+|\s+$/g;
-	
-	function isLength(value) {
-	  return (  // it should be...
-	    (typeof value == 'number') &&  // ...a number
-	    (value > -1) &&  // ...non-negative
-	    (value % 1 == 0) &&  // ...integer
-	    (value <= MAX_SAFE_INTEGER)  // ...within some reasonable bounds
-	  );
-	}
-	
-	function isUndefined(value) {
-	  return typeof value == 'undefined';
-	}
-	
-	function isNull(value) {
-	  return value === null;
-	}
-	
-	function isString(value) {
-	  return (typeof value == 'string') ||
-	    (toString.call(value) == tagString);
-	}
-	
-	function isFunction(value) {
-	  var tag = toString.call(value);
-	  return (tag == tagAsync) || (tag == tagFunction) ||
-	    (tag == tagGenerator) || (tag == tagProxy);
-	}
-	
-	function isArray(value) {
-	  return isObject(value) && isLength(value.length) && !isFunction(value);
-	}
-	
-	function isObject(value) {
-	  return (value !== null) && (typeof value == 'object');
-	}
-	
-	function join(array, separator) {
-	  if ((array === undefined) || (array === null)) {
-	    return '';
-	  }
-	  return Array.prototype.join.call(array, separator);
-	}
-	
-	function trim(value) {
-	  if (isString(value)) {
-	    return value.replace(reTrim, '');
-	  }
-	}
-	
-	function keys(value) {
-	  if (isObject(value)) {
-	    return Object.keys(value);
-	  }
-	  return [];
-	}
-	
-	function map(array, iteratee) {
-	  if (isArray(array)) {
-	    iteratee = isFunction(iteratee) ? iteratee : identity;
-	    return Array.prototype.map.call(array, iteratee, null);
-	  }
-	  return [];
-	}
-	
-	function assign(object, source) {
-	  return Object.assign.apply(null, arguments);
-	}
-	
-	module.exports.isUndefined = isUndefined;
-	module.exports.isNull = isNull;
-	module.exports.isString = isString;
-	module.exports.isFunction = isFunction;
-	module.exports.isArray = isArray;
-	module.exports.isObject = isObject;
-	module.exports.join = join;
-	module.exports.trim = trim;
-	module.exports.keys = keys;
-	module.exports.map = map;
-	
-	module.exports.assign = assign;
-	module.exports.extend = assign; // alias
-
-
-/***/ },
-/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -36971,6 +36863,114 @@
 
 
 /***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	var MAX_SAFE_INTEGER = 9007199254740991;
+	
+	function identity(value) {
+	  return value;
+	}
+	
+	var toString = Object.prototype.toString;
+	
+	// string
+	var tagString = '[object String]';
+	
+	// function
+	var tagAsync = '[object AsyncFunction]';
+	var tagFunction = '[object Function]';
+	var tagGenerator = '[object GeneratorFunction]';
+	var tagProxy = '[object Proxy]';
+	
+	var reTrim = /^\s+|\s+$/g;
+	
+	function isLength(value) {
+	  return (  // it should be...
+	    (typeof value == 'number') &&  // ...a number
+	    (value > -1) &&  // ...non-negative
+	    (value % 1 == 0) &&  // ...integer
+	    (value <= MAX_SAFE_INTEGER)  // ...within some reasonable bounds
+	  );
+	}
+	
+	function isUndefined(value) {
+	  return typeof value == 'undefined';
+	}
+	
+	function isNull(value) {
+	  return value === null;
+	}
+	
+	function isString(value) {
+	  return (typeof value == 'string') ||
+	    (toString.call(value) == tagString);
+	}
+	
+	function isFunction(value) {
+	  var tag = toString.call(value);
+	  return (tag == tagAsync) || (tag == tagFunction) ||
+	    (tag == tagGenerator) || (tag == tagProxy);
+	}
+	
+	function isArray(value) {
+	  return isObject(value) && isLength(value.length) && !isFunction(value);
+	}
+	
+	function isObject(value) {
+	  return (value !== null) && (typeof value == 'object');
+	}
+	
+	function join(array, separator) {
+	  if ((array === undefined) || (array === null)) {
+	    return '';
+	  }
+	  return Array.prototype.join.call(array, separator);
+	}
+	
+	function trim(value) {
+	  if (isString(value)) {
+	    return value.replace(reTrim, '');
+	  }
+	}
+	
+	function keys(value) {
+	  if (isObject(value)) {
+	    return Object.keys(value);
+	  }
+	  return [];
+	}
+	
+	function map(array, iteratee) {
+	  if (isArray(array)) {
+	    iteratee = isFunction(iteratee) ? iteratee : identity;
+	    return Array.prototype.map.call(array, iteratee, null);
+	  }
+	  return [];
+	}
+	
+	function assign(object, source) {
+	  return Object.assign.apply(null, arguments);
+	}
+	
+	module.exports.isUndefined = isUndefined;
+	module.exports.isNull = isNull;
+	module.exports.isString = isString;
+	module.exports.isFunction = isFunction;
+	module.exports.isArray = isArray;
+	module.exports.isObject = isObject;
+	module.exports.join = join;
+	module.exports.trim = trim;
+	module.exports.keys = keys;
+	module.exports.map = map;
+	
+	module.exports.assign = assign;
+	module.exports.extend = assign; // alias
+
+
+/***/ },
 /* 10 */
 /***/ function(module, exports) {
 
@@ -42728,7 +42728,7 @@
 	
 	},{"./es5":13}]},{},[4])(4)
 	});                    ;if (typeof window !== 'undefined' && window !== null) {                               window.P = window.Promise;                                                     } else if (typeof self !== 'undefined' && self !== null) {                             self.P = self.Promise;                                                         }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25), (function() { return this; }()), __webpack_require__(139).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26), (function() { return this; }()), __webpack_require__(141).setImmediate))
 
 /***/ },
 /* 13 */
@@ -42759,8 +42759,8 @@
 	
 	module.exports.id = 'extended';
 	module.exports.name = 'Extended syntax';
-	module.exports.parse = __webpack_require__(104);
-	module.exports.format = __webpack_require__(103);
+	module.exports.parse = __webpack_require__(106);
+	module.exports.format = __webpack_require__(105);
 	module.exports.colors = tartan.defaults.colors;
 	module.exports.warpAndWeftSeparator = tartan.defaults.warpAndWeftSeparator;
 
@@ -42776,8 +42776,8 @@
 	module.exports.id = 'stwr';
 	module.exports.name = 'Scottish Register of Tartans / ' +
 	  'Scottish Tartans World Register';
-	module.exports.parse = __webpack_require__(107);
-	module.exports.format = __webpack_require__(106);
+	module.exports.parse = __webpack_require__(109);
+	module.exports.format = __webpack_require__(108);
 	module.exports.colors = tartan.utils.color.buildColorMap({
 	  /* eslint-disable key-spacing */
 	  K:  '#000000', LP: '#9966ff', P:  '#9933ff',
@@ -42806,8 +42806,8 @@
 	
 	module.exports.id = 'classic';
 	module.exports.name = 'Classic (strict syntax)';
-	module.exports.parse = __webpack_require__(126);
-	module.exports.format = __webpack_require__(125);
+	module.exports.parse = __webpack_require__(128);
+	module.exports.format = __webpack_require__(127);
 	module.exports.colors = defaults.colors;
 	module.exports.warpAndWeftSeparator = defaults.warpAndWeftSeparator;
 
@@ -42818,8 +42818,45 @@
 
 	'use strict';
 	
-	var _ = __webpack_require__(8);
-	var md5 = __webpack_require__(52);
+	var _ = __webpack_require__(1);
+	var utils = __webpack_require__(47);
+	
+	// Container for readonly data that should not be watched by vue(x)
+	var storage = {
+	  config: {},
+	  datasets: [],
+	
+	  getItemByRef: function(ref) {
+	    var result = null;
+	
+	    var refType = utils.uniqueId.getHandleType(ref);
+	    switch (refType) {
+	      case 'dataset':
+	        result = _.find(storage.datasets, {$ref: ref});
+	        break;
+	      case 'tartan':
+	        _.each(storage.datasets, function(dataset) {
+	          result = _.find(dataset.items, {$ref: ref});
+	          return !result;  // Break if found
+	        });
+	        break;
+	    }
+	
+	    return result ? result : null;
+	  }
+	};
+	
+	module.exports = storage;
+
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(9);
+	var md5 = __webpack_require__(54);
 	
 	var defaultOptions = {
 	  colors: [], // Palette entries
@@ -42941,7 +42978,7 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -42950,26 +42987,26 @@
 	
 	module.exports.id = 'identartan';
 	module.exports.name = 'IdenTartan';
-	module.exports.parse = __webpack_require__(50);
-	module.exports.format = __webpack_require__(48);
+	module.exports.parse = __webpack_require__(52);
+	module.exports.format = __webpack_require__(50);
 	module.exports.colors = tartan.defaults.colors;
 	module.exports.warpAndWeftSeparator = tartan.defaults.warpAndWeftSeparator;
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// the whatwg-fetch polyfill installs the fetch() function
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(148);
+	__webpack_require__(150);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// String encode/decode helpers
@@ -43160,7 +43197,7 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43198,7 +43235,7 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43254,7 +43291,7 @@
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43301,7 +43338,7 @@
 
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -43336,7 +43373,7 @@
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	// shim for using process in browser
@@ -43522,7 +43559,7 @@
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43636,7 +43673,7 @@
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43713,7 +43750,7 @@
 
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43764,7 +43801,7 @@
 
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -43870,7 +43907,7 @@
 
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44176,7 +44213,7 @@
 
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44471,7 +44508,7 @@
 
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44703,7 +44740,7 @@
 
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44725,19 +44762,19 @@
 	
 	module.exports = factory;
 	
-	module.exports.classify = __webpack_require__(112);
-	module.exports.removeTokens = __webpack_require__(113);
+	module.exports.classify = __webpack_require__(114);
+	module.exports.removeTokens = __webpack_require__(115);
 
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var autodetectSource = __webpack_require__(35);
-	var tokenize = __webpack_require__(123);
+	var autodetectSource = __webpack_require__(36);
+	var tokenize = __webpack_require__(125);
 	var utils = __webpack_require__(3);
 	var defaults = __webpack_require__(6);
 	
@@ -44864,24 +44901,24 @@
 	
 	module.exports = factory;
 	
-	module.exports.source = __webpack_require__(114);
+	module.exports.source = __webpack_require__(116);
 	
-	module.exports.color = __webpack_require__(116);
-	module.exports.stripe = __webpack_require__(121);
-	module.exports.pivot = __webpack_require__(119);
-	module.exports.repeat = __webpack_require__(120);
-	module.exports.literal = __webpack_require__(118);
+	module.exports.color = __webpack_require__(118);
+	module.exports.stripe = __webpack_require__(123);
+	module.exports.pivot = __webpack_require__(121);
+	module.exports.repeat = __webpack_require__(122);
+	module.exports.literal = __webpack_require__(120);
 
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var stringSource = __webpack_require__(37);
-	var objectSource = __webpack_require__(36);
+	var stringSource = __webpack_require__(38);
+	var objectSource = __webpack_require__(37);
 	
 	function factory(source) {
 	  if (_.isFunction(source)) {
@@ -44906,7 +44943,7 @@
 
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44930,7 +44967,7 @@
 
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44956,25 +44993,25 @@
 
 
 /***/ },
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	module.exports.format = __webpack_require__(124);
-
-
-/***/ },
 /* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.classic = __webpack_require__(128);
+	module.exports.format = __webpack_require__(126);
 
 
 /***/ },
 /* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports.classic = __webpack_require__(130);
+
+
+/***/ },
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44996,12 +45033,12 @@
 	
 	module.exports = factory;
 	
-	module.exports.flatten = __webpack_require__(129);
-	module.exports.fold = __webpack_require__(130);
+	module.exports.flatten = __webpack_require__(131);
+	module.exports.fold = __webpack_require__(132);
 
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45061,7 +45098,7 @@
 
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45334,7 +45371,7 @@
 
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -45350,7 +45387,7 @@
 
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45358,14 +45395,14 @@
 	/* global Blob */
 	
 	var _ = __webpack_require__(1);
-	var url = __webpack_require__(144);
+	var url = __webpack_require__(146);
 	var Promise = __webpack_require__(12);
-	var csv = __webpack_require__(62);
-	var downloader = __webpack_require__(166);
-	var TextEncoder = __webpack_require__(136).TextEncoder;
-	var tar = __webpack_require__(140).tar;
-	var gzip = __webpack_require__(53).gzip;
-	var utils = __webpack_require__(170);
+	var csv = __webpack_require__(64);
+	var downloader = __webpack_require__(172);
+	var TextEncoder = __webpack_require__(138).TextEncoder;
+	var tar = __webpack_require__(142).tar;
+	var gzip = __webpack_require__(55).gzip;
+	var utils = __webpack_require__(47);
 	
 	function getConfig(configUrl) {
 	  return downloader.getJson(configUrl);
@@ -45377,7 +45414,9 @@
 	      return _.map(items, function(item) {
 	        item = _.clone(item);
 	        item.url = url.resolve(datasetDirectoryUrl, item.path);
-	        utils.uniqueId.assign(item, item.name);
+	        utils.uniqueId.assign(item, utils.uniqueId.createHandle(
+	          'dataset', item.name
+	        ));
 	        return item;
 	      });
 	    });
@@ -45577,10 +45616,9 @@
 	          // Assign unique ids to each item; if item has own internal
 	          // unique id - use it, otherwise generate
 	          var group = datasetRef + '/' + resourceRef;
-	          var ref = result.id ?
-	            utils.uniqueId.format(group, result.id) :
-	            utils.uniqueId.get(group);
-	          utils.uniqueId.assign(result, ref);
+	          utils.uniqueId.assign(result, utils.uniqueId.createHandle(
+	            'tartan', utils.uniqueId.get(group, result.id)
+	          ));
 	
 	          // Save dataset and resource references
 	          utils.hiddenProperty.assign(result, '$dataset', datasetRef);
@@ -45678,7 +45716,7 @@
 
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -45697,7 +45735,17 @@
 
 
 /***/ },
-/* 46 */
+/* 47 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports.uniqueId = __webpack_require__(176);
+	module.exports.hiddenProperty = __webpack_require__(46);
+
+
+/***/ },
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45706,7 +45754,7 @@
 	
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
-	var domUtils = __webpack_require__(167);
+	var domUtils = __webpack_require__(173);
 	
 	function updateCanvasSize(canvas) {
 	  var parent = canvas.parentNode;
@@ -45919,7 +45967,7 @@
 
 
 /***/ },
-/* 47 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* FileSaver.js
@@ -46105,7 +46153,7 @@
 	
 	if (typeof module !== "undefined" && module.exports) {
 	  module.exports.saveAs = saveAs;
-	} else if (("function" !== "undefined" && __webpack_require__(146) !== null) && (__webpack_require__(147) !== null)) {
+	} else if (("function" !== "undefined" && __webpack_require__(148) !== null) && (__webpack_require__(149) !== null)) {
 	  !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
 	    return saveAs;
 	  }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -46113,13 +46161,13 @@
 
 
 /***/ },
-/* 48 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _ = __webpack_require__(8);
-	var index = __webpack_require__(18);
+	var _ = __webpack_require__(9);
+	var index = __webpack_require__(19);
 	var tartan = __webpack_require__(2);
 	
 	function formatPivot(str) {
@@ -46188,14 +46236,14 @@
 
 
 /***/ },
-/* 49 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _ = __webpack_require__(8);
-	var core = __webpack_require__(17);
-	var packageInfo = __webpack_require__(66);
+	var _ = __webpack_require__(9);
+	var core = __webpack_require__(18);
+	var packageInfo = __webpack_require__(68);
 	
 	var tartan = null;
 	try {
@@ -46205,7 +46253,7 @@
 	}
 	
 	if (tartan) {
-	  tartan.schema.identartan = _.extend(__webpack_require__(18), packageInfo);
+	  tartan.schema.identartan = _.extend(__webpack_require__(19), packageInfo);
 	  module.exports = packageInfo;
 	} else {
 	  module.exports = function(string, options) {
@@ -46220,14 +46268,14 @@
 
 
 /***/ },
-/* 50 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _ = __webpack_require__(8);
+	var _ = __webpack_require__(9);
 	var tartan = __webpack_require__(2);
-	var core = __webpack_require__(17);
+	var core = __webpack_require__(18);
 	
 	/*
 	  options = {
@@ -46262,7 +46310,7 @@
 
 
 /***/ },
-/* 51 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -47555,7 +47603,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 52 */
+/* 54 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -47761,7 +47809,7 @@
 	}
 
 /***/ },
-/* 53 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Top level file is just a mixin of submodules & constants
@@ -47769,9 +47817,9 @@
 	
 	var assign    = __webpack_require__(5).assign;
 	
-	var deflate   = __webpack_require__(54);
-	var inflate   = __webpack_require__(55);
-	var constants = __webpack_require__(22);
+	var deflate   = __webpack_require__(56);
+	var inflate   = __webpack_require__(57);
+	var constants = __webpack_require__(23);
 	
 	var pako = {};
 	
@@ -47781,17 +47829,17 @@
 
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	
-	var zlib_deflate = __webpack_require__(56);
+	var zlib_deflate = __webpack_require__(58);
 	var utils        = __webpack_require__(5);
-	var strings      = __webpack_require__(20);
+	var strings      = __webpack_require__(21);
 	var msg          = __webpack_require__(13);
-	var ZStream      = __webpack_require__(24);
+	var ZStream      = __webpack_require__(25);
 	
 	var toString = Object.prototype.toString;
 	
@@ -48187,19 +48235,19 @@
 
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	
-	var zlib_inflate = __webpack_require__(59);
+	var zlib_inflate = __webpack_require__(61);
 	var utils        = __webpack_require__(5);
-	var strings      = __webpack_require__(20);
-	var c            = __webpack_require__(22);
+	var strings      = __webpack_require__(21);
+	var c            = __webpack_require__(23);
 	var msg          = __webpack_require__(13);
-	var ZStream      = __webpack_require__(24);
-	var GZheader     = __webpack_require__(57);
+	var ZStream      = __webpack_require__(25);
+	var GZheader     = __webpack_require__(59);
 	
 	var toString = Object.prototype.toString;
 	
@@ -48611,15 +48659,15 @@
 
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var utils   = __webpack_require__(5);
-	var trees   = __webpack_require__(61);
-	var adler32 = __webpack_require__(21);
-	var crc32   = __webpack_require__(23);
+	var trees   = __webpack_require__(63);
+	var adler32 = __webpack_require__(22);
+	var crc32   = __webpack_require__(24);
 	var msg     = __webpack_require__(13);
 	
 	/* Public constants ==========================================================*/
@@ -50472,7 +50520,7 @@
 
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -50518,7 +50566,7 @@
 
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -50850,17 +50898,17 @@
 
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	
 	var utils         = __webpack_require__(5);
-	var adler32       = __webpack_require__(21);
-	var crc32         = __webpack_require__(23);
-	var inflate_fast  = __webpack_require__(58);
-	var inflate_table = __webpack_require__(60);
+	var adler32       = __webpack_require__(22);
+	var crc32         = __webpack_require__(24);
+	var inflate_fast  = __webpack_require__(60);
+	var inflate_table = __webpack_require__(62);
 	
 	var CODES = 0;
 	var LENS = 1;
@@ -52394,7 +52442,7 @@
 
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -52725,7 +52773,7 @@
 
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -53933,7 +53981,7 @@
 
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -55342,7 +55390,7 @@
 
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -55428,7 +55476,7 @@
 
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -55498,38 +55546,26 @@
 
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	exports.decode = exports.parse = __webpack_require__(63);
-	exports.encode = exports.stringify = __webpack_require__(64);
+	exports.decode = exports.parse = __webpack_require__(65);
+	exports.encode = exports.stringify = __webpack_require__(66);
 
-
-/***/ },
-/* 66 */
-/***/ function(module, exports) {
-
-	module.exports = {"version":"2.0.0"}
-
-/***/ },
-/* 67 */
-/***/ function(module, exports) {
-
-	module.exports = {"version":"0.1.0"}
 
 /***/ },
 /* 68 */
 /***/ function(module, exports) {
 
-	module.exports = {"version":"1.0.0"}
+	module.exports = {"version":"2.0.0"}
 
 /***/ },
 /* 69 */
 /***/ function(module, exports) {
 
-	module.exports = {"version":"1.0.0"}
+	module.exports = {"version":"0.1.0"}
 
 /***/ },
 /* 70 */
@@ -55541,106 +55577,118 @@
 /* 71 */
 /***/ function(module, exports) {
 
-	module.exports = {"version":"5.0.0"}
+	module.exports = {"version":"1.0.0"}
 
 /***/ },
 /* 72 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>About this project.</h1>\n    <p>This page is a stub, so nothing useful for now.</p>\n  </div>\n</div>\n"
+	module.exports = {"version":"1.0.0"}
 
 /***/ },
 /* 73 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"card\">\n  <div class=\"content\">\n    <div class=\"header\">{{ item.title }}</div>\n    <div class=\"meta\" v-if=\"item.version\">v{{ item.version }}</div>\n    <div class=\"description\" v-if=\"item.description\" v-markdown=\"item.description\"></div>\n  </div>\n  <div class=\"content\">\n    <p v-if=\"item.license\" class=\"description\">\n      <span>License:</span>\n      <span v-if=\"!licenseUrl\">{{ licenseTitle }}</span>\n      <a v-if=\"licenseUrl\" v-bind:href=\"licenseUrl\" target=\"_blank\">{{ licenseTitle }}</a>\n    </p>\n    <p v-if=\"item.author\" class=\"description\">\n      <span>Author:</span>\n      <span>{{ item.author }}</span>\n    </p>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"viewDataset(item)\"><i\n      class=\"fa fa-sign-in spacing right\"></i>Open</a>\n    <div class=\"right menu\">\n      <a class=\"item\" v-on:click=\"downloadDataset(item)\"><i class=\"fa fa-download\"></i></a>\n      <a class=\"item\" v-on:click=\"likeDataset(item)\"><i class=\"fa fa-heart\"></i></a>\n    </div>\n  </div>\n</div>\n"
+	module.exports = {"version":"5.0.0"}
 
 /***/ },
 /* 74 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui three doubling stackable cards\">\n      <list-item v-for=\"dataset in datasets\" v-bind:item=\"dataset\"></list-item>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>About this project.</h1>\n    <p>This page is a stub, so nothing useful for now.</p>\n  </div>\n</div>\n"
 
 /***/ },
 /* 75 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide mobile eight wide tablet column ui form\">\n    <div>\n      <textarea class=\"monospace resize-vertical\" v-model=\"state.threadcount\"></textarea>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide mobile eight wide tablet column\">\n    <tartan-preview\n      v-bind:schema=\"state.schema\"\n      v-bind:repeat=\"state.repeat\"\n      v-bind:threadcount=\"state.threadcount\" />\n  </div>\n\n  <div class=\"sixteen wide column\"><pre>{{ [item.$ref, item.$dataset, item.$resource] }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item.$raw }}</pre></div>\n</div>\n"
+	module.exports = "<div class=\"card\">\n  <div class=\"content\">\n    <div class=\"header\">{{ item.title }}</div>\n    <div class=\"meta\" v-if=\"item.version\">v{{ item.version }}</div>\n    <div class=\"description\" v-if=\"item.description\" v-markdown=\"item.description\"></div>\n  </div>\n  <div class=\"content\">\n    <p v-if=\"item.license\" class=\"description\">\n      <span>License:</span>\n      <span v-if=\"!licenseUrl\">{{ licenseTitle }}</span>\n      <a v-if=\"licenseUrl\" v-bind:href=\"licenseUrl\" target=\"_blank\">{{ licenseTitle }}</a>\n    </p>\n    <p v-if=\"item.author\" class=\"description\">\n      <span>Author:</span>\n      <span>{{ item.author }}</span>\n    </p>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"viewDataset(item.$ref)\"><ui-icon\n      name=\"sign-in\" class=\"spacing right\"></ui-icon>Open</a>\n    <div class=\"right menu\">\n      <a class=\"blue colored item\" v-on:click=\"downloadDataset(item.$ref)\"><ui-icon\n        name=\"download\"></ui-icon></a>\n      <a class=\"red colored item\" v-on:click=\"toggleFavorites(item.$ref)\"><ui-icon\n        name=\"heart\"></ui-icon></a>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 76 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"card\">\n  <a class=\"image\" v-on:click=\"viewTartan(item)\">\n    <tartan-image class=\"img\"\n      v-bind:threadcount=\"item.sett\"\n      v-bind:repeat=\"true\"\n    ></tartan-image>\n  </a>\n  <div class=\"content\">\n    <a class=\"header\" v-on:click=\"viewTartan(item)\">{{ item.name }}</a>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"editTartan(item)\"><i\n      class=\"fa fa-pencil spacing right\"></i>Edit</a>\n    <a class=\"item\" v-on:click=\"viewTartan(item)\"><i\n      class=\"fa fa-eye spacing right\"></i>View</a>\n    <div class=\"right menu\">\n      <a class=\"item\" v-on:click=\"downloadTartan(item)\"><i class=\"fa fa-download\"></i></a>\n      <a class=\"item\" v-on:click=\"likeTartan(item)\"><i class=\"fa fa-heart\"></i></a>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui three doubling stackable cards\">\n      <list-item v-for=\"dataset in datasets\" v-bind:item=\"dataset\"></list-item>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 77 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen column ui borderless loading segment\"\n    v-if=\"datasetState.loading\"></div>\n\n  <div class=\"sixteen column ui borderless segment\"\n    v-if=\"datasetState.loaded && datasetState.error\">\n    <div v-if=\"datasetState.loaded && datasetState.error\"\n      class=\"ui red message\">\n      <span>Error:</span> <span>{{ datasetState.error.message }}</span>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n  <div class=\"sixteen wide vertically compact column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <div class=\"ui four doubling stackable cards\">\n      <list-item v-for=\"item in dataset.items.slice(firstDisplayItem, lastDisplayItem)\"\n        v-bind:item=\"item\"></list-item>\n    </div>\n  </div>\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></pagination>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide mobile eight wide tablet column ui form\">\n    <div>\n      <textarea class=\"monospace resize-vertical\" v-model=\"state.threadcount\"></textarea>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide mobile eight wide tablet column\">\n    <tartan-preview\n      v-bind:schema=\"state.schema\"\n      v-bind:repeat=\"state.repeat\"\n      v-bind:threadcount=\"state.threadcount\" />\n  </div>\n\n  <div class=\"sixteen wide column\"><pre>{{ [item.$ref, item.$dataset, item.$resource] }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item }}</pre></div>\n  <div class=\"sixteen wide column\"><pre>{{ item.$raw }}</pre></div>\n</div>\n"
 
 /***/ },
 /* 78 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no favorite tartans.</div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"card\">\n  <a class=\"image\" v-on:click=\"viewTartan(item.$ref)\">\n    <tartan-image class=\"img\"\n      v-bind:threadcount=\"item.sett\"\n      v-bind:repeat=\"true\"\n    ></tartan-image>\n  </a>\n  <div class=\"content\">\n    <a class=\"header\" v-on:click=\"viewTartan(item.$ref)\">{{ item.name }}</a>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"item\" v-on:click=\"editTartan(item.$ref)\"><ui-icon\n      name=\"pencil\" class=\"spacing right\"></ui-icon>Edit</a>\n    <a class=\"item\" v-on:click=\"viewTartan(item.$ref)\"><ui-icon\n      name=\"eye\" class=\"spacing right\"></ui-icon>View</a>\n    <div class=\"right menu\">\n      <a class=\"blue colored item\" v-on:click=\"downloadTartan(item.$ref)\"><ui-icon\n        name=\"download\"></ui-icon></a>\n      <a class=\"red colored item\" v-on:click=\"toggleFavorites(item.$ref)\"><ui-icon\n        name=\"heart\"></ui-icon></a>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 79 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>Home screen.</h1>\n    <p>Please use menu button (in top left corner) while we are creating this page.</p>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column ui borderless loading segment\"\n    v-if=\"datasetState.loading\"></div>\n\n  <div class=\"sixteen wide column ui borderless segment\"\n    v-if=\"datasetState.loaded && datasetState.error\">\n    <div v-if=\"datasetState.loaded && datasetState.error\"\n      class=\"ui red message\">\n      <span>Error:</span> <span>{{ datasetState.error.message }}</span>\n    </div>\n  </div>\n\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <ui-pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></ui-pagination>\n  </div>\n  <div class=\"sixteen wide vertically compact column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <div class=\"ui four doubling stackable cards\">\n      <list-item v-for=\"item in dataset.items.slice(firstDisplayItem, lastDisplayItem)\"\n        v-bind:item=\"item\"></list-item>\n    </div>\n  </div>\n  <div class=\"sixteen wide center aligned column\"\n    v-if=\"datasetState.loaded && !datasetState.error\">\n    <ui-pagination v-bind:count=\"pagination.pageCount\"\n      v-model=\"pagination.currentPage\"></ui-pagination>\n  </div>\n</div>\n"
 
 /***/ },
 /* 80 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no own tartans.</div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no favorite tartans.</div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 81 */
 /***/ function(module, exports) {
 
-	module.exports = "<component v-bind:is=\"currentPage.viewAs\"></component>\n"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <h1>Home screen.</h1>\n    <p>Please use menu button (in top left corner) while we are creating this page.</p>\n  </div>\n</div>\n"
 
 /***/ },
 /* 82 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui top attached page menu\">\n  <div class=\"ui item\"\n    v-on:click=\"toggleSidebarMenu()\"><i class=\"fa fa-bars\"></i></div>\n  <div class=\"borderless header item\">{{ currentPage.title }}</div>\n</div>"
+	module.exports = "<div class=\"ui padded grid\">\n  <div class=\"sixteen wide column\">\n    <div class=\"ui yellow message\">Currently you have no own tartans.</div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 83 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui vertical sidebar left inverted menu\" ref=\"menu\">\n  <div class=\"ui list\">\n    <a class=\"item\" v-on:click=\"viewPage(pageHome)\"><i class=\"fa fa-home spacing right\"></i>{{ pageHome.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pagePersonal)\"><i class=\"fa fa-calendar-o spacing right\"></i>{{ pagePersonal.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pageFavorite)\"><i class=\"fa fa-heart spacing right\"></i>{{ pageFavorite.title }}</a>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageDatasets)\"\n    ><i class=\"fa fa-database spacing right\"></i>{{ pageDatasets.title }}\n      <span class=\"ui grey horizontal label\">{{ datasetsCount }}</span></a>\n\n    <a class=\"header item\"\n      v-if=\"explorers.length > 0\"\n      v-on:click=\"toggleExplorersMenu()\"\n    ><i class=\"fa spacing right\" v-bind:class=\"explorersChevronClass\"></i>Datasets\n      <span class=\"ui grey horizontal label\">{{ explorers.length }}</span></a>\n    <transition\n      v-if=\"explorers.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isDatabasesMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in explorers\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <a class=\"header item\"\n      v-if=\"editors.length > 0\"\n      v-on:click=\"toggleEditorsMenu()\"\n    ><i class=\"fa spacing right\" v-bind:class=\"editorsChevronClass\"></i>Editors\n      <span class=\"ui grey horizontal label\">{{ editors.length }}</span></a>\n    <transition\n      v-if=\"editors.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isEditorsMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in editors\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageAbout)\"><i\n      class=\"fa fa-info-circle spacing right\"></i>{{ pageAbout.title }}</a>\n  </div>\n</div>"
+	module.exports = "<component v-bind:is=\"currentPage.viewAs\"></component>\n"
 
 /***/ },
 /* 84 */
 /***/ function(module, exports) {
 
-	module.exports = "<modal-box v-model=\"isVisible\">\n  <div class=\"content\">\n    <div class=\"center\">\n      <div class=\"ui fluid centered card\" v-if=\"isVisible && item\">\n        <div class=\"expanded area\">\n          <div class=\"row\">\n            <div class=\"ui top attached menu\">\n              <div class=\"header borderless item\">{{ item.name }}</div>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"isVisible = false;\"><i class=\"fa fa-close\"></i></a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"expanded row\">\n            <tartan-preview class=\"description\"\n              v-bind:schema=\"schema\"\n              v-bind:repeat=\"true\"\n              v-bind:threadcount=\"item.sett\"\n            ></tartan-preview>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"ui bottom attached menu\">\n              <a class=\"item\" v-on:click=\"isVisible = false; editTartan(item)\"><i\n                class=\"fa fa-pencil spacing right\"></i>Edit</a>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"downloadTartan(item)\"><i class=\"fa fa-download\"></i></a>\n                <a class=\"item\" v-on:click=\"likeTartan(item)\"><i class=\"fa fa-heart\"></i></a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</modal-box>\n"
+	module.exports = "<div class=\"ui top attached page menu\">\n  <a class=\"item\" v-on:click=\"toggleSidebarMenu()\"><ui-icon name=\"bars\"></ui-icon></a>\n  <div class=\"borderless header item\">{{ currentPage.title }}</div>\n\n  <div class=\"right aligned menu\" v-if=\"additionalMenuStyle == 'buttons'\">\n    <a class=\"item\"\n      v-for=\"action in currentPage.additionalActions\"\n      v-on:click=\"triggerAdditionalAction(action)\"\n      v-bind:title=\"action.title\"\n    ><ui-icon v-bind:name=\"action.icon\"></ui-icon></a>\n  </div>\n\n  <div class=\"right aligned menu\" v-if=\"additionalMenuStyle == 'dropdown'\">\n    <ui-dropdown class=\"borderless item\" v-model=\"isAdditionActionsMenuVisible\">\n      <icon name=\"ellipsis-v\" />\n      <div class=\"menu\">\n        <div class=\"item\"\n          v-for=\"action in currentPage.additionalActions\"\n          v-on:click=\"triggerAdditionalAction(action)\"\n          v-bind:title=\"action.title\"\n        ><ui-icon v-bind:name=\"action.icon\"\n          class=\"spacing right\"></ui-icon>{{ action.title }}</div>\n      </div>\n    </ui-dropdown>\n  </div>\n</div>"
 
 /***/ },
 /* 85 */
 /***/ function(module, exports) {
 
-	module.exports = "<tartan-preview-modal v-model=\"tartanPreview.isVisible\"\n  v-bind:item=\"tartanPreview.item\"></tartan-preview-modal>\n"
+	module.exports = "<div class=\"ui vertical sidebar left inverted menu\" ref=\"menu\">\n  <div class=\"ui list\">\n    <a class=\"item\" v-on:click=\"viewPage(pageHome)\"><ui-icon name=\"home\"\n      class=\"spacing right\"></ui-icon>{{ pageHome.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pagePersonal)\"><ui-icon name=\"calendar-o\"\n      class=\"spacing right\"></ui-icon>{{ pagePersonal.title }}</a>\n    <a class=\"item\" v-on:click=\"viewPage(pageFavorite)\"><ui-icon name=\"heart\"\n      class=\"spacing right\"></ui-icon>{{ pageFavorite.title }}</a>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageDatasets)\"\n    ><ui-icon name=\"database\" class=\"spacing right\"></ui-icon>{{ pageDatasets.title }}\n      <span class=\"ui grey horizontal label\">{{ datasetsCount }}</span></a>\n\n    <a class=\"header item\"\n      v-if=\"explorers.length > 0\"\n      v-on:click=\"isDatabasesMenuExpanded = !isDatabasesMenuExpanded\"\n    ><ui-icon v-bind:name=\"getChevronIcon(isDatabasesMenuExpanded)\"\n      class=\"spacing right\"></ui-icon>Datasets\n      <span class=\"ui grey horizontal label\">{{ explorers.length }}</span></a>\n    <transition\n      v-if=\"explorers.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isDatabasesMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in explorers\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <a class=\"header item\"\n      v-if=\"editors.length > 0\"\n      v-on:click=\"isEditorsMenuExpanded = !isEditorsMenuExpanded\"\n    ><ui-icon v-bind:name=\"getChevronIcon(isEditorsMenuExpanded)\"\n      class=\"spacing right\"></ui-icon>Editors\n      <span class=\"ui grey horizontal label\">{{ editors.length }}</span></a>\n    <transition\n      v-if=\"editors.length > 0\"\n      v-bind:css=\"false\"\n      v-on:enter=\"slideDown\" v-on:leave=\"slideUp\"\n    >\n      <div v-show=\"isEditorsMenuExpanded\">\n        <a class=\"nested item\"\n          v-for=\"item in editors\"\n          v-on:click=\"viewPage(item)\"\n        ><span class=\"contents\">{{ item.title }}</span></a>\n      </div>\n    </transition>\n\n    <div class=\"ui inverted divider\"></div>\n\n    <a class=\"item\" v-on:click=\"viewPage(pageAbout)\"><ui-icon\n      name=\"info-circle\" class=\"spacing right\"></ui-icon>{{ pageAbout.title }}</a>\n  </div>\n</div>"
 
 /***/ },
 /* 86 */
 /***/ function(module, exports) {
 
-	module.exports = "<div v-cloak class=\"pushable application-container\">\n  <application-title>{{ currentPage.title }} - Tartanic</application-title>\n\n  <application-menu v-model=\"isSidebarMenuVisible\"></application-menu>\n\n  <div class=\"pusher expanded area\">\n    <div class=\"row\">\n      <application-bar\n        v-on:toggle-menu=\"isSidebarMenuVisible = !isSidebarMenuVisible\"\n      ></application-bar>\n    </div>\n\n    <div class=\"expanded row\">\n      <application-area></application-area>\n    </div>\n    <application-modals></application-modals>\n  </div>\n</div>\n"
+	module.exports = "<ui-modal v-model=\"isVisible\">\n  <div class=\"content\">\n    <div class=\"center\">\n      <div class=\"ui fluid centered card\" v-if=\"isVisible && item\">\n        <div class=\"expanded area\">\n          <div class=\"row\">\n            <div class=\"ui top attached menu\">\n              <div class=\"header borderless item\">{{ item.name }}</div>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"isVisible = false;\"><i class=\"fa fa-close\"></i></a>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"expanded row\">\n            <tartan-preview class=\"description\"\n              v-bind:schema=\"schema\"\n              v-bind:repeat=\"true\"\n              v-bind:threadcount=\"item.sett\"\n            ></tartan-preview>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"ui bottom attached menu\">\n              <a class=\"item\" v-on:click=\"isVisible = false; editTartan(item.$ref)\"><i\n                class=\"fa fa-pencil spacing right\"></i>Edit</a>\n              <div class=\"right menu\">\n                <a class=\"item\" v-on:click=\"downloadTartan(item.$ref)\"><i class=\"fa fa-download\"></i></a>\n                <a class=\"item\" v-on:click=\"toggleFavorites(item.$ref)\"><i class=\"fa fa-heart\"></i></a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</ui-modal>\n"
 
 /***/ },
 /* 87 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"ui pagination menu\">\n  <a class=\"item\" v-on:click=\"updateValue(1)\"><i class=\"fa fa-angle-double-left\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue - 1)\"><i class=\"fa fa-angle-left\"></i></a>\n  <a class=\"item current page ui input\" v-on:click=\"startEditing()\">\n    <span>{{ currentValue }} of {{ currentCount }}</span>\n    <input v-if=\"isEditing\" v-autofocus v-model=\"editingValue\" type=\"text\"\n      v-on:blur=\"cancelEditing()\"\n      v-on:keyup.prevent.esc=\"cancelEditing()\"\n      v-on:keyup.prevent.enter=\"confirmEditing()\"\n    >\n  </a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue + 1)\"><i class=\"fa fa-angle-right\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentCount)\"><i class=\"fa fa-angle-double-right\"></i></a>\n</div>"
+	module.exports = "<tartan-preview-modal v-model=\"tartanPreview.isVisible\"\n  v-bind:item-ref=\"tartanPreview.itemRef\"></tartan-preview-modal>\n"
 
 /***/ },
 /* 88 */
+/***/ function(module, exports) {
+
+	module.exports = "<div v-cloak class=\"pushable application-container\">\n  <application-title>{{ currentPage.title }} - Tartanic</application-title>\n\n  <application-menu v-model=\"isSidebarMenuVisible\"></application-menu>\n\n  <div class=\"pusher expanded area\">\n    <div class=\"row\">\n      <application-bar\n        v-on:toggle-menu=\"isSidebarMenuVisible = !isSidebarMenuVisible\"\n      ></application-bar>\n    </div>\n\n    <div class=\"expanded row\">\n      <application-area></application-area>\n    </div>\n    <application-modals></application-modals>\n  </div>\n</div>\n"
+
+/***/ },
+/* 89 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"ui pagination menu\">\n  <a class=\"item\" v-on:click=\"updateValue(1)\"><i class=\"fa fa-angle-double-left\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue - 1)\"><i class=\"fa fa-angle-left\"></i></a>\n  <a class=\"item current page ui input\" v-on:click=\"startEditing()\">\n    <span>{{ currentValue }} of {{ currentCount }}</span>\n    <input v-if=\"isEditing\" v-autofocus v-model=\"editingValue\" type=\"text\"\n      v-on:blur=\"cancelEditing()\"\n      v-on:keyup.prevent.esc=\"cancelEditing()\"\n      v-on:keyup.prevent.enter=\"confirmEditing()\"\n    >\n  </a>\n  <a class=\"item\" v-on:click=\"updateValue(currentValue + 1)\"><i class=\"fa fa-angle-right\"></i></a>\n  <a class=\"item\" v-on:click=\"updateValue(currentCount)\"><i class=\"fa fa-angle-double-right\"></i></a>\n</div>"
+
+/***/ },
+/* 90 */
 /***/ function(module, exports) {
 
 	 /*
@@ -78086,7 +78134,7 @@
 
 
 /***/ },
-/* 89 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -78276,10 +78324,10 @@
 	    attachTo.clearImmediate = clearImmediate;
 	}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(25)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(26)))
 
 /***/ },
-/* 90 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78489,7 +78537,7 @@
 
 
 /***/ },
-/* 91 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78718,37 +78766,14 @@
 
 
 /***/ },
-/* 92 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	
-	_.extend(module.exports, __webpack_require__(91), __webpack_require__(90));
-
-
-/***/ },
-/* 93 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var tartan = __webpack_require__(2);
-	
-	_.extend(module.exports, __webpack_require__(67));
-	
-	module.exports.fingerprint = __webpack_require__(92);
-	
-	tartan.fingerprint = module.exports.fingerprint;
-
-
-/***/ },
 /* 94 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	var _ = __webpack_require__(1);
+	
+	_.extend(module.exports, __webpack_require__(93), __webpack_require__(92));
 
 
 /***/ },
@@ -78760,17 +78785,40 @@
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
 	
-	_.extend(module.exports, __webpack_require__(68));
+	_.extend(module.exports, __webpack_require__(69));
 	
-	module.exports.filter = __webpack_require__(94);
-	module.exports.transform = __webpack_require__(97);
+	module.exports.fingerprint = __webpack_require__(94);
+	
+	tartan.fingerprint = module.exports.fingerprint;
+
+
+/***/ },
+/* 96 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+
+/***/ },
+/* 97 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var tartan = __webpack_require__(2);
+	
+	_.extend(module.exports, __webpack_require__(70));
+	
+	module.exports.filter = __webpack_require__(96);
+	module.exports.transform = __webpack_require__(99);
 	
 	_.extend(tartan.filter, module.exports.filter);
 	_.extend(tartan.transform, module.exports.transform);
 
 
 /***/ },
-/* 96 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79158,31 +79206,31 @@
 
 
 /***/ },
-/* 97 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.flattenSimpleBlocks = __webpack_require__(26);
-	module.exports.fold = __webpack_require__(96);
-	module.exports.mergeStripes = __webpack_require__(27);
-	module.exports.removeEmptyBlocks = __webpack_require__(28);
-	module.exports.removeZeroWidthStripes = __webpack_require__(29);
-	module.exports.optimize = __webpack_require__(98);
+	module.exports.flattenSimpleBlocks = __webpack_require__(27);
+	module.exports.fold = __webpack_require__(98);
+	module.exports.mergeStripes = __webpack_require__(28);
+	module.exports.removeEmptyBlocks = __webpack_require__(29);
+	module.exports.removeZeroWidthStripes = __webpack_require__(30);
+	module.exports.optimize = __webpack_require__(100);
 
 
 /***/ },
-/* 98 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
 	
-	var flattenSimpleBlocks = __webpack_require__(26);
-	var mergeStripes = __webpack_require__(27);
-	var removeEmptyBlocks = __webpack_require__(28);
-	var removeZeroWidthStripes = __webpack_require__(29);
+	var flattenSimpleBlocks = __webpack_require__(27);
+	var mergeStripes = __webpack_require__(28);
+	var removeEmptyBlocks = __webpack_require__(29);
+	var removeZeroWidthStripes = __webpack_require__(30);
 	
 	var defaultOptions = {
 	  // Also options for removeZeroWidthStripes
@@ -79221,7 +79269,7 @@
 
 
 /***/ },
-/* 99 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79229,21 +79277,21 @@
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
 	
-	_.extend(module.exports, __webpack_require__(69));
+	_.extend(module.exports, __webpack_require__(71));
 	
-	module.exports.render = __webpack_require__(101);
+	module.exports.render = __webpack_require__(103);
 	
 	_.extend(tartan.render, module.exports.render);
 
 
 /***/ },
-/* 100 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var canvas = __webpack_require__(30);
+	var canvas = __webpack_require__(31);
 	var tartan = __webpack_require__(2);
 	
 	/* global Image */
@@ -79294,17 +79342,17 @@
 
 
 /***/ },
-/* 101 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.canvas = __webpack_require__(30);
-	module.exports.houseOfTartan = __webpack_require__(100);
+	module.exports.canvas = __webpack_require__(31);
+	module.exports.houseOfTartan = __webpack_require__(102);
 
 
 /***/ },
-/* 102 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79312,17 +79360,17 @@
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
 	
-	_.extend(module.exports, __webpack_require__(70));
+	_.extend(module.exports, __webpack_require__(72));
 	
-	module.exports.syntax = __webpack_require__(111);
-	module.exports.schema = __webpack_require__(105);
+	module.exports.syntax = __webpack_require__(113);
+	module.exports.schema = __webpack_require__(107);
 	
 	_.extend(tartan.syntax, module.exports.syntax);
 	_.extend(tartan.schema, module.exports.schema);
 
 
 /***/ },
-/* 103 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79404,7 +79452,7 @@
 
 
 /***/ },
-/* 104 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79412,7 +79460,7 @@
 	var _ = __webpack_require__(1);
 	var index = __webpack_require__(14);
 	var tartan = __webpack_require__(2);
-	var syntax = __webpack_require__(31);
+	var syntax = __webpack_require__(32);
 	
 	/*
 	  options = {
@@ -79478,18 +79526,18 @@
 
 
 /***/ },
-/* 105 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	module.exports.extended = __webpack_require__(14);
 	module.exports.stwr = __webpack_require__(15);
-	module.exports.weddslist = __webpack_require__(109);
+	module.exports.weddslist = __webpack_require__(111);
 
 
 /***/ },
-/* 106 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79572,7 +79620,7 @@
 
 
 /***/ },
-/* 107 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79637,7 +79685,7 @@
 
 
 /***/ },
-/* 108 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79718,7 +79766,7 @@
 
 
 /***/ },
-/* 109 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79727,8 +79775,8 @@
 	
 	module.exports.id = 'weddslist';
 	module.exports.name = 'Syntax by Weddslist (TDF)';
-	module.exports.parse = __webpack_require__(110);
-	module.exports.format = __webpack_require__(108);
+	module.exports.parse = __webpack_require__(112);
+	module.exports.format = __webpack_require__(110);
 	module.exports.colors = tartan.utils.color.buildColorMap({
 	  /* eslint-disable key-spacing */
 	  W:  '#ffffff', TR: '#ffffe9', R: '#800000',
@@ -79746,14 +79794,14 @@
 
 
 /***/ },
-/* 110 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
 	var tartan = __webpack_require__(2);
-	var syntax = __webpack_require__(32);
+	var syntax = __webpack_require__(33);
 	
 	/*
 	 options = {
@@ -79817,17 +79865,17 @@
 
 
 /***/ },
-/* 111 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.extended = __webpack_require__(31);
-	module.exports.weddslist = __webpack_require__(32);
+	module.exports.extended = __webpack_require__(32);
+	module.exports.weddslist = __webpack_require__(33);
 
 
 /***/ },
-/* 112 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79893,7 +79941,7 @@
 
 
 /***/ },
-/* 113 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79927,19 +79975,19 @@
 
 
 /***/ },
-/* 114 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.autodetect = __webpack_require__(35);
-	module.exports.string = __webpack_require__(37);
-	module.exports.object = __webpack_require__(36);
-	module.exports.json = __webpack_require__(115);
+	module.exports.autodetect = __webpack_require__(36);
+	module.exports.string = __webpack_require__(38);
+	module.exports.object = __webpack_require__(37);
+	module.exports.json = __webpack_require__(117);
 
 
 /***/ },
-/* 115 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79966,7 +80014,7 @@
 
 
 /***/ },
-/* 116 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80144,7 +80192,7 @@
 
 
 /***/ },
-/* 117 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80194,7 +80242,7 @@
 
 
 /***/ },
-/* 118 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80242,7 +80290,7 @@
 
 
 /***/ },
-/* 119 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80312,7 +80360,7 @@
 
 
 /***/ },
-/* 120 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80383,7 +80431,7 @@
 
 
 /***/ },
-/* 121 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80453,7 +80501,7 @@
 
 
 /***/ },
-/* 122 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80495,14 +80543,14 @@
 
 
 /***/ },
-/* 123 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var whitespace = __webpack_require__(122);
-	var invalid = __webpack_require__(117);
+	var whitespace = __webpack_require__(124);
+	var invalid = __webpack_require__(119);
 	
 	function Context(source, parsers, options) {
 	  this.source = _.isString(source) ? source : '';
@@ -80603,7 +80651,7 @@
 
 
 /***/ },
-/* 124 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80745,15 +80793,15 @@
 
 
 /***/ },
-/* 125 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
 	var index = __webpack_require__(16);
-	var render = __webpack_require__(38);
-	var transform = __webpack_require__(40);
+	var render = __webpack_require__(39);
+	var transform = __webpack_require__(41);
 	
 	function formatPivot(str) {
 	  return str.replace(/^([a-z]+)([0-9]+)$/i, '$1/$2');
@@ -80829,7 +80877,7 @@
 
 
 /***/ },
-/* 126 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80837,9 +80885,9 @@
 	var _ = __webpack_require__(1);
 	var index = __webpack_require__(16);
 	var defaults = __webpack_require__(6);
-	var parse = __webpack_require__(34);
-	var filter = __webpack_require__(33);
-	var syntax = __webpack_require__(39);
+	var parse = __webpack_require__(35);
+	var filter = __webpack_require__(34);
+	var syntax = __webpack_require__(40);
 	var utils = __webpack_require__(3);
 	
 	/*
@@ -80898,7 +80946,7 @@
 
 
 /***/ },
-/* 127 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80907,7 +80955,7 @@
 
 
 /***/ },
-/* 128 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81050,7 +81098,7 @@
 
 
 /***/ },
-/* 129 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81104,7 +81152,7 @@
 
 
 /***/ },
-/* 130 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81214,7 +81262,7 @@
 
 
 /***/ },
-/* 131 */
+/* 133 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -81242,7 +81290,7 @@
 
 
 /***/ },
-/* 132 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81394,7 +81442,7 @@
 
 
 /***/ },
-/* 133 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81465,13 +81513,13 @@
 
 
 /***/ },
-/* 134 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var color = __webpack_require__(41);
+	var color = __webpack_require__(42);
 	
 	function getColor(name, colors, defaultColors) {
 	  var temp = colors[name];
@@ -81598,7 +81646,7 @@
 
 
 /***/ },
-/* 135 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -81814,13 +81862,13 @@
 
 
 /***/ },
-/* 136 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This is free and unencumbered software released into the public domain.
 	// See LICENSE.md for more information.
 	
-	var encoding = __webpack_require__(138);
+	var encoding = __webpack_require__(140);
 	
 	module.exports = {
 	  TextEncoder: encoding.TextEncoder,
@@ -81829,7 +81877,7 @@
 
 
 /***/ },
-/* 137 */
+/* 139 */
 /***/ function(module, exports) {
 
 	(function(global) {
@@ -81874,7 +81922,7 @@
 
 
 /***/ },
-/* 138 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// This is free and unencumbered software released into the public domain.
@@ -81887,7 +81935,7 @@
 	 */
 	if (typeof module !== "undefined" && module.exports &&
 	    !this["encoding-indexes"]) {
-	    __webpack_require__(137);
+	    __webpack_require__(139);
 	}
 	
 	(function(global) {
@@ -85189,7 +85237,7 @@
 
 
 /***/ },
-/* 139 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var apply = Function.prototype.apply;
@@ -85242,13 +85290,13 @@
 	};
 	
 	// setimmediate attaches itself to the global object
-	__webpack_require__(89);
+	__webpack_require__(91);
 	exports.setImmediate = setImmediate;
 	exports.clearImmediate = clearImmediate;
 
 
 /***/ },
-/* 140 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -85257,21 +85305,21 @@
 	
 	var utils = __webpack_require__(11);
 	var constants = __webpack_require__(10);
-	var tar = __webpack_require__(141);
-	var untar = __webpack_require__(142);
+	var tar = __webpack_require__(143);
+	var untar = __webpack_require__(144);
 	
 	utils.extend(module.exports, tar, untar, constants);
 
 
 /***/ },
-/* 141 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var constants = __webpack_require__(10);
 	var utils = __webpack_require__(11);
-	var types = __webpack_require__(42);
+	var types = __webpack_require__(43);
 	
 	function headerSize(file) {
 	  // header has fixed size
@@ -85365,14 +85413,14 @@
 
 
 /***/ },
-/* 142 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var constants = __webpack_require__(10);
 	var utils = __webpack_require__(11);
-	var types = __webpack_require__(42);
+	var types = __webpack_require__(43);
 	
 	var defaultOptions = {
 	  extractData: true,
@@ -85524,7 +85572,7 @@
 
 
 /***/ },
-/* 143 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/punycode v1.3.2 by @mathias */
@@ -86056,10 +86104,10 @@
 	
 	}(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(43)(module), (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)(module), (function() { return this; }())))
 
 /***/ },
-/* 144 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright Joyent, Inc. and other Node contributors.
@@ -86085,8 +86133,8 @@
 	
 	'use strict';
 	
-	var punycode = __webpack_require__(143);
-	var util = __webpack_require__(145);
+	var punycode = __webpack_require__(145);
+	var util = __webpack_require__(147);
 	
 	exports.parse = urlParse;
 	exports.resolve = urlResolve;
@@ -86161,7 +86209,7 @@
 	      'gopher:': true,
 	      'file:': true
 	    },
-	    querystring = __webpack_require__(65);
+	    querystring = __webpack_require__(67);
 	
 	function urlParse(url, parseQueryString, slashesDenoteHost) {
 	  if (url && util.isObject(url) && url instanceof Url) return url;
@@ -86797,7 +86845,7 @@
 
 
 /***/ },
-/* 145 */
+/* 147 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -86819,14 +86867,14 @@
 
 
 /***/ },
-/* 146 */
+/* 148 */
 /***/ function(module, exports) {
 
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
 /***/ },
-/* 147 */
+/* 149 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -86834,7 +86882,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 148 */
+/* 150 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -87298,56 +87346,53 @@
 
 
 /***/ },
-/* 149 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	module.exports = {
-	  template: __webpack_require__(72)
-	};
-
-
-/***/ },
-/* 150 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(74),
-	  computed: _.extend({
-	    datasets: function() {
-	      return this.storage.datasets;
-	    }
-	  }, Vuex.mapGetters([
-	    'storage'
-	  ])),
-	  components: {
-	    listItem: __webpack_require__(151)
-	  }
-	};
-
-
-/***/ },
 /* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
+	module.exports = {
+	  template: __webpack_require__(74)
+	};
+
+
+/***/ },
+/* 152 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	
+	module.exports = {
+	  template: __webpack_require__(76),
+	  computed: _.extend({
+	    datasets: function() {
+	      return this.$store.getters.storage.datasets;
+	    }
+	  }),
+	  components: {
+	    listItem: __webpack_require__(153)
+	  }
+	};
+
+
+/***/ },
+/* 153 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	var _ = __webpack_require__(1);
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
-	  template: __webpack_require__(73),
+	  template: __webpack_require__(75),
 	  props: ['item'],
 	  methods: _.extend({}, Vuex.mapActions([
 	    'viewDataset',
 	    'downloadDataset',
-	    'likeDataset'
+	    'toggleFavorites'
 	  ])),
 	  computed: {
 	    licenseTitle: function() {
@@ -87365,39 +87410,7 @@
 
 
 /***/ },
-/* 152 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(75),
-	  computed: _.extend({
-	    item: function() {
-	      var result = null;
-	      var ref = this.currentPage.item;
-	      _.each(this.storage.datasets, function(dataset) {
-	        result = _.find(dataset.items, {$ref: ref});
-	        return !result;  // continue if not found
-	      });
-	      return result;
-	    },
-	    state: function() {
-	      return this.currentPage.state;
-	    }
-	  }, Vuex.mapState([
-	    'currentPage'
-	  ]), Vuex.mapGetters([
-	    'storage'
-	  ]))
-	};
-
-
-/***/ },
-/* 153 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87408,53 +87421,12 @@
 	module.exports = {
 	  template: __webpack_require__(77),
 	  computed: _.extend({
-	    dataset: function() {
-	      return _.find(this.storage.datasets, {
-	        name: this.currentPage.dataset
-	      });
-	    },
-	    datasetState: function() {
-	      return this.$store.state.itemState[this.dataset.$ref];
-	    },
-	    pagination: function() {
-	      return this.currentPage.pagination;
-	    },
-	    firstDisplayItem: function() {
-	      var pagination = this.pagination;
-	      return (pagination.currentPage - 1) * pagination.itemsPerPage;
-	    },
-	    lastDisplayItem: function() {
-	      return this.firstDisplayItem + this.pagination.itemsPerPage;
+	    state: function() {
+	      return this.$store.state.currentPage.state;
 	    }
-	  }, Vuex.mapState([
-	    'currentPage'
-	  ]), Vuex.mapGetters([
-	    'storage'
-	  ])),
-	  components: {
-	    listItem: __webpack_require__(154)
-	  }
-	};
-
-
-/***/ },
-/* 154 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(76),
-	  props: ['item'],
-	  methods: _.extend({}, Vuex.mapActions([
-	    'editTartan',
-	    'viewTartan',
-	    'downloadTartan',
-	    'likeTartan'
-	  ]))
+	  }, Vuex.mapGetters({
+	    item: 'currentItem'
+	  }))
 	};
 
 
@@ -87464,8 +87436,33 @@
 
 	'use strict';
 	
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
 	module.exports = {
-	  template: __webpack_require__(78)
+	  template: __webpack_require__(79),
+	  computed: _.extend({
+	    datasetState: function() {
+	      return this.$store.state.itemState[this.dataset.$ref];
+	    },
+	    pagination: function() {
+	      return this.page.pagination;
+	    },
+	    firstDisplayItem: function() {
+	      var pagination = this.pagination;
+	      return (pagination.currentPage - 1) * pagination.itemsPerPage;
+	    },
+	    lastDisplayItem: function() {
+	      return this.firstDisplayItem + this.pagination.itemsPerPage;
+	    }
+	  }, Vuex.mapState({
+	    page: 'currentPage'
+	  }), Vuex.mapGetters({
+	    dataset: 'currentItem'
+	  })),
+	  components: {
+	    listItem: __webpack_require__(156)
+	  }
 	};
 
 
@@ -87475,8 +87472,18 @@
 
 	'use strict';
 	
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
 	module.exports = {
-	  template: __webpack_require__(79)
+	  template: __webpack_require__(78),
+	  props: ['item'],
+	  methods: _.extend({}, Vuex.mapActions([
+	    'editTartan',
+	    'viewTartan',
+	    'downloadTartan',
+	    'toggleFavorites'
+	  ]))
 	};
 
 
@@ -87486,28 +87493,8 @@
 
 	'use strict';
 	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
 	module.exports = {
-	  template: __webpack_require__(81),
-	  computed: _.extend({}, Vuex.mapState([
-	    'currentPage'
-	  ])),
-	  watch: {
-	    currentPage: function() {
-	
-	    }
-	  },
-	  components: {
-	    editor: __webpack_require__(152),
-	    explorer: __webpack_require__(153),
-	    home: __webpack_require__(156),
-	    favorite: __webpack_require__(155),
-	    personal: __webpack_require__(158),
-	    datasets: __webpack_require__(150),
-	    about: __webpack_require__(149)
-	  }
+	  template: __webpack_require__(80)
 	};
 
 
@@ -87518,7 +87505,7 @@
 	'use strict';
 	
 	module.exports = {
-	  template: __webpack_require__(80)
+	  template: __webpack_require__(81)
 	};
 
 
@@ -87532,14 +87519,23 @@
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
-	  template: __webpack_require__(82),
+	  template: __webpack_require__(83),
 	  computed: _.extend({}, Vuex.mapState([
 	    'currentPage'
 	  ])),
-	  methods: {
-	    toggleSidebarMenu: function() {
-	      this.$emit('toggle-menu');
+	  watch: {
+	    currentPage: function() {
+	
 	    }
+	  },
+	  components: {
+	    editor: __webpack_require__(154),
+	    explorer: __webpack_require__(155),
+	    home: __webpack_require__(158),
+	    favorite: __webpack_require__(157),
+	    personal: __webpack_require__(160),
+	    datasets: __webpack_require__(152),
+	    about: __webpack_require__(151)
 	  }
 	};
 
@@ -87550,12 +87546,63 @@
 
 	'use strict';
 	
-	var $ = __webpack_require__(9);
+	module.exports = {
+	  template: __webpack_require__(82)
+	};
+
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	var _ = __webpack_require__(1);
 	var Vuex = __webpack_require__(4);
 	
 	module.exports = {
-	  template: __webpack_require__(83),
+	  template: __webpack_require__(84),
+	  data: function() {
+	    return {
+	      isAdditionActionsMenuVisible: false
+	    };
+	  },
+	  computed: _.extend({
+	    additionalMenuStyle: function() {
+	      var itemCount = this.currentPage.additionalActions.length;
+	      switch (itemCount) {
+	        case 0: return 'none';
+	        case 1: return 'buttons';
+	        case 2: return 'buttons';
+	        default: return 'dropdown';
+	      }
+	    }
+	  }, Vuex.mapState([
+	    'currentPage'
+	  ])),
+	  methods: {
+	    toggleSidebarMenu: function() {
+	      this.$emit('toggle-menu');
+	    },
+	    triggerAdditionalAction: function(action) {
+	      this.$store.dispatch(action.action, action.argument);
+	    }
+	  }
+	};
+
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var $ = __webpack_require__(8);
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
+	module.exports = {
+	  template: __webpack_require__(85),
 	  props: ['value'],
 	  data: function() {
 	    return {
@@ -87563,20 +87610,7 @@
 	      isEditorsMenuExpanded: false
 	    };
 	  },
-	  computed: _.extend({
-	    explorersChevronClass: function() {
-	      return {
-	        'fa-caret-right': !this.isDatabasesMenuExpanded,
-	        'fa-caret-down': this.isDatabasesMenuExpanded
-	      };
-	    },
-	    editorsChevronClass: function() {
-	      return {
-	        'fa-caret-right': !this.isEditorsMenuExpanded,
-	        'fa-caret-down': this.isEditorsMenuExpanded
-	      };
-	    }
-	  }, Vuex.mapGetters([
+	  computed: _.extend({}, Vuex.mapGetters([
 	    'pageHome',
 	    'pageAbout',
 	    'pageFavorite',
@@ -87588,17 +87622,14 @@
 	    'datasetsCount'
 	  ])),
 	  methods: _.extend({
+	    getChevronIcon: function(isExpanded) {
+	      return isExpanded ? 'caret-down' : 'caret-right';
+	    },
 	    slideDown: function(element, done) {
 	      $(element).hide().slideDown('fast', done);
 	    },
 	    slideUp: function(element, done) {
 	      $(element).slideUp('fast', done);
-	    },
-	    toggleExplorersMenu: function() {
-	      this.isDatabasesMenuExpanded = !this.isDatabasesMenuExpanded;
-	    },
-	    toggleEditorsMenu: function() {
-	      this.isEditorsMenuExpanded = !this.isEditorsMenuExpanded;
 	    },
 	    viewPage: function(page) {
 	      this.$store.dispatch('viewPage', page);
@@ -87640,65 +87671,23 @@
 
 
 /***/ },
-/* 161 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(85),
-	  computed: _.extend({}, Vuex.mapState([
-	    'tartanPreview'
-	  ])),
-	  components: {
-	    tartanPreviewModal: __webpack_require__(162)
-	  }
-	};
-
-
-/***/ },
-/* 162 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var Vuex = __webpack_require__(4);
-	
-	module.exports = {
-	  template: __webpack_require__(84),
-	  props: ['value', 'item', 'schema'],
-	  computed: {
-	    isVisible: {
-	      get: function() {
-	        return this.value;
-	      },
-	      set: function(value) {
-	        this.$emit('input', value);
-	      }
-	    }
-	  },
-	  methods: _.extend({}, Vuex.mapActions([
-	    'editTartan',
-	    'downloadTartan',
-	    'likeTartan'
-	  ]))
-	};
-
-
-/***/ },
 /* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.applicationMenu = __webpack_require__(160);
-	module.exports.applicationBar = __webpack_require__(159);
-	module.exports.applicationArea = __webpack_require__(157);
-	module.exports.applicationModals = __webpack_require__(161);
+	var _ = __webpack_require__(1);
+	var Vuex = __webpack_require__(4);
+	
+	module.exports = {
+	  template: __webpack_require__(87),
+	  computed: _.extend({}, Vuex.mapState([
+	    'tartanPreview'
+	  ])),
+	  components: {
+	    tartanPreviewModal: __webpack_require__(164)
+	  }
+	};
 
 
 /***/ },
@@ -87708,10 +87697,55 @@
 	'use strict';
 	
 	var _ = __webpack_require__(1);
-	var applicationService = __webpack_require__(44);
+	var Vuex = __webpack_require__(4);
+	
+	module.exports = {
+	  template: __webpack_require__(86),
+	  props: ['value', 'itemRef', 'schema'],
+	  computed: {
+	    isVisible: {
+	      get: function() {
+	        return this.value;
+	      },
+	      set: function(value) {
+	        this.$emit('input', value);
+	      }
+	    },
+	    item: function() {
+	      return this.$store.getters.storage.getItemByRef(this.itemRef);
+	    }
+	  },
+	  methods: _.extend({}, Vuex.mapActions([
+	    'editTartan',
+	    'downloadTartan',
+	    'toggleFavorites'
+	  ]))
+	};
+
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	module.exports.applicationMenu = __webpack_require__(162);
+	module.exports.applicationBar = __webpack_require__(161);
+	module.exports.applicationArea = __webpack_require__(159);
+	module.exports.applicationModals = __webpack_require__(163);
+
+
+/***/ },
+/* 166 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var applicationService = __webpack_require__(45);
 	var Vue = __webpack_require__(7);
 	var Vuex = __webpack_require__(4);
-	var store = __webpack_require__(165);
+	var store = __webpack_require__(169);
 	
 	var configUrl = 'config.json';
 	
@@ -87732,7 +87766,7 @@
 	  return initializeApplication().then(function() {
 	    return new Vue({
 	      el: '#application',
-	      template: __webpack_require__(86),
+	      template: __webpack_require__(88),
 	      store: store,
 	      data: {
 	        isSidebarMenuVisible: false
@@ -87740,255 +87774,324 @@
 	      computed: _.extend({}, Vuex.mapState([
 	        'currentPage'
 	      ])),
-	      components: __webpack_require__(163)
+	      components: __webpack_require__(165)
 	    });
 	  });
 	};
 
 
 /***/ },
-/* 165 */
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var storage = __webpack_require__(17);
+	var applicationService = __webpack_require__(45);
+	
+	module.exports = {
+	  viewPage: function(context, page) {
+	    context.commit('setCurrentPage', page);
+	  },
+	  setConfig: function(context, config) {
+	    storage.config = _.isObject(config) ? config : {};
+	  },
+	  setDatasets: function(context, datasets) {
+	    storage.datasets = _.isArray(datasets) ? datasets : [];
+	    context.state.datasetsCount = storage.datasets.length;
+	    _.each(storage.datasets, function(dataset) {
+	      context.commit('setItemState', [dataset.$ref, {
+	        loaded: false,
+	        loading: false,
+	        error: null
+	      }]);
+	    });
+	  },
+	
+	  toggleFavorites: function(context, itemRef) {
+	    console.log('favorites', itemRef);
+	  },
+	
+	  viewDataset: function(context, datasetRef) {
+	    // Create and open editor
+	    context.commit('createDatasetExplorer', datasetRef);
+	    context.commit('updateDatasetExplorer', datasetRef);
+	    var page = _.find(context.getters.explorers, {itemRef: datasetRef});
+	    if (page) {
+	      context.commit('setCurrentPage', page);
+	    }
+	
+	    function update(dataset, data, items) {
+	      dataset.items = _.isArray(items) ? items : [];
+	      context.commit('setItemState', [dataset.$ref, data]);
+	      context.commit('updateDatasetExplorer', dataset.$ref);
+	      return dataset;
+	    }
+	
+	    // If not items already loaded - load them
+	    var isLoaded = _.get(context.state.itemState,
+	      '[' + datasetRef + '].loaded');
+	    if (!isLoaded) {
+	      var dataset = storage.getItemByRef(datasetRef);
+	
+	      dataset = update(dataset, {
+	        loaded: false,
+	        loading: true,
+	        error: null
+	      });
+	
+	      applicationService.getDataset(dataset)
+	        .then(function(items) {
+	          dataset = update(dataset, {
+	            loaded: true,
+	            loading: false,
+	            error: null
+	          }, items);
+	        })
+	        .catch(function(error) {
+	          dataset = update(dataset, {
+	            loaded: true,
+	            loading: false,
+	            error: error
+	          });
+	        });
+	    }
+	  },
+	  downloadDataset: function(context, datasetRef) {
+	    console.log('download dataset', datasetRef);
+	  },
+	
+	  viewTartan: function(context, tartanRef) {
+	    context.commit('setTartanPreview', {
+	      isVisible: true,
+	      itemRef: tartanRef,
+	      schema: 'extended'
+	    });
+	  },
+	  editTartan: function(context, tartanRef) {
+	    context.commit('createTartanEditor', tartanRef);
+	    var page = _.find(context.getters.editors, {itemRef: tartanRef});
+	    if (page) {
+	      context.commit('setCurrentPage', page);
+	    }
+	  },
+	  downloadTartan: function(context, tartanRef) {
+	    console.log('download tartan', tartanRef);
+	  }
+	};
+
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var storage = __webpack_require__(17);
+	
+	module.exports = {
+	  storage: function() {
+	    return storage;
+	  },
+	  pageHome: function(state) {
+	    return _.find(state.pages, {viewAs: 'home'});
+	  },
+	  pageAbout: function(state) {
+	    return _.find(state.pages, {viewAs: 'about'});
+	  },
+	  pageFavorite: function(state) {
+	    return _.find(state.pages, {viewAs: 'favorite'});
+	  },
+	  pagePersonal: function(state) {
+	    return _.find(state.pages, {viewAs: 'personal'});
+	  },
+	  pageDatasets: function(state) {
+	    return _.find(state.pages, {viewAs: 'datasets'});
+	  },
+	  editors: function(state) {
+	    return _.filter(state.pages, function(item) {
+	      return item.viewAs == 'editor';
+	    });
+	  },
+	  explorers: function(state) {
+	    return _.filter(state.pages, function(item) {
+	      return item.viewAs == 'explorer';
+	    });
+	  },
+	  currentItem: function(state) {
+	    var currentPage = state.currentPage;
+	    if (currentPage) {
+	      return storage.getItemByRef(currentPage.itemRef);
+	    }
+	    return null;
+	  }
+	};
+
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var Vue = __webpack_require__(7);
+	var Vuex = __webpack_require__(4);
+	
+	Vue.use(Vuex);
+	
+	module.exports = new Vuex.Store({
+	  state: __webpack_require__(171),
+	  getters: __webpack_require__(168),
+	  mutations: __webpack_require__(170),
+	  actions: __webpack_require__(167)
+	});
+
+
+/***/ },
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _ = __webpack_require__(1);
 	var Vue = __webpack_require__(7);
-	var Vuex = __webpack_require__(4);
-	var applicationService = __webpack_require__(44);
+	var storage = __webpack_require__(17);
 	
-	Vue.use(Vuex);
-	
-	// Container for readonly data that should not be watched by vue(x)
-	var storage = {
-	  config: {},
-	  datasets: []
-	};
-	
-	var store = new Vuex.Store({
-	  state: {
-	    currentPage: null,
-	    itemState: {},
-	    datasetsCount: 0,
-	    tartanPreview: {
-	      isVisible: false,
-	      item: null
-	    },
-	    pages: [
-	      {
-	        viewAs: 'home',
-	        title: 'Home'
-	      },
-	      {
-	        viewAs: 'about',
-	        title: 'About this project'
-	      },
-	      {
-	        viewAs: 'favorite',
-	        title: 'Favorite tartans'
-	      },
-	      {
-	        viewAs: 'personal',
-	        title: 'My tartans'
-	      },
-	      {
-	        viewAs: 'datasets',
-	        title: 'All datasets'
-	      }
-	    ]
+	module.exports = {
+	  setItemState: function(state, payload) {
+	    var key = payload[0];
+	    var data = payload[1];
+	    Vue.set(state.itemState, key, data);
 	  },
-	  getters: {
-	    storage: function() {
-	      return storage;
-	    },
-	    pageHome: function(state) {
-	      return _.find(state.pages, {viewAs: 'home'});
-	    },
-	    pageAbout: function(state) {
-	      return _.find(state.pages, {viewAs: 'about'});
-	    },
-	    pageFavorite: function(state) {
-	      return _.find(state.pages, {viewAs: 'favorite'});
-	    },
-	    pagePersonal: function(state) {
-	      return _.find(state.pages, {viewAs: 'personal'});
-	    },
-	    pageDatasets: function(state) {
-	      return _.find(state.pages, {viewAs: 'datasets'});
-	    },
-	    editors: function(state) {
-	      return _.filter(state.pages, function(item) {
-	        return item.viewAs == 'editor';
-	      });
-	    },
-	    explorers: function(state) {
-	      return _.filter(state.pages, function(item) {
-	        return item.viewAs == 'explorer';
-	      });
-	    }
+	  setCurrentPage: function(state, page) {
+	    state.currentPage = _.isObject(page) ? page : {};
 	  },
-	  mutations: {
-	    setItemState: function(state, payload) {
-	      var key = payload[0];
-	      var data = payload[1];
-	      Vue.set(state.itemState, key, data);
-	    },
-	    setCurrentPage: function(state, page) {
-	      state.currentPage = _.isObject(page) ? page : {};
-	    },
-	    createDatasetExplorer: function(state, dataset) {
-	      var exists = !!_.find(state.pages, {
-	        viewAs: 'explorer',
-	        dataset: dataset.name
-	      });
-	      if (!exists) {
-	        state.pages.push({
-	          viewAs: 'explorer',
-	          title: dataset.title,
-	          dataset: dataset.$ref,
-	          pagination: null
-	        });
-	      }
-	    },
-	    updateDatasetExplorer: function(state, dataset) {
-	      var page = _.find(state.pages, {
-	        viewAs: 'explorer',
-	        dataset: dataset.$ref
-	      });
-	      if (page) {
-	        var items = _.isArray(dataset.items) ? dataset.items : [];
-	        var itemsPerPage = 20;
-	        page.pagination = {
-	          itemsPerPage: itemsPerPage,
-	          pageCount: Math.ceil(items.length / itemsPerPage),
-	          currentPage: 1
-	        };
-	      }
-	    },
-	    createTartanEditor: function(state, tartan) {
+	
+	  createDatasetExplorer: function(state, datasetRef) {
+	    var exists = !!_.find(state.pages, {
+	      viewAs: 'explorer',
+	      itemRef: datasetRef
+	    });
+	    if (!exists) {
+	      var dataset = storage.getItemByRef(datasetRef);
 	      state.pages.push({
-	        viewAs: 'editor',
-	        title: tartan.name,
-	        item: tartan.$ref,
-	        state: {
-	          threadcount: tartan.sett,
-	          schema: 'extended',
-	          repeat: true
-	        }
+	        viewAs: 'explorer',
+	        title: dataset.title,
+	        itemRef: dataset.$ref,
+	        additionalActions: [
+	          {
+	            title: 'Download', icon: 'download', color: 'blue',
+	            action: 'downloadDataset', argument: datasetRef
+	          },
+	          {
+	            title: 'Add to favorites', icon: 'heart', color: 'red',
+	            action: 'toggleFavorites', argument: datasetRef
+	          }
+	        ],
+	        pagination: null
 	      });
-	    },
-	    setTartanPreview: function(state, data) {
-	      data = _.extend({}, data);
-	      state.tartanPreview.item = data.item;
-	      state.tartanPreview.isVisible = !!data.isVisible;
 	    }
 	  },
-	  actions: {
-	    viewPage: function(context, page) {
-	      context.commit('setCurrentPage', page);
-	    },
-	    setConfig: function(context, config) {
-	      var storage = context.getters.storage;
-	      storage.config = _.isObject(config) ? config : {};
-	    },
-	    setDatasets: function(context, datasets) {
-	      var storage = context.getters.storage;
-	      storage.datasets = _.isArray(datasets) ? datasets : [];
-	      context.state.datasetsCount = storage.datasets.length;
-	      _.each(storage.datasets, function(dataset) {
-	        context.commit('setItemState', [dataset.$ref, {
-	          loaded: false,
-	          loading: false,
-	          error: null
-	        }]);
-	      });
-	    },
-	
-	    viewDataset: function(context, dataset) {
-	      // Create and open editor
-	      context.commit('createDatasetExplorer', dataset);
-	      context.commit('updateDatasetExplorer', dataset);
-	      var page = _.find(context.getters.explorers, {dataset: dataset.name});
-	      if (page) {
-	        context.commit('setCurrentPage', page);
-	      }
-	
-	      function update(dataset, data, items) {
-	        dataset.items = _.isArray(items) ? items : [];
-	        context.commit('setItemState', [dataset.$ref, data]);
-	        context.commit('updateDatasetExplorer', dataset);
-	        return dataset;
-	      }
-	
-	      // If not items already loaded - load them
-	      var isLoaded = _.get(context.state.itemState,
-	        '[' + dataset.$ref + '].loaded');
-	      if (!isLoaded) {
-	        dataset = update(dataset, {
-	          loaded: false,
-	          loading: true,
-	          error: null
-	        });
-	
-	        applicationService.getDataset(dataset)
-	          .then(function(items) {
-	            dataset = update(dataset, {
-	              loaded: true,
-	              loading: false,
-	              error: null
-	            }, items);
-	          })
-	          .catch(function(error) {
-	            dataset = update(dataset, {
-	              loaded: true,
-	              loading: false,
-	              error: error
-	            });
-	          });
-	      }
-	    },
-	    downloadDataset: function(context, dataset) {
-	      console.log('download dataset', dataset);
-	    },
-	    likeDataset: function(context, dataset) {
-	      console.log('like dataset', dataset);
-	    },
-	
-	    viewTartan: function(context, tartan) {
-	      context.commit('setTartanPreview', {
-	        isVisible: true,
-	        item: _.extend(_.cloneDeep(tartan), {$ref: tartan.$ref}),
-	        schema: 'extended'
-	      });
-	    },
-	    editTartan: function(context, tartan) {
-	      context.commit('createTartanEditor', tartan);
-	      var page = _.last(context.state.pages);
-	      if (page && (page.viewAs == 'editor')) {
-	        context.commit('setCurrentPage', page);
-	      }
-	    },
-	    downloadTartan: function(context, tartan) {
-	      console.log('download tartan', tartan);
-	    },
-	    likeTartan: function(context, tartan) {
-	      console.log('like tartan', tartan);
+	  updateDatasetExplorer: function(state, datasetRef) {
+	    var page = _.find(state.pages, {
+	      viewAs: 'explorer',
+	      itemRef: datasetRef
+	    });
+	    if (page) {
+	      var dataset = storage.getItemByRef(datasetRef);
+	      var items = _.isArray(dataset.items) ? dataset.items : [];
+	      var itemsPerPage = 20;
+	      page.pagination = {
+	        itemsPerPage: itemsPerPage,
+	        pageCount: Math.ceil(items.length / itemsPerPage),
+	        currentPage: 1
+	      };
 	    }
-	  }
-	});
+	  },
 	
-	module.exports = store;
+	  createTartanEditor: function(state, tartanRef) {
+	    var tartan = storage.getItemByRef(tartanRef);
+	    state.pages.push({
+	      viewAs: 'editor',
+	      title: tartan.name,
+	      itemRef: tartan.$ref,
+	      additionalActions: [
+	        {
+	          title: 'Download', icon: 'download', color: 'blue',
+	          action: 'downloadTartan', argument: tartanRef
+	        },
+	        {
+	          title: 'Add to favorites', icon: 'heart', color: 'red',
+	          action: 'toggleFavorites', argument: tartanRef
+	        }
+	      ],
+	      state: {
+	        threadcount: tartan.sett,
+	        schema: 'extended',
+	        repeat: true
+	      }
+	    });
+	  },
+	  setTartanPreview: function(state, data) {
+	    state.tartanPreview = _.extend({}, data);
+	  }
+	};
 
 
 /***/ },
-/* 166 */
+/* 171 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = {
+	  currentPage: null,
+	  itemState: {},
+	  datasetsCount: 0,
+	  tartanPreview: {
+	    isVisible: false
+	  },
+	  pages: [
+	    {
+	      viewAs: 'home',
+	      title: 'Home',
+	      additionalActions: []
+	    },
+	    {
+	      viewAs: 'about',
+	      title: 'About this project',
+	      additionalActions: []
+	    },
+	    {
+	      viewAs: 'favorite',
+	      title: 'Favorite tartans',
+	      additionalActions: []
+	    },
+	    {
+	      viewAs: 'personal',
+	      title: 'My tartans',
+	      additionalActions: []
+	    },
+	    {
+	      viewAs: 'datasets',
+	      title: 'All datasets',
+	      additionalActions: []
+	    }
+	  ]
+	};
+
+
+/***/ },
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/* global fetch */
 	
-	__webpack_require__(19);
+	__webpack_require__(20);
 	var Promise = __webpack_require__(12);
 	
 	var cache = {};
@@ -88022,7 +88125,7 @@
 
 
 /***/ },
-/* 167 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88031,15 +88134,15 @@
 	
 	_.extend(
 	  module.exports,
-	  __webpack_require__(168),
+	  __webpack_require__(174),
 	  {
-	    supports: __webpack_require__(169)
+	    supports: __webpack_require__(175)
 	  }
 	);
 
 
 /***/ },
-/* 168 */
+/* 174 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -88131,7 +88234,7 @@
 
 
 /***/ },
-/* 169 */
+/* 175 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -88160,65 +88263,68 @@
 
 
 /***/ },
-/* 170 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports.uniqueId = __webpack_require__(171);
-	module.exports.hiddenProperty = __webpack_require__(45);
-
-
-/***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var hiddenProperty = __webpack_require__(45);
-	
-	function format(group, value) {
-	  if ((group === undefined) || (group === null)) {
-	    group = '';
-	  }
-	  return JSON.stringify([group, value]);
-	}
+	var _ = __webpack_require__(1);
+	var hiddenProperty = __webpack_require__(46);
 	
 	function factory() {
 	  var groups = {};
-	  return function(group) {
+	  return function(group, id) {
 	    if ((group === undefined) || (group === null)) {
 	      group = '';
 	    }
-	    if (!groups.hasOwnProperty(group)) {
-	      groups[group] = 0;
+	    if ((id === undefined) || (id === null)) {
+	      if (!groups.hasOwnProperty(group)) {
+	        groups[group] = 0;
+	      }
+	      groups[group] += 1;
+	      id = groups[group];
 	    }
-	    groups[group] += 1;
-	    return format(group, groups[group]);
+	    return JSON.stringify([group, id]);
 	  };
 	}
 	
 	var get = factory();  // default generator
 	
 	function assign(target, value) {
-	  hiddenProperty.assign(target, '$ref', value === undefined ? get() : value);
+	  hiddenProperty.assign(target, '$ref', value);
+	}
+	
+	function createHandle(type, value) {
+	  var result = {};
+	  result[type] = value;
+	  return JSON.stringify(result);
+	}
+	
+	function getHandleType(handle) {
+	  try {
+	    handle = JSON.parse(handle);
+	  } catch(e) {
+	    return null;
+	  }
+	  return _.isObject(handle) ? _.first(_.keys(handle)) : null;
 	}
 	
 	module.exports = factory;
-	module.exports.format = format;
 	module.exports.get = get;
 	module.exports.assign = assign;
+	module.exports.createHandle = createHandle;
+	module.exports.getHandleType = getHandleType;
 
 
 /***/ },
-/* 172 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	/* global document */
 	
-	var $ = __webpack_require__(9);
+	var $ = __webpack_require__(8);
 	
 	module.exports = {
 	  template: '<span style="display: none !important;"><slot></slot></span>',
@@ -88237,27 +88343,226 @@
 
 
 /***/ },
-/* 173 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var Vue = __webpack_require__(7);
 	
-	Vue.component('tartanPreview', __webpack_require__(177));
-	Vue.component('tartanImage', __webpack_require__(176));
-	Vue.component('applicationTitle', __webpack_require__(172));
-	Vue.component('pagination', __webpack_require__(175));
-	Vue.component('modalBox', __webpack_require__(174));
+	Vue.component('tartanPreview', __webpack_require__(180));
+	Vue.component('tartanImage', __webpack_require__(179));
+	Vue.component('applicationTitle', __webpack_require__(177));
+	
+	Vue.component('uiPagination', __webpack_require__(184));
+	Vue.component('uiModal', __webpack_require__(183));
+	Vue.component('uiDropdown', __webpack_require__(181));
+	Vue.component('uiIcon', __webpack_require__(182));
 
 
 /***/ },
-/* 174 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var $ = __webpack_require__(9);
+	var tartan = __webpack_require__(2);
+	var utils = __webpack_require__(48);
+	
+	module.exports = {
+	  template: '<div class="tartan-image"><canvas ref="canvas"></canvas></div>',
+	  props: ['threadcount', 'schema', 'repeat'],
+	  watch: {
+	    threadcount: function() {
+	      this.$emit('update');
+	    },
+	    schema: function() {
+	      this.$emit('update');
+	    },
+	    repeat: function() {
+	      this.$emit('repaint');
+	    }
+	  },
+	  mounted: function() {
+	    var that = this;
+	    var render = null;
+	
+	    var repaint = tartan.utils.repaint(function() {
+	      if (that.$refs.canvas) {
+	        render(that.$refs.canvas, null, that.repeat);
+	      }
+	    });
+	
+	    var disableResize = utils.makeResizable(
+	      that.$refs.canvas.parentNode,
+	      function() {
+	        utils.updateCanvasSize(that.$refs.canvas);
+	        repaint();
+	      }
+	    );
+	
+	    that.$on('repaint', function() {
+	      repaint();
+	    });
+	
+	    that.$on('update', function() {
+	      render = utils.createTartanRenderer(that.threadcount, that.schema);
+	      utils.updateCanvasSize(that.$refs.canvas);
+	      repaint();
+	    });
+	
+	    that.$on('destroy', function() {
+	      disableResize();
+	    });
+	
+	    // Initial paint
+	    this.$emit('update');
+	  },
+	  beforeDestroy: function() {
+	    this.$emit('destroy');
+	  }
+	};
+
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _ = __webpack_require__(1);
+	var tartan = __webpack_require__(2);
+	var utils = __webpack_require__(48);
+	
+	module.exports = {
+	  template: '<div class="tartan-preview-control">' +
+	    '<canvas ref="canvas"></canvas></div>',
+	  props: ['threadcount', 'schema', 'repeat'],
+	  watch: {
+	    threadcount: function() {
+	      this.$emit('update');
+	    },
+	    schema: function() {
+	      this.$emit('update');
+	    },
+	    repeat: function() {
+	      this.$emit('repaint');
+	    }
+	  },
+	  mounted: function() {
+	    var that = this;
+	
+	    var render = null;
+	    var offset = {x: 0, y: 0};
+	    var repaint = tartan.utils.repaint(function() {
+	      if (that.$refs.canvas) {
+	        var newOffset = render(that.$refs.canvas, offset, that.repeat);
+	        _.extend(offset, newOffset);
+	      }
+	    });
+	
+	    var disableDrag = utils.makeDraggable(
+	      that.$refs.canvas,
+	      _.constant(offset),
+	      repaint
+	    );
+	    var disableResize = utils.makeResizable(that.$refs.canvas.parentNode,
+	      function() {
+	        utils.updateCanvasSize(that.$refs.canvas);
+	        repaint();
+	      });
+	
+	    that.$on('repaint', function() {
+	      repaint();
+	    });
+	
+	    that.$on('update', function() {
+	      render = utils.createTartanRenderer(that.threadcount, that.schema);
+	      utils.updateCanvasSize(that.$refs.canvas);
+	      repaint();
+	    });
+	
+	    that.$on('destroy', function() {
+	      disableDrag();
+	      disableResize();
+	    });
+	
+	    // Initial paint
+	    that.$emit('update');
+	  },
+	  beforeDestroy: function() {
+	    this.$emit('destroy');
+	  }
+	};
+
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var $ = __webpack_require__(8);
+	
+	module.exports = {
+	  template: '<div class="ui dropdown" ref="dropdown"><slot></slot></div>',
+	  props: ['value'],
+	  watch: {
+	    value: function(value) {
+	      $(this.$refs.dropdown).dropdown(value ? 'show' : 'hide');
+	    }
+	  },
+	  mounted: function() {
+	    var that = this;
+	    $(that.$refs.dropdown).dropdown({
+	      on: 'click',
+	      allowReselection: true,
+	      allowAdditions: true,
+	      action: 'hide',
+	      forceSelection: false,
+	      showOnFocus: false,
+	      allowTab: false,
+	      onShow: function() {
+	        that.$emit('input', true);
+	      },
+	      onHide: function() {
+	        that.$emit('input', false);
+	      }
+	    });
+	  }
+	};
+
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = {
+	  template: '<i v-if="name" v-bind:class="iconClass"></i>',
+	  props: ['name', 'size'],
+	  computed: {
+	    iconClass: function() {
+	      var result = {fa: true};
+	      result['fa-' + this.name] = true;
+	      var size = parseInt(this.size, 10) || 0;
+	      if (size > 1) {
+	        result['fa-' + size + 'x'] = true;
+	      }
+	      return result;
+	    }
+	  }
+	};
+
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var $ = __webpack_require__(8);
 	
 	module.exports = {
 	  template: '<div class="ui page dimmer" ref="modal"><slot></slot></div>',
@@ -88284,13 +88589,13 @@
 
 
 /***/ },
-/* 175 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	module.exports = {
-	  template: __webpack_require__(87),
+	  template: __webpack_require__(89),
 	  props: ['count', 'value'],
 	  data: function() {
 	    return {
@@ -88360,143 +88665,7 @@
 
 
 /***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var tartan = __webpack_require__(2);
-	var utils = __webpack_require__(46);
-	
-	module.exports = {
-	  template: '<div class="tartan-image"><canvas ref="canvas"></canvas></div>',
-	  props: ['threadcount', 'schema', 'repeat'],
-	  watch: {
-	    threadcount: function() {
-	      this.$emit('update');
-	    },
-	    schema: function() {
-	      this.$emit('update');
-	    },
-	    repeat: function() {
-	      this.$emit('repaint');
-	    }
-	  },
-	  mounted: function() {
-	    var that = this;
-	    var render = null;
-	
-	    var repaint = tartan.utils.repaint(function() {
-	      if (that.$refs.canvas) {
-	        render(that.$refs.canvas, null, that.repeat);
-	      }
-	    });
-	
-	    var disableResize = utils.makeResizable(
-	      that.$refs.canvas.parentNode,
-	      function() {
-	        utils.updateCanvasSize(that.$refs.canvas);
-	        repaint();
-	      }
-	    );
-	
-	    that.$on('repaint', function() {
-	      repaint();
-	    });
-	
-	    that.$on('update', function() {
-	      render = utils.createTartanRenderer(that.threadcount, that.schema);
-	      utils.updateCanvasSize(that.$refs.canvas);
-	      repaint();
-	    });
-	
-	    that.$on('destroy', function() {
-	      disableResize();
-	    });
-	
-	    // Initial paint
-	    this.$emit('update');
-	  },
-	  beforeDestroy: function() {
-	    this.$emit('destroy');
-	  }
-	};
-
-
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var _ = __webpack_require__(1);
-	var tartan = __webpack_require__(2);
-	var utils = __webpack_require__(46);
-	
-	module.exports = {
-	  template: '<div class="tartan-preview-control">' +
-	    '<canvas ref="canvas"></canvas></div>',
-	  props: ['threadcount', 'schema', 'repeat'],
-	  watch: {
-	    threadcount: function() {
-	      this.$emit('update');
-	    },
-	    schema: function() {
-	      this.$emit('update');
-	    },
-	    repeat: function() {
-	      this.$emit('repaint');
-	    }
-	  },
-	  mounted: function() {
-	    var that = this;
-	
-	    var render = null;
-	    var offset = {x: 0, y: 0};
-	    var repaint = tartan.utils.repaint(function() {
-	      if (that.$refs.canvas) {
-	        var newOffset = render(that.$refs.canvas, offset, that.repeat);
-	        _.extend(offset, newOffset);
-	      }
-	    });
-	
-	    var disableDrag = utils.makeDraggable(
-	      that.$refs.canvas,
-	      _.constant(offset),
-	      repaint
-	    );
-	    var disableResize = utils.makeResizable(that.$refs.canvas.parentNode,
-	      function() {
-	        utils.updateCanvasSize(that.$refs.canvas);
-	        repaint();
-	      });
-	
-	    that.$on('repaint', function() {
-	      repaint();
-	    });
-	
-	    that.$on('update', function() {
-	      render = utils.createTartanRenderer(that.threadcount, that.schema);
-	      utils.updateCanvasSize(that.$refs.canvas);
-	      repaint();
-	    });
-	
-	    that.$on('destroy', function() {
-	      disableDrag();
-	      disableResize();
-	    });
-	
-	    // Initial paint
-	    that.$emit('update');
-	  },
-	  beforeDestroy: function() {
-	    this.$emit('destroy');
-	  }
-	};
-
-
-/***/ },
-/* 178 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88511,22 +88680,22 @@
 
 
 /***/ },
-/* 179 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(180);
-	__webpack_require__(178);
+	__webpack_require__(187);
+	__webpack_require__(185);
 
 
 /***/ },
-/* 180 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var marked = __webpack_require__(51);
+	var marked = __webpack_require__(53);
 	var Vue = __webpack_require__(7);
 	
 	Vue.directive('markdown', function(element, binding) {
@@ -88537,13 +88706,13 @@
 
 
 /***/ },
-/* 181 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(179);
-	__webpack_require__(173);
+	__webpack_require__(186);
+	__webpack_require__(178);
 
 
 /***/ }
