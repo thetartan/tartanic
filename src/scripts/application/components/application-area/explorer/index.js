@@ -6,16 +6,11 @@ var Vuex = require('vuex');
 module.exports = {
   template: require('./template.html'),
   computed: _.extend({
-    dataset: function() {
-      return _.find(this.storage.datasets, {
-        name: this.currentPage.dataset
-      });
-    },
     datasetState: function() {
       return this.$store.state.itemState[this.dataset.$ref];
     },
     pagination: function() {
-      return this.currentPage.pagination;
+      return this.page.pagination;
     },
     firstDisplayItem: function() {
       var pagination = this.pagination;
@@ -24,11 +19,11 @@ module.exports = {
     lastDisplayItem: function() {
       return this.firstDisplayItem + this.pagination.itemsPerPage;
     }
-  }, Vuex.mapState([
-    'currentPage'
-  ]), Vuex.mapGetters([
-    'storage'
-  ])),
+  }, Vuex.mapState({
+    page: 'currentPage'
+  }), Vuex.mapGetters({
+    dataset: 'currentItem'
+  })),
   components: {
     listItem: require('./list-item')
   }

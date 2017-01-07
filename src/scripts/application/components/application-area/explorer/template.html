@@ -1,8 +1,8 @@
 <div class="ui padded grid">
-  <div class="sixteen column ui borderless loading segment"
+  <div class="sixteen wide column ui borderless loading segment"
     v-if="datasetState.loading"></div>
 
-  <div class="sixteen column ui borderless segment"
+  <div class="sixteen wide column ui borderless segment"
     v-if="datasetState.loaded && datasetState.error">
     <div v-if="datasetState.loaded && datasetState.error"
       class="ui red message">
@@ -12,8 +12,8 @@
 
   <div class="sixteen wide center aligned column"
     v-if="datasetState.loaded && !datasetState.error">
-    <pagination v-bind:count="pagination.pageCount"
-      v-model="pagination.currentPage"></pagination>
+    <ui-pagination v-bind:count="pagination.pageCount"
+      v-model="pagination.currentPage"></ui-pagination>
   </div>
   <div class="sixteen wide vertically compact column"
     v-if="datasetState.loaded && !datasetState.error">
@@ -24,7 +24,7 @@
   </div>
   <div class="sixteen wide center aligned column"
     v-if="datasetState.loaded && !datasetState.error">
-    <pagination v-bind:count="pagination.pageCount"
-      v-model="pagination.currentPage"></pagination>
+    <ui-pagination v-bind:count="pagination.pageCount"
+      v-model="pagination.currentPage"></ui-pagination>
   </div>
 </div>

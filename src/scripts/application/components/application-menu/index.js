@@ -13,20 +13,7 @@ module.exports = {
       isEditorsMenuExpanded: false
     };
   },
-  computed: _.extend({
-    explorersChevronClass: function() {
-      return {
-        'fa-caret-right': !this.isDatabasesMenuExpanded,
-        'fa-caret-down': this.isDatabasesMenuExpanded
-      };
-    },
-    editorsChevronClass: function() {
-      return {
-        'fa-caret-right': !this.isEditorsMenuExpanded,
-        'fa-caret-down': this.isEditorsMenuExpanded
-      };
-    }
-  }, Vuex.mapGetters([
+  computed: _.extend({}, Vuex.mapGetters([
     'pageHome',
     'pageAbout',
     'pageFavorite',
@@ -38,17 +25,14 @@ module.exports = {
     'datasetsCount'
   ])),
   methods: _.extend({
+    getChevronIcon: function(isExpanded) {
+      return isExpanded ? 'caret-down' : 'caret-right';
+    },
     slideDown: function(element, done) {
       $(element).hide().slideDown('fast', done);
     },
     slideUp: function(element, done) {
       $(element).slideUp('fast', done);
-    },
-    toggleExplorersMenu: function() {
-      this.isDatabasesMenuExpanded = !this.isDatabasesMenuExpanded;
-    },
-    toggleEditorsMenu: function() {
-      this.isEditorsMenuExpanded = !this.isEditorsMenuExpanded;
     },
     viewPage: function(page) {
       this.$store.dispatch('viewPage', page);

@@ -9,7 +9,7 @@ module.exports = {
   methods: _.extend({}, Vuex.mapActions([
     'viewDataset',
     'downloadDataset',
-    'likeDataset'
+    'toggleFavorites'
   ])),
   computed: {
     licenseTitle: function() {

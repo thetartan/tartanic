@@ -5,7 +5,7 @@ var Vuex = require('vuex');
 
 module.exports = {
   template: require('./template.html'),
-  props: ['value', 'item', 'schema'],
+  props: ['value', 'itemRef', 'schema'],
   computed: {
     isVisible: {
       get: function() {
@@ -14,11 +14,14 @@ module.exports = {
       set: function(value) {
         this.$emit('input', value);
       }
+    },
+    item: function() {
+      return this.$store.getters.storage.getItemByRef(this.itemRef);
     }
   },
   methods: _.extend({}, Vuex.mapActions([
     'editTartan',
     'downloadTartan',
-    'likeTartan'
+    'toggleFavorites'
   ]))
 };

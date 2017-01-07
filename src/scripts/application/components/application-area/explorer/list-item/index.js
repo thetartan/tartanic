@@ -10,6 +10,6 @@ module.exports = {
     'editTartan',
     'viewTartan',
     'downloadTartan',
-    'likeTartan'
+    'toggleFavorites'
   ]))
 };

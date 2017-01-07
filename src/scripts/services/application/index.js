@@ -22,7 +22,9 @@ function getDatasetDirectory(datasetDirectoryUrl) {
       return _.map(items, function(item) {
         item = _.clone(item);
         item.url = url.resolve(datasetDirectoryUrl, item.path);
-        utils.uniqueId.assign(item, item.name);
+        utils.uniqueId.assign(item, utils.uniqueId.createHandle(
+          'dataset', item.name
+        ));
         return item;
       });
     });
@@ -222,10 +224,9 @@ function getDataset(dataset, pickAttributes) {
           // Assign unique ids to each item; if item has own internal
           // unique id - use it, otherwise generate
           var group = datasetRef + '/' + resourceRef;
-          var ref = result.id ?
-            utils.uniqueId.format(group, result.id) :
-            utils.uniqueId.get(group);
-          utils.uniqueId.assign(result, ref);
+          utils.uniqueId.assign(result, utils.uniqueId.createHandle(
+            'tartan', utils.uniqueId.get(group, result.id)
+          ));
 
           // Save dataset and resource references
           utils.hiddenProperty.assign(result, '$dataset', datasetRef);
