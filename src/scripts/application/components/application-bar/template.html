@@ -1,5 +1,5 @@
 <div class="ui top attached page menu">
-  <a class="item" v-on:click="toggleSidebarMenu()"><i class="fa fa-bars"></i></a>
+  <a class="item" v-on:click="toggleSidebarMenu()"><ui-icon name="bars"></ui-icon></a>
   <div class="borderless header item">{{ currentPage.title }}</div>
 
   <div class="right aligned menu" v-if="additionalMenuStyle == 'buttons'">
@@ -7,19 +7,20 @@
       v-for="action in currentPage.additionalActions"
       v-on:click="triggerAdditionalAction(action)"
       v-bind:title="action.title"
-    ><icon v-bind:name="action.icon" class="spacing right" /></a>
+    ><ui-icon v-bind:name="action.icon"></ui-icon></a>
   </div>
 
   <div class="right aligned menu" v-if="additionalMenuStyle == 'dropdown'">
-    <dropdown class="borderless item" v-model="isAdditionActionsMenuVisible">
+    <ui-dropdown class="borderless item" v-model="isAdditionActionsMenuVisible">
       <icon name="ellipsis-v" />
       <div class="menu">
         <div class="item"
           v-for="action in currentPage.additionalActions"
           v-on:click="triggerAdditionalAction(action)"
           v-bind:title="action.title"
-        ><icon v-bind:name="action.icon" class="spacing right" />{{ action.title }}</div>
+        ><ui-icon v-bind:name="action.icon"
+          class="spacing right"></ui-icon>{{ action.title }}</div>
       </div>
-    </dropdown>
+    </ui-dropdown>
   </div>
 </div>

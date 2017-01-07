@@ -22,6 +22,6 @@ module.exports = {
   methods: _.extend({}, Vuex.mapActions([
     'editTartan',
     'downloadTartan',
-    'likeTartan'
+    'toggleFavorites'
   ]))
 };

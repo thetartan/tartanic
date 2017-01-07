@@ -23,6 +23,10 @@ module.exports = {
     });
   },
 
+  toggleFavorites: function(context, itemRef) {
+    console.log('favorites', itemRef);
+  },
+
   viewDataset: function(context, datasetRef) {
     // Create and open editor
     context.commit('createDatasetExplorer', datasetRef);
@@ -71,9 +75,6 @@ module.exports = {
   downloadDataset: function(context, datasetRef) {
     console.log('download dataset', datasetRef);
   },
-  likeDataset: function(context, datasetRef) {
-    console.log('like dataset', datasetRef);
-  },
 
   viewTartan: function(context, tartanRef) {
     context.commit('setTartanPreview', {
@@ -91,8 +92,5 @@ module.exports = {
   },
   downloadTartan: function(context, tartanRef) {
     console.log('download tartan', tartanRef);
-  },
-  likeTartan: function(context, tartanRef) {
-    console.log('like tartan', tartanRef);
   }
 };

@@ -27,12 +27,12 @@ module.exports = {
         itemRef: dataset.$ref,
         additionalActions: [
           {
-            title: 'Download', icon: 'download',
+            title: 'Download', icon: 'download', color: 'blue',
             action: 'downloadDataset', argument: datasetRef
           },
           {
-            title: 'Add to favorites', icon: 'heart',
-            action: 'likeDataset', argument: datasetRef
+            title: 'Add to favorites', icon: 'heart', color: 'red',
+            action: 'toggleFavorites', argument: datasetRef
           }
         ],
         pagination: null
@@ -64,12 +64,12 @@ module.exports = {
       itemRef: tartan.$ref,
       additionalActions: [
         {
-          title: 'Download', icon: 'download',
+          title: 'Download', icon: 'download', color: 'blue',
           action: 'downloadTartan', argument: tartanRef
         },
         {
-          title: 'Add to favorites', icon: 'heart',
-          action: 'likeTartan', argument: tartanRef
+          title: 'Add to favorites', icon: 'heart', color: 'red',
+          action: 'toggleFavorites', argument: tartanRef
         }
       ],
       state: {

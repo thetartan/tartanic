@@ -1,19 +1,23 @@
 <div class="ui vertical sidebar left inverted menu" ref="menu">
   <div class="ui list">
-    <a class="item" v-on:click="viewPage(pageHome)"><i class="fa fa-home spacing right"></i>{{ pageHome.title }}</a>
-    <a class="item" v-on:click="viewPage(pagePersonal)"><i class="fa fa-calendar-o spacing right"></i>{{ pagePersonal.title }}</a>
-    <a class="item" v-on:click="viewPage(pageFavorite)"><i class="fa fa-heart spacing right"></i>{{ pageFavorite.title }}</a>
+    <a class="item" v-on:click="viewPage(pageHome)"><ui-icon name="home"
+      class="spacing right"></ui-icon>{{ pageHome.title }}</a>
+    <a class="item" v-on:click="viewPage(pagePersonal)"><ui-icon name="calendar-o"
+      class="spacing right"></ui-icon>{{ pagePersonal.title }}</a>
+    <a class="item" v-on:click="viewPage(pageFavorite)"><ui-icon name="heart"
+      class="spacing right"></ui-icon>{{ pageFavorite.title }}</a>
 
     <div class="ui inverted divider"></div>
 
     <a class="item" v-on:click="viewPage(pageDatasets)"
-    ><i class="fa fa-database spacing right"></i>{{ pageDatasets.title }}
+    ><ui-icon name="database" class="spacing right"></ui-icon>{{ pageDatasets.title }}
       <span class="ui grey horizontal label">{{ datasetsCount }}</span></a>
 
     <a class="header item"
       v-if="explorers.length > 0"
-      v-on:click="toggleExplorersMenu()"
-    ><i class="fa spacing right" v-bind:class="explorersChevronClass"></i>Datasets
+      v-on:click="isDatabasesMenuExpanded = !isDatabasesMenuExpanded"
+    ><ui-icon v-bind:name="getChevronIcon(isDatabasesMenuExpanded)"
+      class="spacing right"></ui-icon>Datasets
       <span class="ui grey horizontal label">{{ explorers.length }}</span></a>
     <transition
       v-if="explorers.length > 0"
@@ -30,8 +34,9 @@
 
     <a class="header item"
       v-if="editors.length > 0"
-      v-on:click="toggleEditorsMenu()"
-    ><i class="fa spacing right" v-bind:class="editorsChevronClass"></i>Editors
+      v-on:click="isEditorsMenuExpanded = !isEditorsMenuExpanded"
+    ><ui-icon v-bind:name="getChevronIcon(isEditorsMenuExpanded)"
+      class="spacing right"></ui-icon>Editors
       <span class="ui grey horizontal label">{{ editors.length }}</span></a>
     <transition
       v-if="editors.length > 0"
@@ -48,7 +53,7 @@
 
     <div class="ui inverted divider"></div>
 
-    <a class="item" v-on:click="viewPage(pageAbout)"><i
-      class="fa fa-info-circle spacing right"></i>{{ pageAbout.title }}</a>
+    <a class="item" v-on:click="viewPage(pageAbout)"><ui-icon
+      name="info-circle" class="spacing right"></ui-icon>{{ pageAbout.title }}</a>
   </div>
 </div>
