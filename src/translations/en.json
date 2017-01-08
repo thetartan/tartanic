@@ -13,7 +13,9 @@
     "download": "Download",
     "close": "Close",
     "addToFavorites": "Add to favorites",
-    "error": "Error"
+    "error": "Error",
+    "explorers": "Datasets",
+    "editors": "Editors"
   },
   "message": {
     "favoritesListEmpty": "Currently you have no favorite items.",

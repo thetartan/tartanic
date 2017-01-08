@@ -13,7 +13,9 @@
     "download": "Завантажити",
     "close": "Закрити",
     "addToFavorites": "Додати до вподобаних",
-    "error": "Помилка"
+    "error": "Помилка",
+    "explorers": "Набори даних",
+    "editors": "Редактори"
   },
   "message": {
     "favoritesListEmpty": "Список вподобаного порожній.",
@@ -33,7 +35,7 @@
       "title": "Мої тартани"
     },
     "datasets": {
-      "title": "Набори даних"
+      "title": "Всі набори даних"
     },
     "settings": {
       "title": "Налаштування"
