@@ -178,9 +178,9 @@ function getDataset(dataset, pickAttributes) {
   var hasHeaders = false;
   return downloader.getJson(dataset.url)
     .then(function(dataPackage) {
-      attributes = dataPackage.attributes;
       var resource = _.first(dataPackage.resources);
       if (resource) {
+        attributes = resource.attributes;
         datasetRef = dataPackage.name;
         resourceRef = resource.name;
         resourceName = resource.title;

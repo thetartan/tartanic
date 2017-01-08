@@ -27,7 +27,7 @@ gulp.task('application.styles', [], function() {
   return gulp.src(files)
     .pipe(sourcemaps.init())
     .pipe(less())
-    .pipe(prefixer({browsers: ['last 4 versions']}))
+    .pipe(prefixer({browsers: ['last 50 versions']}))
     .pipe(cleanCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(targetStylesDir));
