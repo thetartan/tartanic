@@ -1,0 +1,42 @@
+{
+  "@": {
+    "name": "English",
+    "nativeName": "English"
+  },
+  "ui": {
+    "loading": "Loading...",
+    "licence": "Licence",
+    "author": "Author",
+    "open": "Open",
+    "edit": "Edit",
+    "view": "View",
+    "download": "Download",
+    "close": "Close",
+    "addToFavorites": "Add to favorites",
+    "error": "Error"
+  },
+  "message": {
+    "favoritesListEmpty": "Currently you have no favorite items.",
+    "personalListEmpty": "Currently you have no own tartans."
+  },
+  "page": {
+    "home": {
+      "title": "Home"
+    },
+    "about": {
+      "title": "About this project"
+    },
+    "favorite": {
+      "title": "Favorite tartans"
+    },
+    "personal": {
+      "title": "My tartans"
+    },
+    "datasets": {
+      "title": "All datasets"
+    },
+    "settings": {
+      "title": "Settings"
+    }
+  }
+}

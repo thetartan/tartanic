@@ -1,12 +1,12 @@
 <div>
-  <ui-loader v-if="datasetState.loading" class="layer">Loading...</ui-loader>
+  <ui-loader v-if="datasetState.loading" class="layer">{{ $t('ui.loading') }}</ui-loader>
 
   <div class="ui padded grid" v-if="datasetState.loaded">
     <div class="sixteen wide column ui borderless segment"
       v-if="datasetState.error">
       <div v-if="datasetState.loaded && datasetState.error"
         class="ui red message">
-        <span>Error:</span> <span>{{ datasetState.error.message }}</span>
+        <span>{{ $t('ui.error') }}:</span> <span>{{ datasetState.error.message }}</span>
       </div>
     </div>
 

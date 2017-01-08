@@ -9,14 +9,22 @@
     <a class="header" v-on:click="viewTartan(item.$ref)">{{ item.name }}</a>
   </div>
   <div class="ui bottom attached menu">
-    <a class="item" v-on:click="editTartan(item.$ref)"><ui-icon
-      name="pencil" class="spacing right"></ui-icon>Edit</a>
-    <a class="item" v-on:click="viewTartan(item.$ref)"><ui-icon
-      name="eye" class="spacing right"></ui-icon>View</a>
+    <a class="item"
+      v-bind:title="$t('ui.edit')"
+      v-on:click="editTartan(item.$ref)"><ui-icon
+      name="pencil" class="spacing right"></ui-icon>{{ $t('ui.edit') }}</a>
+    <a class="item"
+      v-bind:title="$t('ui.view')"
+      v-on:click="viewTartan(item.$ref)"><ui-icon
+      name="eye" class="spacing right"></ui-icon>{{ $t('ui.view') }}</a>
     <div class="right menu">
-      <a class="item" v-on:click="downloadTartan(item.$ref)"><ui-icon
+      <a class="item"
+        v-bind:title="$t('ui.download')"
+        v-on:click="downloadTartan(item.$ref)"><ui-icon
         name="download"></ui-icon></a>
-      <a class="item" v-on:click="toggleFavorites(item.$ref)"><ui-icon
+      <a class="item"
+        v-bind:title="$t('ui.addToFavorites')"
+        v-on:click="toggleFavorites(item.$ref)"><ui-icon
         name="heart"></ui-icon></a>
     </div>
   </div>

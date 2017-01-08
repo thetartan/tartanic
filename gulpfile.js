@@ -7,17 +7,22 @@ var prefixer = require('gulp-autoprefixer');
 var cleanCss = require('gulp-clean-css');
 var sourcemaps = require('gulp-sourcemaps');
 
-var sourceStylesDir = path.join(__dirname, '/src/styles');
+var sourceDir = path.join(__dirname, '/src');
+var sourceStylesDir = path.join(sourceDir, '/styles');
+var sourceTranslationsDir = path.join(sourceDir, '/translations');
+
 var targetDir = path.join(__dirname, '/public');
 var targetStylesDir = path.join(targetDir, '/styles');
 var targetFontsDir = path.join(targetDir, '/fonts');
+var targetTranslationsDir = path.join(targetDir, '/i18n');
 
 var nodeModulesDir = path.join(__dirname, '/node_modules');
 
 gulp.task('default', [
   'vendor.fonts',
   'vendor.styles',
-  'application.styles'
+  'application.styles',
+  'application.translations'
 ]);
 
 gulp.task('application.styles', [], function() {
@@ -31,6 +36,11 @@ gulp.task('application.styles', [], function() {
     .pipe(cleanCss())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(targetStylesDir));
+});
+
+gulp.task('application.translations', function() {
+  return gulp.src(path.join(sourceTranslationsDir, '/*'))
+    .pipe(gulp.dest(targetTranslationsDir));
 });
 
 gulp.task('vendor.styles', function() {

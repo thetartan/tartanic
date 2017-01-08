@@ -1,0 +1,42 @@
+{
+  "@": {
+    "name": "Ukrainian",
+    "nativeName": "Українська"
+  },
+  "ui": {
+    "loading": "Завантаження...",
+    "licence": "Ліцензія",
+    "author": "Автор",
+    "open": "Відкрити",
+    "edit": "Редагувати",
+    "view": "Переглянути",
+    "download": "Завантажити",
+    "close": "Закрити",
+    "addToFavorites": "Додати до вподобаних",
+    "error": "Помилка"
+  },
+  "message": {
+    "favoritesListEmpty": "Список вподобаного порожній.",
+    "personalListEmpty": "У вас ще немає власних тартанів."
+  },
+  "page": {
+    "home": {
+      "title": "Головна"
+    },
+    "about": {
+      "title": "Про проект"
+    },
+    "favorite": {
+      "title": "Вподобане"
+    },
+    "personal": {
+      "title": "Мої тартани"
+    },
+    "datasets": {
+      "title": "Набори даних"
+    },
+    "settings": {
+      "title": "Налаштування"
+    }
+  }
+}

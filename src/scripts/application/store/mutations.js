@@ -4,6 +4,17 @@ var _ = require('lodash');
 var Vue = require('vue');
 var storage = require('./storage');
 
+function computedProperties(object, getters) {
+  _.each(getters, function(getter, name) {
+    Object.defineProperty(object, name, {
+      configurable: true,
+      enumerable: true,
+      get: getter
+    });
+  });
+  return object;
+}
+
 module.exports = {
   setItemState: function(state, payload) {
     var key = payload[0];
@@ -12,6 +23,59 @@ module.exports = {
   },
   setCurrentPage: function(state, page) {
     state.currentPage = _.isObject(page) ? page : {};
+  },
+
+  createDefaultPages: function(state) {
+    state.pages = [
+      computedProperties({
+        viewAs: 'home',
+        additionalActions: []
+      }, {
+        title: function() {
+          return Vue.$t('page.home.title');
+        }
+      }),
+      computedProperties({
+        viewAs: 'about',
+        additionalActions: []
+      }, {
+        title: function() {
+          return Vue.$t('page.about.title');
+        }
+      }),
+      computedProperties({
+        viewAs: 'favorite',
+        additionalActions: []
+      }, {
+        title: function() {
+          return Vue.$t('page.favorite.title');
+        }
+      }),
+      computedProperties({
+        viewAs: 'personal',
+        additionalActions: []
+      }, {
+        title: function() {
+          return Vue.$t('page.personal.title');
+        }
+      }),
+      computedProperties({
+        viewAs: 'datasets',
+        additionalActions: []
+      }, {
+        title: function() {
+          return Vue.$t('page.datasets.title');
+        }
+      }),
+      computedProperties({
+        viewAs: 'settings',
+        additionalActions: []
+      }, {
+        title: function() {
+          return Vue.$t('page.settings.title');
+        }
+      })
+    ];
   },
 
   createDatasetExplorer: function(state, datasetRef) {
@@ -27,11 +91,11 @@ module.exports = {
         itemRef: dataset.$ref,
         additionalActions: [
           {
-            title: 'Download', icon: 'download',
+            title: Vue.$t('ui.download'), icon: 'download',
             action: 'downloadDataset', argument: datasetRef
           },
           {
-            title: 'Add to favorites', icon: 'heart',
+            title: Vue.$t('ui.addToFavorites'), icon: 'heart',
             action: 'toggleFavorites', argument: datasetRef
           }
         ],
@@ -64,11 +128,11 @@ module.exports = {
       itemRef: tartan.$ref,
       additionalActions: [
         {
-          title: 'Download', icon: 'download',
+          title: Vue.$t('ui.download'), icon: 'download',
           action: 'downloadTartan', argument: tartanRef
         },
         {
-          title: 'Add to favorites', icon: 'heart',
+          title: Vue.$t('ui.addToFavorites'), icon: 'heart',
           action: 'toggleFavorites', argument: tartanRef
         }
       ],

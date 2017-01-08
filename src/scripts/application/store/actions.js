@@ -11,6 +11,9 @@ module.exports = {
   setConfig: function(context, config) {
     storage.config = _.isObject(config) ? config : {};
   },
+  createDefaultPages: function(context) {
+    context.commit('createDefaultPages');
+  },
   setDatasets: function(context, datasets) {
     storage.datasets = _.isArray(datasets) ? datasets : [];
     context.state.datasetsCount = storage.datasets.length;

@@ -53,6 +53,8 @@
 
     <div class="ui inverted divider"></div>
 
+    <a class="item" v-on:click="viewPage(pageSettings)"><ui-icon
+      name="gears" class="spacing right"></ui-icon>{{ pageSettings.title }}</a>
     <a class="item" v-on:click="viewPage(pageAbout)"><ui-icon
       name="info-circle" class="spacing right"></ui-icon>{{ pageAbout.title }}</a>
   </div>

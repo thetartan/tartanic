@@ -1,3 +1,5 @@
 {
+  "defaultLanguage": "en",
+  "availableLanguages": ["en", "uk"],
   "datasetDirectoryUrl": "https://rawgit.com/thetartan/tartan-database/master/data/index.json"
 }

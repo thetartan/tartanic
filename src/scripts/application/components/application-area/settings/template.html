@@ -1,0 +1,11 @@
+<div class="ui padded grid">
+  <div class="sixteen wide column">
+    <div class="ui buttons">
+      <button class="ui button"
+        v-for="language in availableLanguages"
+        v-bind:class="{active: currentLanguage.code == language.code}"
+        v-on:click="changeLanguage(language.code)"
+      >{{ language.nativeName }} / {{ language.name }}</button>
+    </div>
+  </div>
+</div>

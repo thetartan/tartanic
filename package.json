@@ -76,6 +76,7 @@
     "text-encoding": "^0.6.2",
     "tinytar": "^0.1.0",
     "vue": "^2.1.8",
+    "vue-i18n-manager": "^2.2.9",
     "vuex": "^2.1.1"
   }
 }

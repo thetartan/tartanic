@@ -15,9 +15,9 @@ module.exports = {
     loaders: [
       {test: /\.html$/, loader: 'raw'},
       {test: /\.json$/, loader: 'json'},
-      // Evaluate every @package.js and bundle pre-calculated exports
-      // as a value. This allows to omit package.json file(s) from bundle.
-      {test: /[\\/]@package\.js$/, loaders: ['raw', 'val']}
+      // Evaluate every @([a-z0-9-_].js and bundle pre-calculated exports
+      // as a value. This allows to omit some file(s) from bundle.
+      {test: /[\\/]@[-_a-zA-Z0-9]+\.js$/, loaders: ['raw', 'val']}
     ]
   },
   resolve: {

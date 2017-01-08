@@ -6,22 +6,28 @@
   </div>
   <div class="content">
     <p v-if="item.license" class="description">
-      <span>License:</span>
+      <span>{{ $t('ui.licence') }}:</span>
       <span v-if="!licenseUrl">{{ licenseTitle }}</span>
       <a v-if="licenseUrl" v-bind:href="licenseUrl" target="_blank">{{ licenseTitle }}</a>
     </p>
     <p v-if="item.author" class="description">
-      <span>Author:</span>
+      <span>{{ $t('ui.author') }}:</span>
       <span>{{ item.author }}</span>
     </p>
   </div>
   <div class="ui bottom attached menu">
-    <a class="item" v-on:click="viewDataset(item.$ref)"><ui-icon
-      name="sign-in" class="spacing right"></ui-icon>Open</a>
+    <a class="item"
+      v-bind:title="$t('ui.open')"
+      v-on:click="viewDataset(item.$ref)"><ui-icon
+      name="sign-in" class="spacing right"></ui-icon>{{ $t('ui.open') }}</a>
     <div class="right menu">
-      <a class="item" v-on:click="downloadDataset(item.$ref)"><ui-icon
+      <a class="item"
+        v-bind:title="$t('ui.download')"
+        v-on:click="downloadDataset(item.$ref)"><ui-icon
         name="download"></ui-icon></a>
-      <a class="item" v-on:click="toggleFavorites(item.$ref)"><ui-icon
+      <a class="item"
+        v-bind:title="$t('ui.addToFavorites')"
+        v-on:click="toggleFavorites(item.$ref)"><ui-icon
         name="heart"></ui-icon></a>
     </div>
   </div>
