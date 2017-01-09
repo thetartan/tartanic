@@ -16,16 +16,16 @@
     </p>
   </div>
   <div class="ui bottom attached menu">
-    <a class="item"
+    <a class="borderless item"
       v-bind:title="$t('ui.open')"
       v-on:click="viewDataset(item.$ref)"><ui-icon
       name="sign-in" class="spacing right"></ui-icon>{{ $t('ui.open') }}</a>
     <div class="right menu">
-      <a class="item"
+      <a class="borderless item"
         v-bind:title="$t('ui.download')"
         v-on:click="downloadDataset(item.$ref)"><ui-icon
         name="download"></ui-icon></a>
-      <a class="item"
+      <a class="borderless item"
         v-bind:title="$t('ui.addToFavorites')"
         v-on:click="toggleFavorites(item.$ref)"><ui-icon
         name="heart"></ui-icon></a>
