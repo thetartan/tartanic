@@ -1,6 +1,6 @@
 'use strict';
 
-function assign(target, name, value) {
+function hiddenProperty(target, name, value) {
   Object.defineProperty(target, name, {
     configurable: true,
     enumerable: false,
@@ -10,4 +10,4 @@ function assign(target, name, value) {
   return target;
 }
 
-module.exports.assign = assign;
+module.exports = hiddenProperty;

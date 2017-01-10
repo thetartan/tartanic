@@ -22,6 +22,9 @@ module.exports = {
   pageDatasets: function(state) {
     return _.find(state.pages, {viewAs: 'datasets'});
   },
+  pageSettings: function(state) {
+    return _.find(state.pages, {viewAs: 'settings'});
+  },
   editors: function(state) {
     return _.filter(state.pages, function(item) {
       return item.viewAs == 'editor';

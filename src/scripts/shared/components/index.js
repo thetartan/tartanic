@@ -10,3 +10,4 @@ Vue.component('uiPagination', require('./ui-pagination'));
 Vue.component('uiModal', require('./ui-modal'));
 Vue.component('uiDropdown', require('./ui-dropdown'));
 Vue.component('uiIcon', require('./ui-icon'));
+Vue.component('uiLoader', require('./ui-loader'));

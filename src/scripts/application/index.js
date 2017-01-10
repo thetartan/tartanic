@@ -1,23 +1,29 @@
 'use strict';
 
 var _ = require('lodash');
+var Promise = require('bluebird');
 var applicationService = require('../services/application');
 var Vue = require('vue');
 var Vuex = require('vuex');
 var store = require('./store');
+var i18n = require('./i18n');
 
 var configUrl = 'config.json';
 
 function initializeApplication() {
-  store.dispatch('viewPage', store.getters.pageDatasets);
-
   return applicationService.getConfig(configUrl)
     .then(function(config) {
-      store.dispatch('setConfig', config);
-      return applicationService.getDatasetDirectory(config.datasetDirectoryUrl);
+      return Promise.all([
+        applicationService.getDatasets(config.datasets),
+        i18n.init(store, config)
+      ]).then(function(results) {
+        return _.first(results);
+      });
     })
     .then(function(datasets) {
+      store.dispatch('createDefaultPages');
       store.dispatch('setDatasets', datasets);
+      store.dispatch('viewPage', store.getters.pageDatasets);
     });
 }
 

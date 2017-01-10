@@ -8,11 +8,6 @@ module.exports = {
   computed: _.extend({}, Vuex.mapState([
     'currentPage'
   ])),
-  watch: {
-    currentPage: function() {
-
-    }
-  },
   components: {
     editor: require('./editor'),
     explorer: require('./explorer'),
@@ -20,6 +15,7 @@ module.exports = {
     favorite: require('./favorite'),
     personal: require('./personal'),
     datasets: require('./datasets'),
+    settings: require('./settings'),
     about: require('./about')
   }
 };

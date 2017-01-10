@@ -14,13 +14,14 @@ module.exports = {
   computed: {
     licenseTitle: function() {
       if (_.isObject(this.item)) {
-        return _.isString(this.item.license) ? this.item.license : (
-          _.get(this.item, 'license.title') || _.get(this.item, 'license.type')
+        var meta = this.item.meta;
+        return _.isString(meta.license) ? meta.license : (
+          _.get(meta, 'license.title') || _.get(meta, 'license.type')
         );
       }
     },
     licenseUrl: function() {
-      return _.get(this.item, 'license.url');
+      return _.get(this.item.meta, 'license.url');
     }
   }
 };

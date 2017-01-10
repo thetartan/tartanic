@@ -1,7 +1,6 @@
 'use strict';
 
 var _ = require('lodash');
-var hiddenProperty = require('./hidden-property');
 
 function factory() {
   var groups = {};
@@ -22,10 +21,6 @@ function factory() {
 
 var get = factory();  // default generator
 
-function assign(target, value) {
-  hiddenProperty.assign(target, '$ref', value);
-}
-
 function createHandle(type, value) {
   var result = {};
   result[type] = value;
@@ -43,6 +38,5 @@ function getHandleType(handle) {
 
 module.exports = factory;
 module.exports.get = get;
-module.exports.assign = assign;
 module.exports.createHandle = createHandle;
 module.exports.getHandleType = getHandleType;

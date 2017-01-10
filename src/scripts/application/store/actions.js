@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var Promise = require('bluebird');
 var storage = require('./storage');
 var applicationService = require('../../services/application');
 
@@ -10,6 +11,9 @@ module.exports = {
   },
   setConfig: function(context, config) {
     storage.config = _.isObject(config) ? config : {};
+  },
+  createDefaultPages: function(context) {
+    context.commit('createDefaultPages');
   },
   setDatasets: function(context, datasets) {
     storage.datasets = _.isArray(datasets) ? datasets : [];
@@ -46,7 +50,9 @@ module.exports = {
     // If not items already loaded - load them
     var isLoaded = _.get(context.state.itemState,
       '[' + datasetRef + '].loaded');
-    if (!isLoaded) {
+    if (isLoaded) {
+      return Promise.resolve(datasetRef);
+    } else {
       var dataset = storage.getItemByRef(datasetRef);
 
       dataset = update(dataset, {
@@ -55,13 +61,16 @@ module.exports = {
         error: null
       });
 
-      applicationService.getDataset(dataset)
-        .then(function(items) {
+      return applicationService.getDataset(dataset)
+        .then(function(resource) {
           dataset = update(dataset, {
             loaded: true,
             loading: false,
             error: null
-          }, items);
+          }, resource.items);
+        })
+        .then(function() {
+          return datasetRef;
         })
         .catch(function(error) {
           dataset = update(dataset, {

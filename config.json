@@ -1,3 +1,11 @@
 {
-  "datasetDirectoryUrl": "https://rawgit.com/thetartan/tartan-database/master/data/index.json"
+  "defaultLanguage": "en",
+  "availableLanguages": ["en", "uk"],
+  "datasets": [
+    "https://rawgit.com/thetartan/tartan-database/master/data/tartans-authority/datapackage.json",
+    "https://rawgit.com/thetartan/tartan-database/master/data/register-of-tartans/datapackage.json",
+    "https://rawgit.com/thetartan/tartan-database/master/data/house-of-tartan/datapackage.json",
+    "https://rawgit.com/thetartan/tartan-database/master/data/weddslist/datapackage.json",
+    "https://rawgit.com/thetartan/tartan-database/master/data/tartans-of-scotland/datapackage.json"
+  ]
 }

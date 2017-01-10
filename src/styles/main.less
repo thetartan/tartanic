@@ -11,6 +11,7 @@
 
 body {
   @color: #fff;
+  min-width: 0;
   background: @color;
   & > .pushable > .pusher {
     background: @color;
@@ -22,6 +23,26 @@ body {
   margin-top: -1px;
   position: relative;
   z-index: 102;
+  box-shadow: 0 0 3px 0 #D4D4D5;
+
+  .header.item {
+    flex: 1;
+    min-width: 0 !important;
+
+    .contents {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.ui.inverted.dimmer .ui.large.loader,
+.ui.large.loader {
+  &.slim {
+    font-size: 1em;
+  }
 }
 
 .sidebar.menu {
@@ -199,15 +220,45 @@ body {
   }
 }
 
-.expanded.area {
-  width: 100%;
-  height: 100%;
+.ui.area {
   margin: 0 !important;
   padding: 0 !important;
 
   display: flex;
-  flex-direction: column;
   flex-wrap: nowrap;
+
+  &.expanded {
+    width: 100%;
+    height: 100%;
+    &.layer {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  &.horizontal {
+    flex-direction: row;
+    &.reversed {
+      flex-direction: row-reverse;
+    }
+  }
+  &.vertical {
+    flex-direction: column;
+    &.reversed {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &.left.aligned {
+    justify-content: flex-start;
+  }
+  &.right.aligned {
+    justify-content: flex-end;
+  }
+  &.center.aligned {
+    justify-content: center;
+  }
 
   & > .row {
     position: relative;
@@ -215,11 +266,31 @@ body {
     padding: 0 !important;
     flex-grow: 0 !important;
 
+    &.left.aligned {
+      text-align: left;
+    }
+    &.right.aligned {
+      text-align: right;
+    }
+    &.center.aligned {
+      text-align: center;
+    }
+
     &.expanded {
       flex-grow: 1 !important;
       align-self: stretch !important;
     }
   }
+
+  .ui.inline.loader {
+    position: relative;
+    display: inline-block;
+    transform: none;
+  }
+}
+
+.ui.text.loader {
+  user-select: none;
 }
 
 .application-container {
@@ -266,6 +337,9 @@ textarea {
     width: 100%;
     height: 100%;
     cursor: move;
+
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 }
 

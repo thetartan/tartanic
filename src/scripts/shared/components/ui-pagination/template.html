@@ -2,7 +2,7 @@
   <a class="item" v-on:click="updateValue(1)"><i class="fa fa-angle-double-left"></i></a>
   <a class="item" v-on:click="updateValue(currentValue - 1)"><i class="fa fa-angle-left"></i></a>
   <a class="item current page ui input" v-on:click="startEditing()">
-    <span>{{ currentValue }} of {{ currentCount }}</span>
+    <span>{{ currentValue }} / {{ currentCount }}</span>
     <input v-if="isEditing" v-autofocus v-model="editingValue" type="text"
       v-on:blur="cancelEditing()"
       v-on:keyup.prevent.esc="cancelEditing()"

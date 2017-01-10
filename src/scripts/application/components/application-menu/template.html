@@ -17,7 +17,7 @@
       v-if="explorers.length > 0"
       v-on:click="isDatabasesMenuExpanded = !isDatabasesMenuExpanded"
     ><ui-icon v-bind:name="getChevronIcon(isDatabasesMenuExpanded)"
-      class="spacing right"></ui-icon>Datasets
+      class="spacing right"></ui-icon>{{ $t('ui.explorers') }}
       <span class="ui grey horizontal label">{{ explorers.length }}</span></a>
     <transition
       v-if="explorers.length > 0"
@@ -36,7 +36,7 @@
       v-if="editors.length > 0"
       v-on:click="isEditorsMenuExpanded = !isEditorsMenuExpanded"
     ><ui-icon v-bind:name="getChevronIcon(isEditorsMenuExpanded)"
-      class="spacing right"></ui-icon>Editors
+      class="spacing right"></ui-icon>{{ $t('ui.editors') }}
       <span class="ui grey horizontal label">{{ editors.length }}</span></a>
     <transition
       v-if="editors.length > 0"
@@ -53,6 +53,8 @@
 
     <div class="ui inverted divider"></div>
 
+    <a class="item" v-on:click="viewPage(pageSettings)"><ui-icon
+      name="gears" class="spacing right"></ui-icon>{{ pageSettings.title }}</a>
     <a class="item" v-on:click="viewPage(pageAbout)"><ui-icon
       name="info-circle" class="spacing right"></ui-icon>{{ pageAbout.title }}</a>
   </div>

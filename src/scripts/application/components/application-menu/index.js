@@ -19,6 +19,7 @@ module.exports = {
     'pageFavorite',
     'pagePersonal',
     'pageDatasets',
+    'pageSettings',
     'explorers',
     'editors'
   ]), Vuex.mapState([
