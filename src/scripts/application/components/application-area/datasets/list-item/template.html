@@ -1,7 +1,10 @@
 <div class="card">
   <div class="content">
     <div class="header">{{ item.meta.title }}</div>
-    <div class="meta" v-if="item.meta.version">v{{ item.meta.version }}</div>
+    <div class="meta">
+      <span v-if="item.meta.version">v{{ item.meta.version }}</span>
+      <span v-if="item.countOfRecords > 0">{{ $t('ui.countOfRecords', {count: item.countOfRecords}) }}</span>
+    </div>
     <div class="description" v-if="item.meta.description" v-markdown="item.meta.description"></div>
   </div>
   <div class="content">

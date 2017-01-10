@@ -16,7 +16,7 @@ module.exports = {
       }
     },
     item: function() {
-      return this.$store.getters.storage.getItemByRef(this.itemRef);
+      return this.$store.getters.getStorageItem(this.itemRef);
     }
   },
   methods: _.extend({}, Vuex.mapActions([

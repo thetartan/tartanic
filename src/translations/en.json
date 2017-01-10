@@ -15,7 +15,8 @@
     "addToFavorites": "Add to favorites",
     "error": "Error",
     "explorers": "Datasets",
-    "editors": "Editors"
+    "editors": "Editors",
+    "countOfRecords": "{count} record(s)"
   },
   "message": {
     "favoritesListEmpty": "Currently you have no favorite items.",

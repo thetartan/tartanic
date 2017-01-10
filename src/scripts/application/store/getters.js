@@ -1,11 +1,38 @@
 'use strict';
 
 var _ = require('lodash');
-var storage = require('./storage');
+var utils = require('../../services/utils');
+
+// Container for readonly data that should not be watched by vue(x)
+var storage = {
+  config: {},
+  datasets: []
+};
+
+function getStorageItem(itemRef) {
+  var result = null;
+  var refType = utils.uniqueId.getHandleType(itemRef);
+  switch (refType) {
+    case 'dataset':
+      result = _.find(storage.datasets, {$ref: itemRef});
+      break;
+    case 'tartan':
+      _.each(storage.datasets, function(dataset) {
+        result = _.find(dataset.items, {$ref: itemRef});
+        return !result;  // Break if found
+      });
+      break;
+  }
+
+  return result ? result : null;
+}
 
 module.exports = {
   storage: function() {
     return storage;
+  },
+  getStorageItem: function() {
+    return getStorageItem;
   },
   pageHome: function(state) {
     return _.find(state.pages, {viewAs: 'home'});
@@ -38,7 +65,7 @@ module.exports = {
   currentItem: function(state) {
     var currentPage = state.currentPage;
     if (currentPage) {
-      return storage.getItemByRef(currentPage.itemRef);
+      return getStorageItem(currentPage.itemRef);
     }
     return null;
   }

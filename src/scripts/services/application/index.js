@@ -23,6 +23,15 @@ function getDatasets(datasets) {
       utils.hiddenProperty(item, '$ref', utils.uniqueId.createHandle(
         'dataset', item.meta.name
       ));
+
+      item.countOfRecords = 100 + _.chain(item.resources)
+        .map(function(resource) {
+          var result = parseInt(resource.countOfRecords, 10) || 0;
+          return result > 0 ? result : 0;
+        })
+        .sum()
+        .value();
+
       return item;
     });
   });
