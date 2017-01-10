@@ -24,7 +24,7 @@ function getDatasets(datasets) {
         'dataset', item.meta.name
       ));
 
-      item.countOfRecords = 100 + _.chain(item.resources)
+      item.countOfRecords = _.chain(item.resources)
         .map(function(resource) {
           var result = parseInt(resource.countOfRecords, 10) || 0;
           return result > 0 ? result : 0;
