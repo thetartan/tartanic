@@ -87,7 +87,7 @@ module.exports = {
       var dataset = storage.getItemByRef(datasetRef);
       state.pages.push({
         viewAs: 'explorer',
-        title: dataset.title,
+        title: dataset.meta.title,
         itemRef: dataset.$ref,
         additionalActions: [
           {

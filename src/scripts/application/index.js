@@ -14,7 +14,7 @@ function initializeApplication() {
   return applicationService.getConfig(configUrl)
     .then(function(config) {
       return Promise.all([
-        applicationService.getDatasetDirectory(config.datasetDirectoryUrl),
+        applicationService.getDatasets(config.datasets),
         i18n.init(store, config)
       ]).then(function(results) {
         return _.first(results);

@@ -1,18 +1,18 @@
 <div class="card">
   <div class="content">
-    <div class="header">{{ item.title }}</div>
-    <div class="meta" v-if="item.version">v{{ item.version }}</div>
-    <div class="description" v-if="item.description" v-markdown="item.description"></div>
+    <div class="header">{{ item.meta.title }}</div>
+    <div class="meta" v-if="item.meta.version">v{{ item.meta.version }}</div>
+    <div class="description" v-if="item.meta.description" v-markdown="item.meta.description"></div>
   </div>
   <div class="content">
-    <p v-if="item.license" class="description">
+    <p v-if="item.meta.license" class="description">
       <span>{{ $t('ui.licence') }}:</span>
       <span v-if="!licenseUrl">{{ licenseTitle }}</span>
       <a v-if="licenseUrl" v-bind:href="licenseUrl" target="_blank">{{ licenseTitle }}</a>
     </p>
-    <p v-if="item.author" class="description">
+    <p v-if="item.meta.author" class="description">
       <span>{{ $t('ui.author') }}:</span>
-      <span>{{ item.author }}</span>
+      <span>{{ item.meta.author }}</span>
     </p>
   </div>
   <div class="ui bottom attached menu">

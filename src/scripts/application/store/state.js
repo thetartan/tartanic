@@ -1,8 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-var Vue = require('vue');
-
 module.exports = {
   currentPage: null,
   itemState: {},
