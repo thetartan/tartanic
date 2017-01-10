@@ -15,7 +15,8 @@
     "addToFavorites": "Додати до вподобаних",
     "error": "Помилка",
     "explorers": "Набори даних",
-    "editors": "Редактори"
+    "editors": "Редактори",
+    "countOfRecords": "{count} запис(ів)"
   },
   "message": {
     "favoritesListEmpty": "Список вподобаного порожній.",
