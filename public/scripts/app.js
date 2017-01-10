@@ -87608,7 +87608,7 @@
 	    function update(dataset, data, items) {
 	      dataset.items = _.isArray(items) ? items : [];
 	      context.commit('setItemState', [dataset.$ref, data]);
-	      context.commit('updateDatasetExplorer', dataset.$ref);
+	      context.commit('updateDatasetExplorer', dataset);
 	      return dataset;
 	    }
 	
