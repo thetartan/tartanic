@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var Vue = require('vue');
-var storage = require('./storage');
 
 function computedProperties(object, getters) {
   _.each(getters, function(getter, name) {
@@ -78,13 +77,12 @@ module.exports = {
     ];
   },
 
-  createDatasetExplorer: function(state, datasetRef) {
+  createDatasetExplorer: function(state, dataset) {
     var exists = !!_.find(state.pages, {
       viewAs: 'explorer',
-      itemRef: datasetRef
+      itemRef: dataset.$ref
     });
     if (!exists) {
-      var dataset = storage.getItemByRef(datasetRef);
       state.pages.push({
         viewAs: 'explorer',
         title: dataset.meta.title,
@@ -92,24 +90,23 @@ module.exports = {
         additionalActions: [
           {
             title: Vue.$t('ui.download'), icon: 'download',
-            action: 'downloadDataset', argument: datasetRef
+            action: 'downloadDataset', argument: dataset.$ref
           },
           {
             title: Vue.$t('ui.addToFavorites'), icon: 'heart',
-            action: 'toggleFavorites', argument: datasetRef
+            action: 'toggleFavorites', argument: dataset.$ref
           }
         ],
         pagination: null
       });
     }
   },
-  updateDatasetExplorer: function(state, datasetRef) {
+  updateDatasetExplorer: function(state, dataset) {
     var page = _.find(state.pages, {
       viewAs: 'explorer',
-      itemRef: datasetRef
+      itemRef: dataset.$ref
     });
     if (page) {
-      var dataset = storage.getItemByRef(datasetRef);
       var items = _.isArray(dataset.items) ? dataset.items : [];
       var itemsPerPage = 20;
       page.pagination = {
@@ -120,8 +117,7 @@ module.exports = {
     }
   },
 
-  createTartanEditor: function(state, tartanRef) {
-    var tartan = storage.getItemByRef(tartanRef);
+  createTartanEditor: function(state, tartan) {
     state.pages.push({
       viewAs: 'editor',
       title: tartan.name,
@@ -129,11 +125,11 @@ module.exports = {
       additionalActions: [
         {
           title: Vue.$t('ui.download'), icon: 'download',
-          action: 'downloadTartan', argument: tartanRef
+          action: 'downloadTartan', argument: tartan.$ref
         },
         {
           title: Vue.$t('ui.addToFavorites'), icon: 'heart',
-          action: 'toggleFavorites', argument: tartanRef
+          action: 'toggleFavorites', argument: tartan.$ref
         }
       ],
       state: {

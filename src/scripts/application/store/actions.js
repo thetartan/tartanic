@@ -2,7 +2,6 @@
 
 var _ = require('lodash');
 var Promise = require('bluebird');
-var storage = require('./storage');
 var applicationService = require('../../services/application');
 
 module.exports = {
@@ -16,6 +15,7 @@ module.exports = {
     context.commit('createDefaultPages');
   },
   setDatasets: function(context, datasets) {
+    var storage = context.getters.storage;
     storage.datasets = _.isArray(datasets) ? datasets : [];
     context.state.datasetsCount = storage.datasets.length;
     _.each(storage.datasets, function(dataset) {
@@ -32,10 +32,11 @@ module.exports = {
   },
 
   viewDataset: function(context, datasetRef) {
+    var dataset = context.getters.getStorageItem(datasetRef);
     // Create and open editor
-    context.commit('createDatasetExplorer', datasetRef);
-    context.commit('updateDatasetExplorer', datasetRef);
-    var page = _.find(context.getters.explorers, {itemRef: datasetRef});
+    context.commit('createDatasetExplorer', dataset);
+    context.commit('updateDatasetExplorer', dataset);
+    var page = _.find(context.getters.explorers, {itemRef: dataset.$ref});
     if (page) {
       context.commit('setCurrentPage', page);
     }
@@ -53,8 +54,6 @@ module.exports = {
     if (isLoaded) {
       return Promise.resolve(datasetRef);
     } else {
-      var dataset = storage.getItemByRef(datasetRef);
-
       dataset = update(dataset, {
         loaded: false,
         loading: true,
@@ -93,8 +92,9 @@ module.exports = {
     });
   },
   editTartan: function(context, tartanRef) {
-    context.commit('createTartanEditor', tartanRef);
-    var page = _.find(context.getters.editors, {itemRef: tartanRef});
+    var tartan = context.getters.getStorageItem(tartanRef);
+    context.commit('createTartanEditor', tartan);
+    var page = _.find(context.getters.editors, {itemRef: tartan.$ref});
     if (page) {
       context.commit('setCurrentPage', page);
     }
