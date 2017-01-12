@@ -1,6 +1,6 @@
 <div class="card">
   <div class="content">
-    <div class="header">{{ item.meta.title }}</div>
+    <div class="header"><a v-on:click="viewDataset(item.$ref)">{{ item.meta.title }}</a></div>
     <div class="meta">
       <span v-if="item.meta.version">v{{ item.meta.version }}</span>
       <span v-if="item.countOfRecords > 0">{{ $t('ui.countOfRecords', {count: item.countOfRecords}) }}</span>
