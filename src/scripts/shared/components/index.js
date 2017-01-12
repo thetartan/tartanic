@@ -1,13 +1,11 @@
 'use strict';
 
-var Vue = require('vue');
+module.exports.tartanPreview = require('./tartan-preview');
+module.exports.tartanImage = require('./tartan-image');
+module.exports.applicationTitle = require('./application-title');
 
-Vue.component('tartanPreview', require('./tartan-preview'));
-Vue.component('tartanImage', require('./tartan-image'));
-Vue.component('applicationTitle', require('./application-title'));
-
-Vue.component('uiPagination', require('./ui-pagination'));
-Vue.component('uiModal', require('./ui-modal'));
-Vue.component('uiDropdown', require('./ui-dropdown'));
-Vue.component('uiIcon', require('./ui-icon'));
-Vue.component('uiLoader', require('./ui-loader'));
+module.exports.uiPagination = require('./ui-pagination');
+module.exports.uiModal = require('./ui-modal');
+module.exports.uiDropdown = require('./ui-dropdown');
+module.exports.uiIcon = require('./ui-icon');
+module.exports.uiLoader = require('./ui-loader');

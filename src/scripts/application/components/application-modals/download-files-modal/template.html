@@ -1,0 +1,61 @@
+<ui-modal v-model="state.isVisible">
+  <div class="content">
+    <div class="center">
+      <div class="ui fluid centered card area" v-if="state.isVisible">
+        <div class="ui top attached menu row">
+          <div class="header borderless item">{{ $t('ui.downloadFiles') }}</div>
+          <div class="right menu">
+            <a class="borderless item"
+              v-bind:title="$t('ui.close')"
+              v-on:click="state.isVisible = false;"><ui-icon name="close"></ui-icon></a>
+          </div>
+        </div>
+
+        <div class="left aligned content expanded row">
+          <ui-loader v-if="state.loading">{{ $t('ui.loading') }}</ui-loader>
+
+          <div class="ui red message" v-if="state.loaded && state.error">
+            <span>{{ $t('ui.error') }}:</span> <span>{{ state.error.message }}</span>
+          </div>
+
+          <div class="description" v-if="state.loaded && !state.error">
+            <div v-markdown="state.allowDownloadingPerFile ?
+              $t('ui.downloadingFiles.availableFiles') :
+              $t('ui.downloadingFiles.filesInPackage')"
+            ></div>
+
+            <div class="ui relaxed list" style="max-height: 40vh; overflow-y: auto;">
+              <div class="item" v-for="file in state.files">
+                <img class="ui image" style="width: 2em; height: 2em;"
+                  v-bind:src="file.name | fileIcon('public/images/formats/')">
+                <div class="content">
+                  <div class="header">{{ file.name }}</div>
+                  <div class="description">
+                    <span>{{ file.data.length | bytes(true) }}</span>
+                    <a v-if="state.allowDownloadingPerFile"
+                      v-on:click="downloadFile(file)">{{ $t('ui.download') }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-markdown="$t('ui.downloadingFiles.footerHelp')"></div>
+          </div>
+        </div>
+
+        <div class="ui bottom attached menu row">
+          <div class="right menu">
+            <a class="borderless item"
+              v-if="state.loaded && !state.error"
+              v-bind:title="$t('ui.downloadAll')"
+              v-on:click="state.isVisible = false; downloadFiles(state.files)"><ui-icon
+              name="download" class="spacing right"></ui-icon>{{ $t('ui.downloadAll') }}</a>
+            <a class="borderless item"
+              v-bind:title="$t('ui.close')"
+              v-on:click="state.isVisible = false;">{{ $t('ui.close') }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ui-modal>

@@ -9,7 +9,7 @@ module.exports = {
   methods: _.extend({}, Vuex.mapActions([
     'editTartan',
     'viewTartan',
-    'downloadTartan',
+    'downloadItem',
     'toggleFavorites'
   ]))
 };

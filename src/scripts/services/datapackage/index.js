@@ -12,7 +12,7 @@ function handleFetchResponse(response) {
   return response.text();
 }
 
-function loadResource(resource, dataPackageUrl, pickAttributes) {
+function createResource(resource, dataPackageUrl) {
   var resourceUrl = null;
   if (resource.path) {
     resourceUrl = utils.isUrl(resource.path) ? resource.path :
@@ -20,17 +20,24 @@ function loadResource(resource, dataPackageUrl, pickAttributes) {
   } else if (utils.isUrl(resource.url)) {
     resourceUrl = resource.url;
   }
-  if (resourceUrl) {
-    var resourceData = null;
-    return fetch(resourceUrl)
+  return {
+    name: resource.title || resource.name,
+    meta: resource,
+    url: resourceUrl,
+    items: []
+  };
+}
+
+function loadResource(resource, pickAttributes) {
+  if (resource.url) {
+    return fetch(resource.url)
       .then(handleFetchResponse)
       .then(function(data) {
-        resourceData = utils.encoder.encode(data);
-        return utils.getCSVData(data, resource.encoding);
+        return utils.getCSVData(data, resource.meta.encoding);
       })
       .then(function(records) {
-        var attributes = resource.attributes;
-        var fields = _.get(resource, 'schema.fields');
+        var attributes = resource.meta.attributes;
+        var fields = _.get(resource.meta, 'schema.fields');
         if (!_.isArray(fields) && !_.isObject(fields)) {
           fields = [];
         }
@@ -42,7 +49,7 @@ function loadResource(resource, dataPackageUrl, pickAttributes) {
         }
 
         var headers = null;
-        if (resource.headers) {
+        if (resource.meta.headers) {
           // Pick headers and remove them from list
           headers = _.first(records);
           records.splice(0, 1);
@@ -61,20 +68,17 @@ function loadResource(resource, dataPackageUrl, pickAttributes) {
             attributes, pickAttributes);
         }
 
-        return {
-          meta: resource,
-          url: resourceUrl,
-          bytes: resourceData,
-          items: _.map(records, function(record) {
-            var result = attributeMapper(record);
+        resource.items = _.map(records, function(record) {
+          var result = attributeMapper(record);
 
-            // Save original "raw" records alongside mapped item
-            utils.hiddenProperty(result, '$record', record);
-            utils.hiddenProperty(result, '$raw', headerMapper(record));
+          // Save original "raw" records alongside mapped item
+          utils.hiddenProperty(result, '$record', record);
+          utils.hiddenProperty(result, '$raw', headerMapper(record));
 
-            return result;
-          })
-        };
+          return result;
+        });
+
+        return resource;
       });
   }
   return Promise.reject(new Error('Cannot load resource ' + resource.name));
@@ -86,9 +90,12 @@ function loadDataPackage(dataPackageUrl) {
     .then(JSON.parse)
     .then(function(dataPackage) {
       return {
+        name: dataPackage.title || dataPackage.name,
         meta: _.omit(dataPackage, ['resources']),
         url: dataPackageUrl,
-        resources: dataPackage.resources
+        resources: _.map(dataPackage.resources, function(resource) {
+          return createResource(resource, dataPackageUrl);
+        })
       };
     });
 }

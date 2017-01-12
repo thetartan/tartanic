@@ -11,12 +11,20 @@
     "edit": "Редагувати",
     "view": "Переглянути",
     "download": "Завантажити",
+    "downloadFiles": "Завантажити файли",
+    "downloadAll": "Завантажити все",
     "close": "Закрити",
     "addToFavorites": "Додати до вподобаних",
     "error": "Помилка",
     "explorers": "Набори даних",
     "editors": "Редактори",
-    "countOfRecords": "{count} запис(ів)"
+    "countOfRecords": "{count} запис(ів)",
+    "fileSize": "Розмір: {size}",
+    "downloadingFiles": {
+      "availableFiles": "Файли, доступні для завантаження",
+      "filesInPackage": "Файли у цьому пакеті",
+      "footerHelp": "Всі файли будуть скачані одним архівом .tar.gz."
+    }
   },
   "message": {
     "favoritesListEmpty": "Список вподобаного порожній.",

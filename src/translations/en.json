@@ -11,12 +11,20 @@
     "edit": "Edit",
     "view": "View",
     "download": "Download",
+    "downloadAll": "Download all",
+    "downloadFiles": "Download files",
     "close": "Close",
     "addToFavorites": "Add to favorites",
     "error": "Error",
     "explorers": "Datasets",
     "editors": "Editors",
-    "countOfRecords": "{count} record(s)"
+    "countOfRecords": "{count} record(s)",
+    "fileSize": "Size: {size}",
+    "downloadingFiles": {
+      "availableFiles": "Files available for download",
+      "filesInPackage": "Files in this package",
+      "footerHelp": "All files will be downloaded within .tar.gz archive."
+    }
   },
   "message": {
     "favoritesListEmpty": "Currently you have no favorite items.",

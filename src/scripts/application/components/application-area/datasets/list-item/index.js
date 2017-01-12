@@ -8,7 +8,7 @@ module.exports = {
   props: ['item'],
   methods: _.extend({}, Vuex.mapActions([
     'viewDataset',
-    'downloadDataset',
+    'downloadItem',
     'toggleFavorites'
   ])),
   computed: {

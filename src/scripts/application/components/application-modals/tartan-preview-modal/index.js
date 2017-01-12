@@ -5,23 +5,16 @@ var Vuex = require('vuex');
 
 module.exports = {
   template: require('./template.html'),
-  props: ['value', 'itemRef', 'schema'],
-  computed: {
-    isVisible: {
-      get: function() {
-        return this.value;
-      },
-      set: function(value) {
-        this.$emit('input', value);
-      }
-    },
+  computed: _.extend({
     item: function() {
-      return this.$store.getters.getStorageItem(this.itemRef);
+      return this.$store.getters.getStorageItem(this.state.itemRef);
     }
-  },
+  }, Vuex.mapState({
+    'state': 'tartanPreview'
+  })),
   methods: _.extend({}, Vuex.mapActions([
     'editTartan',
-    'downloadTartan',
+    'downloadItem',
     'toggleFavorites'
   ]))
 };
