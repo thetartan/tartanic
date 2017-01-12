@@ -56376,7 +56376,7 @@
 /* 79 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"card\">\n  <div class=\"content\">\n    <div class=\"header\">{{ item.meta.title }}</div>\n    <div class=\"meta\">\n      <span v-if=\"item.meta.version\">v{{ item.meta.version }}</span>\n      <span v-if=\"item.countOfRecords > 0\">{{ $t('ui.countOfRecords', {count: item.countOfRecords}) }}</span>\n    </div>\n    <div class=\"description\" v-if=\"item.meta.description\" v-markdown=\"item.meta.description\"></div>\n  </div>\n  <div class=\"content\">\n    <p v-if=\"item.meta.license\" class=\"description\">\n      <span>{{ $t('ui.licence') }}:</span>\n      <span v-if=\"!licenseUrl\">{{ licenseTitle }}</span>\n      <a v-if=\"licenseUrl\" v-bind:href=\"licenseUrl\" target=\"_blank\">{{ licenseTitle }}</a>\n    </p>\n    <p v-if=\"item.meta.author\" class=\"description\">\n      <span>{{ $t('ui.author') }}:</span>\n      <span>{{ item.meta.author }}</span>\n    </p>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"borderless item\"\n      v-bind:title=\"$t('ui.open')\"\n      v-on:click=\"viewDataset(item.$ref)\"><ui-icon\n      name=\"sign-in\" class=\"spacing right\"></ui-icon>{{ $t('ui.open') }}</a>\n    <div class=\"right menu\">\n      <a class=\"borderless item\"\n        v-bind:title=\"$t('ui.download')\"\n        v-on:click=\"downloadItem(item.$ref)\"><ui-icon\n        name=\"download\"></ui-icon></a>\n      <a class=\"borderless item\"\n        v-bind:title=\"$t('ui.addToFavorites')\"\n        v-on:click=\"toggleFavorites(item.$ref)\"><ui-icon\n        name=\"heart\"></ui-icon></a>\n    </div>\n  </div>\n</div>\n"
+	module.exports = "<div class=\"card\">\n  <div class=\"content\">\n    <div class=\"header\"><a v-on:click=\"viewDataset(item.$ref)\">{{ item.meta.title }}</a></div>\n    <div class=\"meta\">\n      <span v-if=\"item.meta.version\">v{{ item.meta.version }}</span>\n      <span v-if=\"item.countOfRecords > 0\">{{ $t('ui.countOfRecords', {count: item.countOfRecords}) }}</span>\n    </div>\n    <div class=\"description\" v-if=\"item.meta.description\" v-markdown=\"item.meta.description\"></div>\n  </div>\n  <div class=\"content\">\n    <p v-if=\"item.meta.license\" class=\"description\">\n      <span>{{ $t('ui.licence') }}:</span>\n      <span v-if=\"!licenseUrl\">{{ licenseTitle }}</span>\n      <a v-if=\"licenseUrl\" v-bind:href=\"licenseUrl\" target=\"_blank\">{{ licenseTitle }}</a>\n    </p>\n    <p v-if=\"item.meta.author\" class=\"description\">\n      <span>{{ $t('ui.author') }}:</span>\n      <span>{{ item.meta.author }}</span>\n    </p>\n  </div>\n  <div class=\"ui bottom attached menu\">\n    <a class=\"borderless item\"\n      v-bind:title=\"$t('ui.open')\"\n      v-on:click=\"viewDataset(item.$ref)\"><ui-icon\n      name=\"sign-in\" class=\"spacing right\"></ui-icon>{{ $t('ui.open') }}</a>\n    <div class=\"right menu\">\n      <a class=\"borderless item\"\n        v-bind:title=\"$t('ui.download')\"\n        v-on:click=\"downloadItem(item.$ref)\"><ui-icon\n        name=\"download\"></ui-icon></a>\n      <a class=\"borderless item\"\n        v-bind:title=\"$t('ui.addToFavorites')\"\n        v-on:click=\"toggleFavorites(item.$ref)\"><ui-icon\n        name=\"heart\"></ui-icon></a>\n    </div>\n  </div>\n</div>\n"
 
 /***/ },
 /* 80 */
@@ -88293,6 +88293,9 @@
 	  downloadItem: function(context, itemRef) {
 	    var item = context.getters.getStorageItem(itemRef);
 	
+	    var itemType = utils.uniqueId.getHandleType(item.$ref);
+	    var allowDownloadingPerFile = ['tartan'].indexOf(itemType) >= 0;
+	
 	    function getItemFiles(item) {
 	      var itemType = utils.uniqueId.getHandleType(item.$ref);
 	      switch (itemType) {
@@ -88317,7 +88320,7 @@
 	        isVisible: true,
 	        itemRef: itemRef,
 	
-	        allowDownloadingPerFile: true,
+	        allowDownloadingPerFile: allowDownloadingPerFile,
 	        baseName: applicationService.slug(item.name),
 	
 	        loading: false,
