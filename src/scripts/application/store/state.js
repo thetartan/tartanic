@@ -7,5 +7,8 @@ module.exports = {
   tartanPreview: {
     isVisible: false
   },
+  downloadFiles: {
+    isVisible: false
+  },
   pages: []
 };

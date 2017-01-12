@@ -1,6 +1,4 @@
 * {
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
 }
@@ -148,9 +146,12 @@ body {
     pointer-events: none;
 
     & > .card {
+      &.fullscreen {
+        width: 100vw;
+        height: 100vh;
+      }
+
       pointer-events: auto;
-      width: 100vw;
-      height: 100vh;
       max-width: 80vw;
       max-height: 90vh;
 
@@ -221,9 +222,6 @@ body {
 }
 
 .ui.area {
-  margin: 0 !important;
-  padding: 0 !important;
-
   display: flex;
   flex-wrap: nowrap;
 
@@ -262,8 +260,6 @@ body {
 
   & > .row {
     position: relative;
-    margin: 0 !important;
-    padding: 0 !important;
     flex-grow: 0 !important;
 
     &.left.aligned {
@@ -291,6 +287,16 @@ body {
 
 .ui.text.loader {
   user-select: none;
+}
+
+.ui.dimmer .ui.card .ui.loader {
+  color: rgba(0, 0, 0, 0.87);
+  &:before {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  &:after {
+    border-top-color: #767676;
+  }
 }
 
 .application-container {

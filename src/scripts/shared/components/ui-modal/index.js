@@ -3,24 +3,57 @@
 var $ = require('jquery');
 
 module.exports = {
-  template: '<div class="ui page dimmer" ref="modal"><slot></slot></div>',
+  template: [
+    '<div class="dimmable">',
+    '<div class="ui page dimmer" ref="modal">',
+    '<slot></slot></div>',
+    '</div>'
+  ].join(''),
   props: ['value'],
   watch: {
-    value: function(value) {
-      $(this.$refs.modal).dimmer(value ? 'show' : 'hide');
+    value: function(newValue, oldValue) {
+      if (newValue != oldValue) {
+        $(this.$refs.modal).dimmer(newValue ? 'show' : 'hide');
+      }
     }
   },
   mounted: function() {
     var that = this;
+    var body = $('body');
+
     // It should be directly in <body>
-    $('body').get(0).appendChild(that.$el);
+    body.get(0).appendChild(that.$el);
+
+    // Initialize modal
     $(that.$refs.modal).dimmer({
       onShow: function() {
-        that.$emit('input', true);
+        if (!that.value) {
+          that.$emit('input', true);
+        }
       },
       onHide: function() {
-        that.$emit('input', false);
+        if (that.value) {
+          that.$emit('input', false);
+        }
       }
     });
+
+    // Handle <esc> key
+    function keyHandler(event) {
+      if (that.value) {
+        var modifiers = event.ctrlKey || event.altKey ||
+          event.metaKey || event.shiftKey;
+        if ((event.which == 27) && !modifiers) {
+          $(that.$refs.modal).dimmer('hide');
+        }
+      }
+    }
+    body.on('keyup', keyHandler);
+    this.$on('destroy', function() {
+      body.off('keyup', keyHandler);
+    });
+  },
+  beforeDestroy: function() {
+    this.$emit('destroy');
   }
 };

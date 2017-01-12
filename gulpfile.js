@@ -9,11 +9,14 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var sourceDir = path.join(__dirname, '/src');
 var sourceStylesDir = path.join(sourceDir, '/styles');
+var sourceAssetsDir = path.join(sourceDir, '/assets');
+var sourceImagesDir = path.join(sourceAssetsDir, '/images');
 var sourceTranslationsDir = path.join(sourceDir, '/translations');
 
 var targetDir = path.join(__dirname, '/public');
 var targetStylesDir = path.join(targetDir, '/styles');
 var targetFontsDir = path.join(targetDir, '/fonts');
+var targetImagesDir = path.join(targetDir, '/images');
 var targetTranslationsDir = path.join(targetDir, '/i18n');
 
 var nodeModulesDir = path.join(__dirname, '/node_modules');
@@ -22,6 +25,7 @@ gulp.task('default', [
   'vendor.fonts',
   'vendor.styles',
   'application.styles',
+  'application.images',
   'application.translations'
 ]);
 
@@ -41,6 +45,11 @@ gulp.task('application.styles', [], function() {
 gulp.task('application.translations', function() {
   return gulp.src(path.join(sourceTranslationsDir, '/*'))
     .pipe(gulp.dest(targetTranslationsDir));
+});
+
+gulp.task('application.images', function() {
+  return gulp.src(path.join(sourceImagesDir, '/**/*'))
+    .pipe(gulp.dest(targetImagesDir));
 });
 
 gulp.task('vendor.styles', function() {

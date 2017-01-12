@@ -90,7 +90,7 @@ module.exports = {
         additionalActions: [
           {
             title: Vue.$t('ui.download'), icon: 'download',
-            action: 'downloadDataset', argument: dataset.$ref
+            action: 'downloadItem', argument: dataset.$ref
           },
           {
             title: Vue.$t('ui.addToFavorites'), icon: 'heart',
@@ -125,7 +125,7 @@ module.exports = {
       additionalActions: [
         {
           title: Vue.$t('ui.download'), icon: 'download',
-          action: 'downloadTartan', argument: tartan.$ref
+          action: 'downloadItem', argument: tartan.$ref
         },
         {
           title: Vue.$t('ui.addToFavorites'), icon: 'heart',
@@ -141,5 +141,8 @@ module.exports = {
   },
   setTartanPreview: function(state, data) {
     state.tartanPreview = _.extend({}, data);
+  },
+  setDownloadFiles: function(state, data) {
+    state.downloadFiles = _.extend({}, data);
   }
 };

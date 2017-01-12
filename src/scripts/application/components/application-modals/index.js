@@ -1,14 +1,12 @@
 'use strict';
 
-var _ = require('lodash');
-var Vuex = require('vuex');
-
 module.exports = {
-  template: require('./template.html'),
-  computed: _.extend({}, Vuex.mapState([
-    'tartanPreview'
-  ])),
+  template: '<div>' + [
+    '<tartan-preview-modal></tartan-preview-modal>',
+    '<download-files-modal></download-files-modal>'
+  ].join('') + '</div>',
   components: {
-    tartanPreviewModal: require('./tartan-preview-modal')
+    tartanPreviewModal: require('./tartan-preview-modal'),
+    downloadFilesModal: require('./download-files-modal')
   }
 };

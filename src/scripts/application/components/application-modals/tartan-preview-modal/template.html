@@ -1,42 +1,39 @@
-<ui-modal v-model="isVisible">
+<ui-modal v-model="state.isVisible">
   <div class="content">
     <div class="center">
-      <div class="ui fluid centered card" v-if="isVisible && item">
-        <div class="ui vertical expanded area">
-          <div class="row">
-            <div class="ui top attached menu">
-              <div class="header borderless item">{{ item.name }}</div>
-              <div class="right menu">
-                <a class="borderless item"
-                  v-bind:title="$t('ui.close')"
-                  v-on:click="isVisible = false;"><i class="fa fa-close"></i></a>
-              </div>
-            </div>
-          </div>
+      <div class="ui fluid centered fullscreen card vertical expanded area"
+        v-if="state.isVisible && item">
 
-          <div class="expanded row">
-            <tartan-preview class="description"
-              v-bind:schema="schema"
-              v-bind:repeat="true"
-              v-bind:threadcount="item.sett"
-            ></tartan-preview>
+        <div class="ui top attached menu row">
+          <div class="header borderless item">{{ item.name }}</div>
+          <div class="right menu">
+            <a class="borderless item"
+              v-bind:title="$t('ui.close')"
+              v-on:click="state.isVisible = false;"><ui-icon name="close"></ui-icon></a>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="ui bottom attached menu">
-              <a class="borderless item"
-                v-bind:title="$t('ui.edit')"
-                v-on:click="isVisible = false; editTartan(item.$ref)"><i
-                class="fa fa-pencil spacing right"></i>{{ $t('ui.edit') }}</a>
-              <div class="right menu">
-                <a class="borderless item"
-                  v-bind:title="$t('ui.download')"
-                  v-on:click="downloadTartan(item.$ref)"><i class="fa fa-download"></i></a>
-                <a class="borderless item"
-                  v-bind:title="$t('ui.addToFavorites')"
-                  v-on:click="toggleFavorites(item.$ref)"><i class="fa fa-heart"></i></a>
-              </div>
-            </div>
+        <div class="content expanded row">
+          <tartan-preview class="description"
+            v-bind:schema="state.schema"
+            v-bind:repeat="true"
+            v-bind:threadcount="item.sett"
+          ></tartan-preview>
+        </div>
+
+        <div class="ui bottom attached menu row">
+          <a class="borderless item"
+            v-bind:title="$t('ui.edit')"
+            v-on:click="state.isVisible = false; editTartan(item.$ref)"><ui-icon
+            name="pencil" class="spacing right"></ui-icon>{{ $t('ui.edit') }}</a>
+          <div class="right menu">
+            <a class="borderless item"
+              v-bind:title="$t('ui.download')"
+              v-on:click="state.isVisible = false; downloadItem(item.$ref)"><ui-icon
+              name="download"></ui-icon></a>
+            <a class="borderless item"
+              v-bind:title="$t('ui.addToFavorites')"
+              v-on:click="toggleFavorites(item.$ref)"><ui-icon name="heart"></ui-icon></a>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
 'use strict';
 
-require('./markdown');
-require('./autofocus');
+module.exports.markdown = require('./markdown');
+module.exports.autofocus = require('./autofocus');

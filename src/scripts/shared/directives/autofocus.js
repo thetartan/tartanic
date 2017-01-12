@@ -1,9 +1,7 @@
 'use strict';
 
-var Vue = require('vue');
-
-Vue.directive('autofocus', {
+module.exports = {
   inserted: function(element) {
     element.focus();
   }
-});
+};
