@@ -101,6 +101,9 @@ module.exports = {
   downloadItem: function(context, itemRef) {
     var item = context.getters.getStorageItem(itemRef);
 
+    var itemType = utils.uniqueId.getHandleType(item.$ref);
+    var allowDownloadingPerFile = ['tartan'].indexOf(itemType) >= 0;
+
     function getItemFiles(item) {
       var itemType = utils.uniqueId.getHandleType(item.$ref);
       switch (itemType) {
@@ -125,7 +128,7 @@ module.exports = {
         isVisible: true,
         itemRef: itemRef,
 
-        allowDownloadingPerFile: true,
+        allowDownloadingPerFile: allowDownloadingPerFile,
         baseName: applicationService.slug(item.name),
 
         loading: false,
