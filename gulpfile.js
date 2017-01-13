@@ -10,7 +10,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var sourceDir = path.join(__dirname, '/src');
 var sourceStylesDir = path.join(sourceDir, '/styles');
 var sourceAssetsDir = path.join(sourceDir, '/assets');
-var sourceImagesDir = path.join(sourceAssetsDir, '/images');
 var sourceTranslationsDir = path.join(sourceDir, '/translations');
 
 var targetDir = path.join(__dirname, '/public');
@@ -48,8 +47,8 @@ gulp.task('application.translations', function() {
 });
 
 gulp.task('application.images', function() {
-  return gulp.src(path.join(sourceImagesDir, '/**/*'))
-    .pipe(gulp.dest(targetImagesDir));
+  return gulp.src(path.join(nodeModulesDir, 'pretty-file-icons/svg/*'))
+    .pipe(gulp.dest(path.join(targetImagesDir, 'file-icons')));
 });
 
 gulp.task('vendor.styles', function() {

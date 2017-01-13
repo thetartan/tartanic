@@ -8,11 +8,6 @@ var Vuex = require('vuex');
 var store = require('./store');
 var i18n = require('./i18n');
 
-var filters = require('./filters');
-_.each(filters, function(filter, name) {
-  Vue.filter(name, filter);
-});
-
 var configUrl = 'config.json';
 
 function initializeApplication() {

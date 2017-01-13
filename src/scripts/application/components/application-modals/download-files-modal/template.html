@@ -26,8 +26,11 @@
 
             <div class="ui relaxed list" style="max-height: 40vh; overflow-y: auto;">
               <div class="item" v-for="file in state.files">
-                <img class="ui image" style="width: 2em; height: 2em;"
-                  v-bind:src="file.name | fileIcon('public/images/formats/')">
+                <file-icon
+                  class="ui image" style="width: 2em; height: 2em;"
+                  path="public/images/file-icons/"
+                  v-bind:filename="file.name" type="svg"
+                ></file-icon>
                 <div class="content">
                   <div class="header">{{ file.name }}</div>
                   <div class="description">
