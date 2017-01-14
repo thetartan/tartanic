@@ -4,6 +4,13 @@
 
 var items = [];
 
+var check = [
+  'clientWidth',
+  'clientHeight',
+  'offsetWidth',
+  'offsetHeight'
+];
+
 var requestAnimationFrame = (function() {
   var result = null;
   if (typeof window != 'undefined') {
@@ -44,13 +51,14 @@ function checkUpdates() {
   // Check each item
   for (var i = 0; i < items.length; i++) {
     var item = items[i];
-    var rect = item.element.getBoundingClientRect();
-    var width = Math.abs(rect.right - rect.left);
-    var height = Math.abs(rect.bottom - rect.top);
-    if ((width != item.width) || (height != item.height)) {
-      item.width = width;
-      item.height = height;
-      triggerResizeEvent(item.element);
+    // Check each sensitive property, and break after any change
+    for (var j = 0; j < check.length; j++) {
+      var prop = check[j];
+      if (item.element[prop] != item[prop]) {
+        item[prop] = item.element[prop];
+        triggerResizeEvent(item.element);
+        break;
+      }
     }
   }
   // Schedule next check

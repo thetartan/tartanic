@@ -31,7 +31,7 @@ module.exports = {
       that.$refs.canvas.parentNode,
       function() {
         utils.updateCanvasSize(that.$refs.canvas);
-        repaint();
+        repaint.flush();
       }
     );
 
@@ -42,7 +42,7 @@ module.exports = {
     that.$on('update', function() {
       render = utils.createTartanRenderer(that.threadcount, that.schema);
       utils.updateCanvasSize(that.$refs.canvas);
-      repaint();
+      repaint.flush();
     });
 
     that.$on('destroy', function() {

@@ -2,6 +2,21 @@
 
 var webpack = require('webpack');
 
+var plugins = [
+  new webpack.optimize.OccurenceOrderPlugin(true),
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+  })
+];
+
+if (process.env.NODE_ENV == 'production') {
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compressor: {
+      warnings: false
+    }
+  }));
+}
+
 module.exports = {
   entry: {
     app: './src/scripts/index.js'
@@ -27,10 +42,5 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js'
     }
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
-  ]
+  plugins: plugins
 };

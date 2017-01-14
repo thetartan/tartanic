@@ -9,7 +9,6 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var sourceDir = path.join(__dirname, '/src');
 var sourceStylesDir = path.join(sourceDir, '/styles');
-var sourceAssetsDir = path.join(sourceDir, '/assets');
 var sourceTranslationsDir = path.join(sourceDir, '/translations');
 
 var targetDir = path.join(__dirname, '/public');
