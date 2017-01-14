@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var TextEncoder = require('text-encoding').TextEncoder;
+var Promise = require('bluebird');
 var csv = require('papaparse');
 var url = require('url');
 
@@ -12,6 +13,10 @@ function isUrl(value) {
     return (schema == 'http') || (schema == 'https');
   }
   return false;
+}
+
+function toLowerCase(value) {
+  return ('' + value).toLowerCase();
 }
 
 function hiddenProperty(target, name, value) {
@@ -59,6 +64,16 @@ function getCSVData(string, encoding) {
     };
     csv.parse(string, config);
   });
+}
+
+function getJSONData(string) {
+  var result;
+  try {
+    result = JSON.parse(string);
+  } catch (e) {
+    result = null;
+  }
+  return Promise.resolve(result);
 }
 
 function createAttributeMapper(fields, attributes, pickAttributes) {
@@ -202,6 +217,8 @@ function createAttributeMapper(fields, attributes, pickAttributes) {
 
 module.exports.encoder = new TextEncoder('utf-8');
 module.exports.isUrl = isUrl;
+module.exports.toLowerCase = toLowerCase;
 module.exports.hiddenProperty = hiddenProperty;
 module.exports.createAttributeMapper = createAttributeMapper;
 module.exports.getCSVData = getCSVData;
+module.exports.getJSONData = getJSONData;
